@@ -11,3 +11,8 @@ Description: heddlr is a package designed to make dynamically generating R Markd
 License: BSD-3
 Encoding: UTF-8
 LazyData: true
+Suggests: 
+    rmarkdown,
+    here,
+    testthat (>= 2.1.0)
+RoxygenNote: 6.1.1
