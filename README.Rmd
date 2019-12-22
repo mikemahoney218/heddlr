@@ -1,18 +1,19 @@
-`heddlr`: Literate programming extensions for dynamic R Markdown documents
-==========================================================================
+---
+output: md_document
+---
 
-<!-- badges: start --> [![Travis build
-status](https://travis-ci.com/mikemahoney218/heddlr.svg?branch=master)](https://travis-ci.com/mikemahoney218/heddlr)
-[![Codecov test
-coverage](https://codecov.io/gh/mikemahoney218/heddlr/branch/master/graph/badge.svg)](https://codecov.io/gh/mikemahoney218/heddlr?branch=master)
-![CRAN version](https://www.r-pkg.org/badges/version/heddlr)
-<!-- badges: end -->
+# `heddlr`: Literate programming extensions for dynamic R Markdown documents
 
-What
-----
+  <!-- badges: start -->
+  [![Travis build status](https://travis-ci.com/mikemahoney218/heddlr.svg?branch=master)](https://travis-ci.com/mikemahoney218/heddlr)
+  [![Codecov test coverage](https://codecov.io/gh/mikemahoney218/heddlr/branch/master/graph/badge.svg)](https://codecov.io/gh/mikemahoney218/heddlr?branch=master)
+  ![CRAN version](https://www.r-pkg.org/badges/version/heddlr)
+  <!-- badges: end -->
 
-[R Markdown](https://github.com/rstudio/rmarkdown) is one of the coolest
-parts of the Tidyverse, making it trivial to create professional-looking
+## What
+
+[R Markdown](https://github.com/rstudio/rmarkdown) is one of the coolest parts 
+of the Tidyverse, making it trivial to create professional-looking
 HTML and PDF documents using simple markdown language. `heddlr` looks to
 extend that functionality by making it easier to dynamically piece
 together documents by intelligently using your data to combine defined
@@ -20,8 +21,7 @@ components into a cohesive whole, leading to cleaner code and faster
 creation of reports that have many repeating pieces or dashboards which
 need to respond to changes in their data sources.
 
-Why
----
+## Why
 
 R Markdown is already fantastic at creating reports where each part can
 efficiently be defined explicitly, thanks to how easily it combines
@@ -45,13 +45,11 @@ this process can and should be generalized out to all reports with
 changing or repeating sections. `heddlr` is my attempt to scratch that
 itch.
 
-How
----
+## How
 
-This document describes how the package will work by v0.5.0. As such,
-not all of the below is implemented yet – for more information, check
-out [The Road to
-0.5.0](https://github.com/mikemahoney218/heddlr/issues/1).
+This document describes how the package will work by v0.5.0. As such, 
+not all of the below is implemented yet -- for more information, check out 
+[The Road to 0.5.0](https://github.com/mikemahoney218/heddlr/issues/1).
 
 ### Reports are composed of patterns
 
@@ -70,39 +68,37 @@ deal either with creating or manipulating patterns into larger pieces.
 
 Most patterns contain three key components:
 
--   Markdown, which structures your report and provides context to the
-    code
--   Code chunks, which create the outputs your report is designed to
-    produce
--   Placeholder keywords, which are the only pieces changing between
-    each repetition of the pattern
+* Markdown, which structures your report and provides context to the code
+* Code chunks, which create the outputs your report is designed to produce
+* Placeholder keywords, which are the only pieces changing between each 
+  repetition of the pattern
 
 These components are all defined by the user – `heddlr` only cares about
 the patterns themselves. In order to work with them, `heddlr` will
 provide three pattern import functions:
 
--   `import_pattern` is a wrapper
-    for`readChar(file, file.info(file)$size)`, allowing users to import
-    patterns saved as standalone .Rmd documents as R objects
--   `assemble_draft` uses `import_pattern` to pull all your patterns
-    into a single list object (called a `draft` internally), which can
-    help simplify some other `heddlr` functionality
--   `extract_pattern` retrieves multiple patterns from a single file,
-    letting you keep a single file containing each unit of your report
-    to make testing and development easier
+* `import_pattern` is a wrapper for`readChar(file, file.info(file)$size)`, 
+  allowing users to import patterns saved as standalone .Rmd documents as 
+  R objects
+* `assemble_draft` uses `import_pattern` to pull all your patterns into a 
+  single list object (called a `draft` internally), which can help simplify 
+  some other `heddlr` functionality
+* `extract_pattern` retrieves multiple patterns from a single file, letting 
+  you keep a single file containing each unit of your report to make testing 
+  and development easier
 
-Reports are rarely composed of exclusively repeating sections, however.
-Much more common is for reports to have an amount of introduction and
-conclusion surrounding the repeating body. These sections are dealt with
-by `heddlr` exactly the same as repeating patterns – they’re just
-understood to be patterns which repeat 0 times. While most of these
-patterns can be imported using the above functions, `heddlr` also
-includes a few tools for creating special cases:
+Reports are rarely composed of exclusively repeating sections, however. 
+Much more common is for reports to have an amount of introduction and 
+conclusion surrounding the repeating body. These sections are dealt with 
+by `heddlr` exactly the same as repeating patterns – they’re just 
+understood to be patterns which repeat 0 times. While most of these 
+patterns can be imported using the above functions, `heddlr` also 
+includes a few tools for creating special cases: 
 
--   `create_yaml_header` is a utility for turning deeply-nested lists
-    into YAML headers for your .Rmd document. This can be a big pain
-    when working with `extract_pattern`, which doesn’t understand how to
-    include YAML headers as a pattern.
+* `create_yaml_header` is a utility for turning deeply-nested lists
+  into YAML headers for your .Rmd document. This can be a big pain
+  when working with `extract_pattern`, which doesn’t understand how to
+  include YAML headers as a pattern.
 
 ### Patterns combine into a template
 
@@ -111,13 +107,13 @@ piece them together correctly to form a report. This is where we create
 what `heddlr` calls a *template*, made up of a combination of patterns
 repeated based on our data inputs.
 
--   `heddle` replaces placeholder keywords with actual arguments from
-    your data and repeats patterns to represent each piece of data you
-    tell it about. More complex patterns can be made by telling `heddle`
-    to replace keywords with other `heddle` template outputs, allowing
-    nested repetition.
--   `make_template` takes outputs from `heddle` and combines them
-    linearly into a single template file.
+* `heddle` replaces placeholder keywords with actual arguments from
+  your data and repeats patterns to represent each piece of data you
+  tell it about. More complex patterns can be made by telling `heddle`
+  to replace keywords with other `heddle` template outputs, allowing
+  nested repetition.
+* `make_template` takes outputs from `heddle` and combines them
+  linearly into a single template file.
 
 ### Templates are spun into R Markdown
 
@@ -125,9 +121,9 @@ Once we’re satisfied with our final template, we can export it into a
 separate .Rmd document, which we can either manually edit further or
 render for our final output.
 
--   `export_template` is a wrapper around `writeLines` which takes
-    either the output of `make_template` or several `heddle` templates
-    and turns it into a .Rmd file.
+* `export_template` is a wrapper around `writeLines` which takes
+  either the output of `make_template` or several `heddle` templates
+  and turns it into a .Rmd file.
 
 ### Markdown is rendered into reports
 
@@ -136,10 +132,10 @@ your report. Like any other R Markdown document, you can use
 `rmarkdown::render` to create your final output, or you can use some
 helper functions provided by `heddlr` to create your report.
 
--   `use_parameters` is a simpler way to pass parameter arguments to
-    `rmarkdown::render`, automatically including the `params` flag in
-    your YAML header and including a chunk to move your inputs from
-    `params$input` back to the names you provided.
+* `use_parameters` is a simpler way to pass parameter arguments to
+  `rmarkdown::render`, automatically including the `params` flag in
+  your YAML header and including a chunk to move your inputs from
+  `params$input` back to the names you provided.
 
 ### `heddlr` is content agnostic
 
@@ -150,9 +146,7 @@ compatible with `heddlr`, because `heddlr` just doesn’t care what your
 end result will look like – its only goal is to make it easier for you
 to get there.
 
-Code of Conduct
----------------
-
-Please note that the ‘heddlr’ project is released with a [Contributor
-Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this project,
-you agree to abide by its terms.
+## Code of Conduct
+Please note that the 'heddlr' project is released with a 
+[Contributor Code of Conduct](CODE_OF_CONDUCT.md). 
+By contributing to this project, you agree to abide by its terms.
