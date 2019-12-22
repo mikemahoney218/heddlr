@@ -1,9 +1,10 @@
 `heddlr`: Literate programming extensions for dynamic R Markdown documents
 ==========================================================================
 
+[![](https://travis-ci.com/mikemahoney218/heddlr.svg?branch=master)](https://travis-ci.com/mikemahoney218/heddlr)
+
 What
 ----
-
 [R Markdown](https://github.com/rstudio/rmarkdown) is likely the killer
 app of the Tidyverse, making it trivial to create professional-looking
 HTML and PDF documents using simple markdown language. `heddlr` looks to
