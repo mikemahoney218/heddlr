@@ -9,7 +9,6 @@ r:
 os:
   - linux
   - osx
-  - windows
 jobs:
   exclude:
   - r: 3.2
