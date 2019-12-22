@@ -11,6 +11,9 @@ r:
 os:
   - linux
   - osx
+jobs:
+  allow_failures:
+    - os: osx
 after_success:
     - Rscript -e 'covr::codecov()'
 
