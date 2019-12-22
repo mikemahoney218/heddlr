@@ -3,8 +3,6 @@ sudo: false
 dist: trusty
 cache: packages
 fortran: false
-install:
-- R -e 'devtools::install_deps(dep = T)'
 jobs:
   include:
   - r: release
@@ -15,11 +13,6 @@ jobs:
       provider: script
       script: Rscript -e 'pkgdown::deploy_site_github(verbose = TRUE)'
       skip_cleanup: true
-buildtests:
-  - R CMD build .
-  - R CMD check *tar.gz
-
-
 
 env:
   global:
