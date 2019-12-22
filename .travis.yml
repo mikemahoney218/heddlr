@@ -16,6 +16,8 @@ jobs:
     os: osx
   - r: 3.3
     os: osx
+  - r: devel
+    os: osx
 after_success:
     - Rscript -e 'covr::codecov()'
 
