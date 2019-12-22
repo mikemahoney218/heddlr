@@ -3,6 +3,9 @@ r:
   - oldrel
   - release
   - devel
+os:
+  - linux
+  - osx
 after_success:
     - Rscript -e 'covr::codecov()'
 
