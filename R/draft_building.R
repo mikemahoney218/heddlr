@@ -22,7 +22,7 @@ import_pattern <- function(filepath) {
 #' When working with multiple patterns that will be woven into a tetmplate,
 #' it makes sense to have all patterns stored in a central object. This
 #' function creates that object from a named vector of filenames to be used
-#' in further generation.
+#' in further generation, importing the files via [import_pattern].
 #'
 #' @param ... A named vector of filenames which will be imported as
 #' patterns stored in the returned draft, with the names used as indices.
@@ -49,9 +49,9 @@ assemble_draft <- function(...) {
 
 #' Convert list objects into R Markdown YAML headers
 #'
-#' This function tweaks the behavior of yaml::as.yaml to return a string which
-#' can immediately be used as an R Markdown YAML header. It's designed to
-#' accept both deeply nested lists and simpler list formats to make
+#' This function tweaks the behavior of [yaml::as.yaml] to return a string
+#' which can immediately be used as an R Markdown YAML header. It's designed
+#' to accept both deeply nested lists and simpler list formats to make
 #' reasoning about your header easier.
 #'
 #' @param ... A set of objects that will be combined into the YAML header.
