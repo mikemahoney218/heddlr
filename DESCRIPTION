@@ -1,6 +1,6 @@
 Package: heddlr
 Title: Dynamic R Markdown Document Generation
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: 
     person(given = "Michael",
            family = "Mahoney",
@@ -14,7 +14,10 @@ LazyData: true
 Suggests: 
     rmarkdown,
     here,
-    testthat (>= 2.1.0)
+    testthat (>= 2.1.0),
+    covr
 RoxygenNote: 6.1.1
 Imports: 
-    yaml
+    yaml,
+    utf8
+
