@@ -12,6 +12,7 @@
 #' @export
 
 import_pattern <- function(filepath) {
+  if (nchar(readChar(filepath, file.info(filepath)$size)) == 0) warning(paste(filepath, "imported 0 characters."))
   readChar(filepath, file.info(filepath)$size)
 }
 
@@ -23,7 +24,7 @@ import_pattern <- function(filepath) {
 #' function creates that object from a named vector of filenames to be used
 #' in further generation.
 #'
-#' @param patterns A named vector of filenames which will be imported as
+#' @param ... A named vector of filenames which will be imported as
 #' patterns stored in the returned draft, with the names used as indices.
 #' Files should be plaintext.
 #'
@@ -31,12 +32,17 @@ import_pattern <- function(filepath) {
 #'
 #' @export
 
-assemble_draft <- function(patterns) {
+assemble_draft <- function(...) {
+  patterns <- list(...)
+  patterns <- unlist(patterns, recursive = FALSE)
+  if (!is.vector(patterns)) stop("Argument 1 must be a named vector.")
+  if (any(names(patterns) == "") | length(patterns) != length(names(patterns))) stop("All arguments must be named.")
+
   draft <- vector("list", length = length(patterns))
 
   for (i in seq_along(patterns)) {
     names(draft)[i] <- names(patterns)[i]
-    draft[names(patterns)[i]] <- import_pattern(patterns[i])
+    draft[names(patterns)[i]] <- import_pattern(patterns[[i]])
   }
   draft
 }
@@ -70,21 +76,24 @@ create_yaml_header <- function(...,
                                precision = getOption("digits"),
                                indent.mapping.sequence = FALSE,
                                handlers = NULL) {
-  args <- list(...)
-  if (length(args) == 0) {
+  yaml.parts <- list(...)
+
+  if (length(yaml.parts) == 0) {
     stop("Argument 1 must not be empty.")
   }
 
   header.content <- vector("list")
-  for (i in seq_along(args)) {
-    if (!is.list(args[[i]])) {
+  for (i in seq_along(yaml.parts)) {
+    if (!is.list(yaml.parts[[i]])) {
       stop("All arguments must be a list.")
     }
 
-    if (names(args[i]) == "") {
-      header.content <- c(header.content, args[[i]])
+    if (length(names(yaml.parts[i])) == 0) {
+      header.content <- c(header.content, yaml.parts[[i]])
+    } else if (names(yaml.parts[i]) == "") {
+      header.content <- c(header.content, yaml.parts[[i]])
     } else {
-      header.content <- c(header.content, args[i])
+      header.content <- c(header.content, yaml.parts[i])
     }
   }
 
