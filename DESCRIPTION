@@ -14,7 +14,8 @@ LazyData: true
 Suggests: 
     rmarkdown,
     here,
-    testthat (>= 2.1.0)
+    testthat (>= 2.1.0),
+    covr
 RoxygenNote: 6.1.1
 Imports: 
     yaml
