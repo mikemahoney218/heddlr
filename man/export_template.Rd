@@ -4,13 +4,24 @@
 \alias{export_template}
 \title{Safely export templates to file.}
 \usage{
-export_template(template, filename, sep = "", filename.is.string = T)
+export_template(template, filename, sep = "",
+  filename.is.string = TRUE)
 }
 \arguments{
 \item{template}{The template string to be written out}
 
-\item{filename}{The path to write the template to, passed to [base::writeLines].
-Also accepts `stdout()` (and likely other similar functions) with a warning}
+\item{filename}{The path to write the template to, passed to
+[base::writeLines]. Also accepts `stdout()` (and likely other similar
+functions) with a warning.}
+
+\item{sep}{Separator to use between lines written, passed to
+[base::writeLines]. Defaults to no separator, as templates are generally
+already spaced appropriately.}
+
+\item{filename.is.string}{A binary value indicating whether or not the
+filename parameter is expected to be a string (that is, a character
+vector). Setting the value to FALSE disables the warning when a
+non-character argument is passed, but this is unsupported functionality.}
 }
 \description{
 This is a simple wrapper function around [utf8::utf8_encode] and

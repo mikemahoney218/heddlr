@@ -12,13 +12,21 @@
 #' in an unchanged file, and exceptions to this rule would be considered bugs.
 #'
 #' @param template The template string to be written out
-#' @param filename The path to write the template to, passed to [base::writeLines].
-#' Also accepts `stdout()` (and likely other similar functions) with a warning
+#' @param filename The path to write the template to, passed to
+#' [base::writeLines]. Also accepts `stdout()` (and likely other similar
+#' functions) with a warning.
+#' @param sep Separator to use between lines written, passed to
+#' [base::writeLines]. Defaults to no separator, as templates are generally
+#' already spaced appropriately.
+#' @param filename.is.string A binary value indicating whether or not the
+#' filename parameter is expected to be a string (that is, a character
+#' vector). Setting the value to FALSE disables the warning when a
+#' non-character argument is passed, but this is unsupported functionality.
 
 export_template <- function(template,
                             filename,
                             sep = "",
-                            filename.is.string = T) {
+                            filename.is.string = TRUE) {
   if (filename.is.string && !is.character(filename)) {
     warning("Argument filename was passed something other than a string. You may get unexpected results.")
   }

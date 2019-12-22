@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Convert list objects into R Markdown YAML headers — create_yaml_header • heddlr</title>
+<title>Safely export templates to file. — export_template • heddlr</title>
 
 
 <!-- jquery -->
@@ -35,11 +35,13 @@
 
 
 
-<meta property="og:title" content="Convert list objects into R Markdown YAML headers — create_yaml_header" />
-<meta property="og:description" content="This function tweaks the behavior of [yaml::as.yaml] to return a string
-which can immediately be used as an R Markdown YAML header. It's designed
-to accept both deeply nested lists and simpler list formats to make
-reasoning about your header easier." />
+<meta property="og:title" content="Safely export templates to file. — export_template" />
+<meta property="og:description" content="This is a simple wrapper function around [utf8::utf8_encode] and
+[base::writeLines], letting users write their template strings to file without
+having to worry about file encodings. For more details on why UTF-8
+encoding is necessary, check out
+[Yihui Xie's](https://yihui.org/en/2018/11/biggest-regret-knitr/) post on
+the subject." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -103,50 +105,63 @@ reasoning about your header easier." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Convert list objects into R Markdown YAML headers</h1>
+    <h1>Safely export templates to file.</h1>
     
-    <div class="hidden name"><code>create_yaml_header.Rd</code></div>
+    <div class="hidden name"><code>export_template.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function tweaks the behavior of [yaml::as.yaml] to return a string
-which can immediately be used as an R Markdown YAML header. It's designed
-to accept both deeply nested lists and simpler list formats to make
-reasoning about your header easier.</p>
+    <p>This is a simple wrapper function around [utf8::utf8_encode] and
+[base::writeLines], letting users write their template strings to file without
+having to worry about file encodings. For more details on why UTF-8
+encoding is necessary, check out
+[Yihui Xie's](https://yihui.org/en/2018/11/biggest-regret-knitr/) post on
+the subject.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>create_yaml_header</span>(<span class='no'>...</span>, <span class='kw'>line.sep</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"\n"</span>, <span class='st'>"\r\n"</span>, <span class='st'>"\r"</span>),
-  <span class='kw'>indent</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>omap</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>column.major</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>unicode</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>precision</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"digits"</span>), <span class='kw'>indent.mapping.sequence</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>handlers</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>export_template</span>(<span class='no'>template</span>, <span class='no'>filename</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>filename.is.string</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>...</th>
-      <td><p>A set of objects that will be combined into the YAML header.
-Objects may be provided as lists (the structure
-list("outputs" = "html_document") translates to outputs: html_document)
-or as single-item named vectors (passing "title" = "My Report" to ... will
-translate to title: "My Report").</p></td>
+      <th>template</th>
+      <td><p>The template string to be written out</p></td>
     </tr>
     <tr>
-      <th>line.sep, indent, omap, column.major, unicode, precision, indent.mapping.sequence, handlers</th>
-      <td><p>Additional arguments to be passed to [yaml::as.yaml]</p></td>
+      <th>filename</th>
+      <td><p>The path to write the template to, passed to
+[base::writeLines]. Also accepts `stdout()` (and likely other similar
+functions) with a warning.</p></td>
+    </tr>
+    <tr>
+      <th>sep</th>
+      <td><p>Separator to use between lines written, passed to
+[base::writeLines]. Defaults to no separator, as templates are generally
+already spaced appropriately.</p></td>
+    </tr>
+    <tr>
+      <th>filename.is.string</th>
+      <td><p>A binary value indicating whether or not the
+filename parameter is expected to be a string (that is, a character
+vector). Setting the value to FALSE disables the warning when a
+non-character argument is passed, but this is unsupported functionality.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>A string, formatted for use as an R Markdown YAML header</p>
+    <p>Note that this function is effectively the inverse of [import_pattern] --
+export_template(import_pattern("out.txt"), "out.txt") should always result
+in an unchanged file, and exceptions to this rule would be considered bugs.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
+      <li><a href="#details">Details</a></li>
     </ul>
 
   </div>
