@@ -18,4 +18,5 @@ Suggests:
     covr
 RoxygenNote: 6.1.1
 Imports: 
-    yaml
+    yaml,
+    utf8
