@@ -1,8 +1,6 @@
 `heddlr`: Literate programming extensions for dynamic R Markdown documents
 ==========================================================================
 
-![](https://travis-ci.com/mikemahoney218/heddlr.svg?branch=master)
-
 What
 ----
 
