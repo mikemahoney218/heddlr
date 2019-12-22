@@ -5,8 +5,8 @@ output: md_document
 # `heddlr`: Literate programming extensions for dynamic R Markdown documents
 
   <!-- badges: start -->
-  [![Travis build status](https://travis-ci.com/mikemahoney218/heddlr.svg?branch=master)](https://travis-ci.com/mikemahoney218/heddlr)
-  [![Codecov test coverage](https://codecov.io/gh/mikemahoney218/heddlr/branch/master/graph/badge.svg)](https://codecov.io/gh/mikemahoney218/heddlr?branch=master)
+  <a href="https://travis-ci.com/mikemahoney218/heddlr"><img src="https://travis-ci.com/mikemahoney218/heddlr.svg?branch=master" title="Travis build status" alt="Travis build status"></a>
+  <a href="https://codecov.io/gh/mikemahoney218/heddlr?branch=master"><img src="https://codecov.io/gh/mikemahoney218/heddlr/branch/master/graph/badge.svg" title="Codecov test coverage" alt="Codecov test coverage"></a>
   ![CRAN version](https://www.r-pkg.org/badges/version/heddlr)
   <!-- badges: end -->
 
