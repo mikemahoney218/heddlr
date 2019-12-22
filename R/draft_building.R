@@ -60,8 +60,8 @@ assemble_draft <- function(...) {
 #' or as single-item named vectors (passing "title" = "My Report" to ... will
 #' translate to title: "My Report").
 #'
-#' @param line.sep,indent,omap,column.major,unicode,precision,indent.mapping.sequence,handlers Additional
-#' arguments to be passed to as.yaml (and documented within the yaml package)
+#' @param line.sep,indent,omap,column.major,unicode,precision,indent.mapping.sequence,handlers
+#' Additional arguments to be passed to [yaml::as.yaml]
 #'
 #' @return A string, formatted for use as an R Markdown YAML header
 #'
