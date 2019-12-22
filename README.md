@@ -2,6 +2,7 @@
 ==========================================================================
 
 [![](https://travis-ci.com/mikemahoney218/heddlr.svg?branch=master)](https://travis-ci.com/mikemahoney218/heddlr)
+![](https://www.r-pkg.org/badges/version/heddlr)
 
 What
 ----
@@ -42,11 +43,9 @@ itch.
 How
 ---
 
-`heddlr` is under active development, and has not yet released version
-0.1.0. As such, I’m still experimenting with what the API might look
-like, and many of these ideas are yet to be built out. The below
-represents the current scope for the project, and is almost guaranteed
-to change.
+This document describes how the package will work by v1.0.0. As such, 
+not all of the below is implemented yet -- for more information, check out 
+[The Road to 1.0.0](https://github.com/mikemahoney218/heddlr/issues/1).
 
 ### Reports are composed of patterns
 
