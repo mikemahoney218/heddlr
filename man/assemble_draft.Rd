@@ -4,10 +4,10 @@
 \alias{assemble_draft}
 \title{Assemble multiple patterns into a single draft object}
 \usage{
-assemble_draft(patterns)
+assemble_draft(...)
 }
 \arguments{
-\item{patterns}{A named vector of filenames which will be imported as
+\item{...}{A named vector of filenames which will be imported as
 patterns stored in the returned draft, with the names used as indices.
 Files should be plaintext.}
 }
