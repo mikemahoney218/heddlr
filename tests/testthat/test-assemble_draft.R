@@ -6,6 +6,7 @@ test_that("assemble_draft fails when it should", {
 })
 
 test_that("assemble_draft imports objects as expected", {
-  expect_equal(object.size(assemble_draft(c("one" = "../rmd/sample_pattern.Rmd", "two" = "../rmd/sample_pattern.Rmd")))[[1]],
+  draft <- assemble_draft("one" = "../rmd/sample_pattern.Rmd", "two" = "../rmd/sample_pattern.Rmd")
+  expect_equal(object.size(draft)[[1]],
                688)
 })
