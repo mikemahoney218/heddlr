@@ -8,7 +8,7 @@ Authors@R:
            email = "mike.mahoney.218@gmail.com",
            comment = c(ORCID = "https://orcid.org/0000-0003-2402-304X"))
 Description: heddlr is a package designed to make dynamically generating R Markdown documents easier, by providing an easy way to create section patterns, define how those patterns work together to form a template, and then using data to generate a report that fits your templating needs.
-License: BSD-3
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Suggests: 
