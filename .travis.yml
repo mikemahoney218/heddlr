@@ -1,8 +1,22 @@
 language: r
 r:
-  - oldrel
-  - release
+  - 3.2
+  - 3.3
+  - 3.4
+  - 3.5
+  - 3.6
   - devel
+os:
+  - linux
+  - osx
+jobs:
+  exclude:
+  - r: 3.2
+    os: osx
+  - r: 3.3
+    os: osx
+  - r: devel
+    os: osx
 after_success:
     - Rscript -e 'covr::codecov()'
 
