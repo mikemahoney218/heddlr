@@ -36,12 +36,7 @@
 
 
 <meta property="og:title" content="Safely export templates to file. — export_template" />
-<meta property="og:description" content="This is a simple wrapper function around [utf8::utf8_encode] and
-[base::writeLines], letting users write their template strings to file without
-having to worry about file encodings. For more details on why UTF-8
-encoding is necessary, check out
-[Yihui Xie's](https://yihui.org/en/2018/11/biggest-regret-knitr/) post on
-the subject." />
+<meta property="og:description" content="Safely export templates to file." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -74,7 +69,7 @@ the subject." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">heddlr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
       </span>
     </div>
 
@@ -111,12 +106,7 @@ the subject." />
     </div>
 
     <div class="ref-description">
-    <p>This is a simple wrapper function around [utf8::utf8_encode] and
-[base::writeLines], letting users write their template strings to file without
-having to worry about file encodings. For more details on why UTF-8
-encoding is necessary, check out
-[Yihui Xie's](https://yihui.org/en/2018/11/biggest-regret-knitr/) post on
-the subject.</p>
+    <p>Safely export templates to file.</p>
     </div>
 
     <pre class="usage"><span class='fu'>export_template</span>(<span class='no'>template</span>, <span class='no'>filename</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>""</span>,
@@ -132,14 +122,14 @@ the subject.</p>
     <tr>
       <th>filename</th>
       <td><p>The path to write the template to, passed to
-[base::writeLines]. Also accepts `stdout()` (and likely other similar
-functions) with a warning.</p></td>
+<code><a href='https://rdrr.io/r/base/writeLines.html'>writeLines</a></code>. Also accepts <code><a href='https://rdrr.io/r/base/showConnections.html'>stdout</a></code>
+(and likely other similar functions) with a warning.</p></td>
     </tr>
     <tr>
       <th>sep</th>
       <td><p>Separator to use between lines written, passed to
-[base::writeLines]. Defaults to no separator, as templates are generally
-already spaced appropriately.</p></td>
+<code><a href='https://rdrr.io/r/base/writeLines.html'>writeLines</a></code>. Defaults to no separator, as templates are
+generally already spaced appropriately.</p></td>
     </tr>
     <tr>
       <th>filename.is.string</th>
@@ -152,9 +142,11 @@ non-character argument is passed, but this is unsupported functionality.</p></td
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Note that this function is effectively the inverse of [import_pattern] --
-export_template(import_pattern("out.txt"), "out.txt") should always result
-in an unchanged file, and exceptions to this rule would be considered bugs.</p>
+    <p>Note that this function is effectively the inverse of
+<code><a href='import_pattern.html'>import_pattern</a></code> --
+<code>export_template(import_pattern("out.txt"), "out.txt")</code> should
+always result in an unchanged file, and exceptions to this rule would be
+considered bugs.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
