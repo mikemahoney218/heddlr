@@ -5,3 +5,5 @@
 ^\.travis\.yml$
 docs/.*
 ^codecov\.yml$
+^\.github$
+^\.covrignore$

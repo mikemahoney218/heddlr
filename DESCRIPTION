@@ -7,17 +7,24 @@ Authors@R:
            role = c("aut", "cre"),
            email = "mike.mahoney.218@gmail.com",
            comment = c(ORCID = "https://orcid.org/0000-0003-2402-304X"))
-Description: heddlr is a package designed to make dynamically generating R Markdown documents easier, by providing an easy way to create section patterns, define how those patterns work together to form a template, and then using data to generate a report that fits your templating needs.
+Description: heddlr is a package designed to make
+    dynamically generating R Markdown documents easier, by providing an
+    easy way to create section patterns, define how those patterns work
+    together to form a template, and then using data to generate a report
+    that fits your templating needs.
 License: MIT + file LICENSE
+Depends: 
+    R (>= 3.2.5)
+Imports: 
+    rlang (>= 0.1.2),
+    utf8,
+    yaml
+Suggests: 
+    covr,
+    here,
+    rmarkdown,
+    roxygen2,
+    testthat (>= 2.1.0)
 Encoding: UTF-8
 LazyData: true
-Suggests: 
-    rmarkdown,
-    here,
-    testthat (>= 2.1.0),
-    covr
 RoxygenNote: 6.1.1
-Imports: 
-    yaml,
-    utf8
-
