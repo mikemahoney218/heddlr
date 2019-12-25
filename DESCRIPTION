@@ -17,7 +17,6 @@ Depends:
     R (>= 3.2.5)
 Imports: 
     rlang (>= 0.1.2),
-    tidyselect,
     utf8,
     yaml
 Suggests: 
