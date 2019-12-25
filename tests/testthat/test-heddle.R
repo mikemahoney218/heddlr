@@ -19,12 +19,18 @@ test_that("heddle works as expected on vectors", {
   multOutput <- c("SPECIES setosa setosa ", "SPECIES versicolor versicolor ", "SPECIES virginica virginica ")
   spListNum <- c(1, 2, 3)
   expect_match(heddle(spListChar, "SPECIES CODE GWAR ", "GWAR")[[1]], textOutput[[1]])
-  expect_match(heddle(spListFac, "SPECIES CODE GWAR ", "GWAR")[[3]],
-               textOutput[[3]])
-  expect_match(heddle(spListNum, "SPECIES CODE GWAR ", "GWAR")[[2]],
-               numOutput[[2]])
-  expect_match(heddle(spListChar, "SPECIES CODE GWAR ", "GWAR", "CODE")[[1]],
-               "SPECIES setosa setosa ")
+  expect_match(
+    heddle(spListFac, "SPECIES CODE GWAR ", "GWAR")[[3]],
+    textOutput[[3]]
+  )
+  expect_match(
+    heddle(spListNum, "SPECIES CODE GWAR ", "GWAR")[[2]],
+    numOutput[[2]]
+  )
+  expect_match(
+    heddle(spListChar, "SPECIES CODE GWAR ", "GWAR", "CODE")[[1]],
+    "SPECIES setosa setosa "
+  )
   expect_match(heddle("test string", "pattern tk", "tk", strip.whitespace = T), "pattern teststring")
 })
 

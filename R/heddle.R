@@ -32,7 +32,7 @@ heddle.default <- function(data, pattern, ..., strip.whitespace = F) {
   if (!is.null(names(dots))) {
     warning("heddle ignores the names of '...' when passed a vector.")
   }
-  if(!is.logical(strip.whitespace) || length(strip.whitespace) != 1){
+  if (!is.logical(strip.whitespace) || length(strip.whitespace) != 1) {
     stop("strip.whitespace must be a logical value")
   } else if (strip.whitespace) {
     data <- gsub("[[:space:]]", "", data)
@@ -53,11 +53,11 @@ heddle.data.frame <- function(data, pattern, ..., strip.whitespace = F) {
   return <- rep(pattern, nrow(data))
   vars <- as.list(rlang::set_names(seq_along(data), names(data)))
   for (j in 1:length(dots)) {
-    if(!is.logical(strip.whitespace) || length(strip.whitespace) != 1){
+    if (!is.logical(strip.whitespace) || length(strip.whitespace) != 1) {
       stop("strip.whitespace must be TRUE or FALSE")
     } else if (strip.whitespace) {
-      data[ , rlang::eval_tidy(dots[[j]], vars)] <- as.character(data[ , rlang::eval_tidy(dots[[j]], vars)])
-      data[ , rlang::eval_tidy(dots[[j]], vars)] <- gsub("[[:space:]]", "", data[, rlang::eval_tidy(dots[[j]], vars)])
+      data[, rlang::eval_tidy(dots[[j]], vars)] <- as.character(data[, rlang::eval_tidy(dots[[j]], vars)])
+      data[, rlang::eval_tidy(dots[[j]], vars)] <- gsub("[[:space:]]", "", data[, rlang::eval_tidy(dots[[j]], vars)])
     }
     for (i in 1:nrow(data)) {
       return[[i]] <- gsub(names(dots)[[j]], data[[i, rlang::eval_tidy(dots[[j]], vars)]], return[[i]])
