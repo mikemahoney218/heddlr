@@ -1,6 +1,8 @@
 test_that("import_pattern imports patterns of right length", {
-  expect_equal(nchar(import_pattern("../rmd/sample_pattern.Rmd")),
-               53)
+  expect_equal(
+    nchar(import_pattern("../rmd/sample_pattern.Rmd")),
+    53
+  )
 })
 
 test_that("import_pattern doesn't fail silently", {

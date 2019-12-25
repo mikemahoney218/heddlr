@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Convert list objects into R Markdown YAML headers — create_yaml_header • heddlr</title>
+<title>Tidy eval helpers — tidyeval • heddlr</title>
 
 
 <!-- jquery -->
@@ -35,11 +35,40 @@
 
 
 
-<meta property="og:title" content="Convert list objects into R Markdown YAML headers — create_yaml_header" />
-<meta property="og:description" content="This function tweaks the behavior of [yaml::as.yaml] to return a string
-which can immediately be used as an R Markdown YAML header. It's designed
-to accept both deeply nested lists and simpler list formats to make
-reasoning about your header easier." />
+<meta property="og:title" content="Tidy eval helpers — tidyeval" />
+<meta property="og:description" content="
+
+sym() creates a symbol from a string and
+syms() creates a list of symbols from a
+character vector.
+enquo() and
+enquos() delay the execution of one or
+several function arguments. enquo() returns a single quoted
+expression, which is like a blueprint for the delayed computation.
+enquos() returns a list of such quoted expressions.
+expr() quotes a new expression locally. It
+is mostly useful to build new expressions around arguments
+captured with enquo() or enquos():
+expr(mean(!!enquo(arg), na.rm = TRUE)).
+as_name() transforms a quoted variable name
+into a string. Supplying something else than a quoted variable
+name is an error.
+That's unlike as_label() which also returns
+a single string but supports any kind of R object as input,
+including quoted function calls and vectors. Its purpose is to
+summarise that object into a single label. That label is often
+suitable as a default name.
+If you don't know what a quoted expression contains (for instance
+expressions captured with enquo() could be a variable
+name, a call to a function, or an unquoted constant), then use
+as_label(). If you know you have quoted a simple variable
+name, or would like to enforce this, use as_name().
+
+
+To learn more about tidy eval and how to use these tools, visit
+https://tidyeval.tidyverse.org and the
+Metaprogramming
+section of Advanced R." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -103,50 +132,54 @@ reasoning about your header easier." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Convert list objects into R Markdown YAML headers</h1>
+    <h1>Tidy eval helpers</h1>
     
-    <div class="hidden name"><code>create_yaml_header.Rd</code></div>
+    <div class="hidden name"><code>tidyeval.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function tweaks the behavior of [yaml::as.yaml] to return a string
-which can immediately be used as an R Markdown YAML header. It's designed
-to accept both deeply nested lists and simpler list formats to make
-reasoning about your header easier.</p>
+    
+<ul>
+<li><p><code><a href='https://rlang.r-lib.org/reference/nse-defuse.html'>sym</a>()</code> creates a symbol from a string and
+<code><a href='https://rlang.r-lib.org/reference/nse-defuse.html'>syms</a>()</code> creates a list of symbols from a
+character vector.</p></li>
+<li><p><code><a href='https://rlang.r-lib.org/reference/nse-defuse.html'>enquo</a>()</code> and
+<code><a href='https://rlang.r-lib.org/reference/nse-defuse.html'>enquos</a>()</code> delay the execution of one or
+several function arguments. <code>enquo()</code> returns a single quoted
+expression, which is like a blueprint for the delayed computation.
+<code>enquos()</code> returns a list of such quoted expressions.</p></li>
+<li><p><code><a href='https://rlang.r-lib.org/reference/nse-defuse.html'>expr</a>()</code> quotes a new expression <em>locally</em>. It
+is mostly useful to build new expressions around arguments
+captured with <code>enquo()</code> or <code>enquos()</code>:
+<code>expr(mean(!!enquo(arg), na.rm = TRUE))</code>.</p></li>
+<li><p><code><a href='https://rlang.r-lib.org/reference/as_name.html'>as_name</a>()</code> transforms a quoted variable name
+into a string. Supplying something else than a quoted variable
+name is an error.</p>
+<p>That's unlike <code><a href='https://rlang.r-lib.org/reference/as_label.html'>as_label</a>()</code> which also returns
+a single string but supports any kind of R object as input,
+including quoted function calls and vectors. Its purpose is to
+summarise that object into a single label. That label is often
+suitable as a default name.</p>
+<p>If you don't know what a quoted expression contains (for instance
+expressions captured with <code>enquo()</code> could be a variable
+name, a call to a function, or an unquoted constant), then use
+<code>as_label()</code>. If you know you have quoted a simple variable
+name, or would like to enforce this, use <code>as_name()</code>.</p></li>
+</ul>
+
+<p>To learn more about tidy eval and how to use these tools, visit
+<a href='https://tidyeval.tidyverse.org'>https://tidyeval.tidyverse.org</a> and the
+<a href='https://adv-r.hadley.nz/metaprogramming.html'>Metaprogramming
+section</a> of <a href='https://adv-r.hadley.nz'>Advanced R</a>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>create_yaml_header</span>(<span class='no'>...</span>, <span class='kw'>line.sep</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"\n"</span>, <span class='st'>"\r\n"</span>, <span class='st'>"\r"</span>),
-  <span class='kw'>indent</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>omap</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>column.major</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>unicode</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>precision</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"digits"</span>), <span class='kw'>indent.mapping.sequence</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>handlers</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>...</th>
-      <td><p>A set of objects that will be combined into the YAML header.
-Objects may be provided as lists (the structure
-list("outputs" = "html_document") translates to outputs: html_document)
-or as single-item named vectors (passing "title" = "My Report" to ... will
-translate to title: "My Report").</p></td>
-    </tr>
-    <tr>
-      <th>line.sep, indent, omap, column.major, unicode, precision, indent.mapping.sequence, handlers</th>
-      <td><p>Additional arguments to be passed to [yaml::as.yaml]</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A string, formatted for use as an R Markdown YAML header</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
     </ul>
 
   </div>
