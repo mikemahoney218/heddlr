@@ -5,3 +5,6 @@
 ^\.travis\.yml$
 docs/.*
 ^codecov\.yml$
+^\.github$
+^\.covrignore$
+prepare_development_branch.sh

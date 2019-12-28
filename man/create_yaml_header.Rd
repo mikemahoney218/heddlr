@@ -16,13 +16,13 @@ list("outputs" = "html_document") translates to outputs: html_document)
 or as single-item named vectors (passing "title" = "My Report" to ... will
 translate to title: "My Report").}
 
-\item{line.sep, indent, omap, column.major, unicode, precision, indent.mapping.sequence, handlers}{Additional arguments to be passed to [yaml::as.yaml]}
+\item{line.sep, indent, omap, column.major, unicode, precision, indent.mapping.sequence, handlers}{Additional arguments to be passed to \code{\link[yaml]{as.yaml}}}
 }
 \value{
 A string, formatted for use as an R Markdown YAML header
 }
 \description{
-This function tweaks the behavior of [yaml::as.yaml] to return a string
+This function tweaks the behavior of \code{\link[yaml]{as.yaml}} to return a string
 which can immediately be used as an R Markdown YAML header. It's designed
 to accept both deeply nested lists and simpler list formats to make
 reasoning about your header easier.

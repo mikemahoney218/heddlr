@@ -1,6 +1,6 @@
 #' Convert list objects into R Markdown YAML headers
 #'
-#' This function tweaks the behavior of [yaml::as.yaml] to return a string
+#' This function tweaks the behavior of \code{\link[yaml]{as.yaml}} to return a string
 #' which can immediately be used as an R Markdown YAML header. It's designed
 #' to accept both deeply nested lists and simpler list formats to make
 #' reasoning about your header easier.
@@ -12,7 +12,7 @@
 #' translate to title: "My Report").
 #'
 #' @param line.sep,indent,omap,column.major,unicode,precision,indent.mapping.sequence,handlers
-#' Additional arguments to be passed to [yaml::as.yaml]
+#' Additional arguments to be passed to \code{\link[yaml]{as.yaml}}
 #'
 #' @return A string, formatted for use as an R Markdown YAML header
 #'
@@ -28,16 +28,16 @@ create_yaml_header <- function(...,
                                indent.mapping.sequence = FALSE,
                                handlers = NULL) {
   yaml.parts <- list(...)
-
   if (length(yaml.parts) == 0) {
     stop("Argument 1 must not be empty.")
   }
 
+  if (any(is.null(names(unlist(yaml.parts))))) {
+    stop("All arguments must be named.")
+  }
+
   header.content <- vector("list")
   for (i in seq_along(yaml.parts)) {
-    if (!is.list(yaml.parts[[i]])) {
-      stop("All arguments must be a list.")
-    }
 
     if (length(names(yaml.parts[i])) == 0) {
       header.content <- c(header.content, yaml.parts[[i]])
