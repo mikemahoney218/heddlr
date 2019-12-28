@@ -54,13 +54,13 @@ heddle.data.frame <- function(data, pattern, ..., strip.whitespace = F) {
   vars <- as.list(rlang::set_names(seq_along(data), names(data)))
   for (j in 1:length(dots)) {
     if (!is.logical(strip.whitespace) || length(strip.whitespace) != 1) {
-      stop("strip.whitespace must be TRUE or FALSE")
+      stop("strip.whitespace must be either TRUE or FALSE")
     } else if (strip.whitespace) {
       data[, rlang::eval_tidy(dots[[j]], vars)] <- as.character(data[, rlang::eval_tidy(dots[[j]], vars)])
       data[, rlang::eval_tidy(dots[[j]], vars)] <- gsub("[[:space:]]", "", data[, rlang::eval_tidy(dots[[j]], vars)])
     }
     for (i in 1:nrow(data)) {
-      return[[i]] <- gsub(names(dots)[[j]], data[[i, rlang::eval_tidy(dots[[j]], vars)]], return[[i]])
+      return[[i]] <- paste(gsub(names(dots)[[j]], data[[i, rlang::eval_tidy(dots[[j]], vars)]], return[[i]]), sep = "", collapse = "")
     }
   }
   return
