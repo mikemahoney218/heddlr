@@ -18,5 +18,6 @@ A list ("draft") object containing the imported patterns.
 When working with multiple patterns that will be woven into a tetmplate,
 it makes sense to have all patterns stored in a central object. This
 function creates that object from a named vector of filenames to be used
-in further generation, importing the files via [import_pattern].
+in further generation, importing the files via
+\code{\link[heddlr]{import_pattern}}.
 }
