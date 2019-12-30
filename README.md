@@ -1,4 +1,4 @@
-`heddlr`: Literate programming extensions for dynamic R Markdown documents ![Hex badge](man/figures/heddlr-badge.png)
+`heddlr`: Literate programming extensions for dynamic R Markdown documents
 ==========================================================================
 
 <!-- badges: start --> 
@@ -7,6 +7,7 @@
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/3535/badge)](https://bestpractices.coreinfrastructure.org/projects/3535)
 [![Package lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)
 ![CRAN version](https://www.r-pkg.org/badges/version/heddlr)
+<img src="man/figures/heddlr-badge.png" alt="Heddlr hex badge" width = 40px>
 <!-- badges: end -->
 
 What
