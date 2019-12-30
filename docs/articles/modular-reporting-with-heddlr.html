@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">heddlr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -62,7 +62,14 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/mikemahoney218/heddlr">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -78,9 +85,9 @@
       <h1>Modular Reporting with heddlr</h1>
                         <h4 class="author">Mike Mahoney</h4>
             
-            <h4 class="date">2019-12-29</h4>
+            <h4 class="date">2019-12-30</h4>
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/mikemahoney218/heddlr/blob/master/vignettes/modular-reporting-with-heddlr.Rmd"><code>vignettes/modular-reporting-with-heddlr.Rmd</code></a></small>
       <div class="hidden name"><code>modular-reporting-with-heddlr.Rmd</code></div>
 
     </div>
@@ -98,8 +105,8 @@ output: html_document
 ## Iris setosa
 
 This species of flower is great! It has a mean sepal length of 
-5.006, and 
-mean sepal width of 3.428. 
+`.r mean(iris[iris$Species == "setosa", "Sepal.Length"])`, and a
+mean sepal width of `.r mean(iris[iris$Species == "setosa", "Sepal.Width"])`. 
 That looks like this on a graph!
 
 .```{r}
@@ -112,8 +119,8 @@ iris %&gt;%
 ## Iris virginica
 
 This species of flower is great! It has a mean sepal length of 
-6.588, and 
-mean sepal width of 2.974. 
+`.r mean(iris[iris$Species == "virginica", "Sepal.Length"])`, and a
+mean sepal width of `.r mean(iris[iris$Species == "virginica", "Sepal.Width"])`. 
 That looks like this on a graph!
 
 .```{r}
@@ -123,9 +130,9 @@ iris %&gt;%
   geom_point()
 .```
 </code></pre>
-<p>This is a great report, and it probably didn’t take that long to create. However, maybe one day Joe down the hall points out that there are actually more types of irises than the ones you’re always talking about - and your database already has information about one called versicolor!</p>
-<p>If you wanted, you could go ahead and copy and paste the species section again, making sure to change all the species names to versicolor. However, there’s some level of risk associated with that – for instance, you can wind up reporting bad data if you miss replacing a value. More importantly, though, is that copying and pasting by hand doesn’t scale to reports which are put out often and need multiple sections added or removed. It can save a lot of time and energy to instead automate that task away.</p>
-<p>That’s the motivation behind <code>heddlr</code><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>: to reduce that repetitive work and, as a side effect, simplify your code. To do so, <code>heddlr</code> looks at reports as a collection of components, which we’ll call patterns. For instance, our example report is made up of two patterns. The first of those is the setup material:</p>
+<p>This is a great report, and it probably didn’t take that long to create. However, one day Joe down the hall points out that there are actually more types of irises than the ones you’re always talking about - and your database already has information about one called versicolor!</p>
+<p>If you wanted, you could go ahead and copy and paste the species section again, making sure to change all the species names to versicolor. However, there’s some level of risk associated with that – you can wind up with errors in your reporting if you miss replacing a value. More importantly, though, is that copying and pasting by hand doesn’t scale to reports which are put out often and need multiple sections added or removed. It can save a lot of time and energy to instead automate that task away.</p>
+<p>That’s the motivation behind <code>heddlr</code><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>: to reduce that repetitive work and, as a side effect, simplify your code. To do so, <code>heddlr</code> looks at reports as a collection of components, which we’ll call patterns. As it happens, our super cool report above is made up of two patterns – first, the setup material:</p>
 <pre><code>---
 title: "My cool report!"
 author: "Captain heddlr"
@@ -138,12 +145,12 @@ library(ggplot2)
 .```
 # Let's talk about irises!
 </code></pre>
-<p>The second is the species-specific section, which gets repeated for each species in our dataset – I’ve swapped the specific name out for a placeholder value:</p>
+<p>And secondly the species-specific section, which gets repeated for each species in our dataset – I’ve swapped the specific name out for a placeholder value:</p>
 <pre><code>## Iris SPECIES_NAME
 
 This species of flower is great! It has a mean sepal length of 
-NaN, and 
-mean sepal width of NaN. 
+`.r mean(iris[iris$Species == "SPECIES_NAME", "Sepal.Length"])`, and a
+mean sepal width of `.r mean(iris[iris$Species == "SPECIES_NAME", "Sepal.Width"])`. 
 That looks like this on a graph!
 
 .```{r}
@@ -153,11 +160,11 @@ iris %&gt;%
   geom_point()
 .```
 </code></pre>
-<p>When using <code>heddlr</code>, we’ll usually go ahead and save each of those patterns in their own files. We’ll refer to these patterns as <code>setup_pattern.Rmd</code> and <code>species_pattern.Rmd</code> respectively<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
+<p>When using <code>heddlr</code>, we’ll usually go ahead and save each of those patterns in their own files – for our example report, we’ll name those files <code>setup_pattern.Rmd</code> and <code>species_pattern.Rmd</code> respectively<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
 <p>We then have a few ways we can import them into our R session. Let’s load <code>heddlr</code> and then walk through them:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(heddlr)</a></code></pre></div>
-<p>The first and most straightforward method is to use <code><a href="../reference/import_pattern.html">heddlr::import_pattern()</a></code>, which does more or less what you’d expect and import a single pattern into a single R object.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># These can be any sort of plaintext file -- I tend to save them as .Rmd, </span></a>
+<p>The first and most straightforward method is to use <code><a href="../reference/import_pattern.html">heddlr::import_pattern()</a></code>, which does more or less what you’d expect and imports a single pattern into a single R object.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># These can be any sort of plaintext file -- I tend to save them as .Rmd,</span></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co"># so that I can see code highlighting in R Studio with them, but any extension</span></a>
 <a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co"># should work fine</span></a>
 <a class="sourceLine" id="cb5-4" data-line-number="4">setup_pattern &lt;-<span class="st"> </span><span class="kw"><a href="../reference/import_pattern.html">import_pattern</a></span>(<span class="st">"setup_pattern.Rmd"</span>)</a>
@@ -165,9 +172,11 @@ iris %&gt;%
 <p>This gives us objects that contain strings like this:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">setup_pattern</a>
 <a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">#&gt; [1] "---\ntitle: \"My cool report!\"\nauthor: \"Captain heddlr\"\noutput: html_document\n---\n\n```{r setup}\nlibrary(dplyr)\nlibrary(ggplot2)\n```\n\n# Let's talk about irises!\n\n"</span></a></code></pre></div>
-<p>However, it can be helpful in reports with multiple patterns to store everything in one object, just to have fewer things floating around your top-level environment. <code>heddlr</code> supports this out of the box via <code><a href="../reference/assemble_draft.html">heddlr::assemble_draft()</a></code>, which will return a single list object holding all of your patterns:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">iris_draft &lt;-<span class="st"> </span><span class="kw"><a href="../reference/assemble_draft.html">assemble_draft</a></span>(<span class="st">"setup_pattern"</span> =<span class="st"> "setup_pattern.Rmd"</span>,</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">                             <span class="st">"species_pattern"</span> =<span class="st"> "species_pattern.Rmd"</span>)</a></code></pre></div>
+<p>However, it can be helpful in reports with multiple patterns to store everything in one object, just to have fewer things floating around your top-level environment. <code>heddlr</code> provides <code><a href="../reference/assemble_draft.html">heddlr::assemble_draft()</a></code> for this purpose, wrapping an <code>lapply</code> call which will return a single list object holding all of your patterns:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">iris_draft &lt;-<span class="st"> </span><span class="kw"><a href="../reference/assemble_draft.html">assemble_draft</a></span>(</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">  <span class="st">"setup_pattern"</span> =<span class="st"> "setup_pattern.Rmd"</span>,</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">  <span class="st">"species_pattern"</span> =<span class="st"> "species_pattern.Rmd"</span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">)</a></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">iris_draft</a>
 <a class="sourceLine" id="cb8-2" data-line-number="2"><span class="co">#&gt; $setup_pattern</span></a>
 <a class="sourceLine" id="cb8-3" data-line-number="3"><span class="co">#&gt; [1] "---\ntitle: \"My cool report!\"\nauthor: \"Captain heddlr\"\noutput: html_document\n---\n\n```{r setup}\nlibrary(dplyr)\nlibrary(ggplot2)\n```\n\n# Let's talk about irises!\n\n"</span></a>
@@ -212,7 +221,7 @@ iris %&gt;%
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">iris <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb13-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>(Species) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb13-3" data-line-number="3"><span class="st">  </span><span class="co"># the data argument is provided by %&gt;%</span></a>
-<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="st">  </span><span class="co"># so we just provide the pattern and placeholder </span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="st">  </span><span class="co"># so we just provide the pattern and placeholder</span></a>
 <a class="sourceLine" id="cb13-5" data-line-number="5"><span class="st">  </span><span class="co"># (format "PLACEHOLDER" = Variable)</span></a>
 <a class="sourceLine" id="cb13-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="../reference/heddle.html">heddle</a></span>(<span class="st">"This is a pattern - CODE "</span>, <span class="st">"CODE"</span> =<span class="st"> </span>Species)</a>
 <a class="sourceLine" id="cb13-7" data-line-number="7"><span class="co">#&gt; [1] "This is a pattern - setosa "     "This is a pattern - versicolor "</span></a>
@@ -224,7 +233,7 @@ iris %&gt;%
 <a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co">#&gt; [1] "setosa is a pattern - setosa "        </span></a>
 <a class="sourceLine" id="cb14-5" data-line-number="5"><span class="co">#&gt; [2] "versicolor is a pattern - versicolor "</span></a>
 <a class="sourceLine" id="cb14-6" data-line-number="6"><span class="co">#&gt; [3] "virginica is a pattern - virginica "</span></a></code></pre></div>
-<p>One last way we can use <code><a href="../reference/heddle.html">heddle()</a></code> is to use <code><a href="https://purrr.tidyverse.org/reference/map.html">purrr::map()</a></code> to apply it to nested columns made via <code><a href="https://tidyr.tidyverse.org/reference/nest.html">tidyr::nest()</a></code>. To do so, we just provide arguments in the same way as the other time we provided <code><a href="../reference/heddle.html">heddle()</a></code> a dataframe:</p>
+<p>One last way we can use <code><a href="../reference/heddle.html">heddle()</a></code> is to use <code><a href="https://purrr.tidyverse.org/reference/map.html">purrr::map()</a></code> to apply it to nested columns made via <code><a href="https://tidyr.tidyverse.org/reference/nest.html">tidyr::nest()</a></code>. To do so, we just provide arguments in the same way as above:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">iris <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/nest.html">nest</a></span>(<span class="dt">nested =</span> Species) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb15-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">component =</span> <span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span>(nested, heddle, <span class="st">"This is a pattern - CODE "</span>, <span class="st">"CODE"</span> =<span class="st"> </span>Species)) <span class="op">%&gt;%</span></a>
@@ -235,30 +244,34 @@ iris %&gt;%
 <a class="sourceLine" id="cb15-8" data-line-number="8"><span class="co">#&gt; 1          5.1         3.5          1.4         0.2       [1 × 1] &lt;chr [1]&gt;</span></a>
 <a class="sourceLine" id="cb15-9" data-line-number="9"><span class="co">#&gt; 2          4.9         3            1.4         0.2       [1 × 1] &lt;chr [1]&gt;</span></a></code></pre></div>
 <p>This is also the supported way to change multiple placeholder values while saving a component as a column in a dataframe via mutate – nest the columns you’re using to replace placeholders with and then use <code>purrr</code> to replace the placeholders in one step.</p>
-<p>You’ll notice that the output of this method is another list column, not the same string column we’re used to seeing as an output. Those familiar with <code>purrr:map()</code> might know that we can get a character output from most dataframes with <code><a href="https://purrr.tidyverse.org/reference/map.html">purrr::map_chr()</a></code> – however, this doesn’t work with dataframes where you’ll get more than one output from the <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> call:</p>
+<p>You’ll notice that the output of this method is another list column, not the same string column we’re used to seeing as an output. Those familiar with <code>purrr:map()</code> might know that we can get a character output from many dataframes with <code><a href="https://purrr.tidyverse.org/reference/map.html">purrr::map_chr()</a></code> – however, this doesn’t work with dataframes where you’ll get more than one output from the <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> call:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">iris <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb16-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/nest.html">nest</a></span>(<span class="dt">nested =</span> Species) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb16-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">component =</span> <span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map_chr</a></span>(nested, heddle, <span class="st">"This is a pattern - CODE "</span>, <span class="st">"CODE"</span> =<span class="st"> </span>Species))</a>
-<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="co">#&gt; Error: Result 102 must be a single string, not a character vector of length 2</span></a></code></pre></div>
+<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="co"># &gt; Error: Result 102 must be a single string, not a character vector of length 2</span></a></code></pre></div>
 <p>Instead, we can turn to our next function, <code><a href="../reference/make_template.html">heddlr::make_template()</a></code>. There are a few different ways that we can use this function. For our current situation, for instance, we can use <code><a href="https://purrr.tidyverse.org/reference/map.html">purrr::map_chr()</a></code> to apply <code><a href="../reference/make_template.html">make_template()</a></code> to our new component list column, transforming it into the normal set of strings we’re used to:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">iris <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb17-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/nest.html">nest</a></span>(<span class="dt">nested =</span> Species) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">component =</span> <span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span>(nested, heddle, <span class="st">"This is a pattern - CODE "</span>, <span class="st">"CODE"</span> =<span class="st"> </span>Species),</a>
-<a class="sourceLine" id="cb17-4" data-line-number="4">         <span class="dt">component =</span> <span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map_chr</a></span>(component, make_template)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb17-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb17-6" data-line-number="6"><span class="co">#&gt; # A tibble: 2 x 6</span></a>
-<a class="sourceLine" id="cb17-7" data-line-number="7"><span class="co">#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width    nested component    </span></a>
-<a class="sourceLine" id="cb17-8" data-line-number="8"><span class="co">#&gt;          &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;list&lt;df&gt; &lt;chr&gt;        </span></a>
-<a class="sourceLine" id="cb17-9" data-line-number="9"><span class="co">#&gt; 1          5.1         3.5          1.4         0.2   [1 × 1] "This is a p…</span></a>
-<a class="sourceLine" id="cb17-10" data-line-number="10"><span class="co">#&gt; 2          4.9         3            1.4         0.2   [1 × 1] "This is a p…</span></a></code></pre></div>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(</a>
+<a class="sourceLine" id="cb17-4" data-line-number="4">    <span class="dt">component =</span> <span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span>(nested, heddle, <span class="st">"This is a pattern - CODE "</span>, <span class="st">"CODE"</span> =<span class="st"> </span>Species),</a>
+<a class="sourceLine" id="cb17-5" data-line-number="5">    <span class="dt">component =</span> <span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map_chr</a></span>(component, make_template)</a>
+<a class="sourceLine" id="cb17-6" data-line-number="6">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb17-8" data-line-number="8"><span class="co">#&gt; # A tibble: 2 x 6</span></a>
+<a class="sourceLine" id="cb17-9" data-line-number="9"><span class="co">#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width    nested component    </span></a>
+<a class="sourceLine" id="cb17-10" data-line-number="10"><span class="co">#&gt;          &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;list&lt;df&gt; &lt;chr&gt;        </span></a>
+<a class="sourceLine" id="cb17-11" data-line-number="11"><span class="co">#&gt; 1          5.1         3.5          1.4         0.2   [1 × 1] "This is a p…</span></a>
+<a class="sourceLine" id="cb17-12" data-line-number="12"><span class="co">#&gt; 2          4.9         3            1.4         0.2   [1 × 1] "This is a p…</span></a></code></pre></div>
 <p>In addition to this, there are two other contexts we can use <code><a href="../reference/make_template.html">make_template()</a></code>. If we pass it a dataframe and a vector, it will collapse that vector into a single string:</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">iris <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb18-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/nest.html">nest</a></span>(<span class="dt">nested =</span> Species) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">component =</span> <span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span>(nested, heddle, <span class="st">"This is a pattern - CODE "</span>, <span class="st">"CODE"</span> =<span class="st"> </span>Species),</a>
-<a class="sourceLine" id="cb18-4" data-line-number="4">         <span class="dt">component =</span> <span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map_chr</a></span>(component, make_template)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb18-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="dv">2</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb18-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="../reference/make_template.html">make_template</a></span>(component)</a>
-<a class="sourceLine" id="cb18-7" data-line-number="7"><span class="co">#&gt; [1] "This is a pattern - setosa This is a pattern - setosa "</span></a></code></pre></div>
+<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(</a>
+<a class="sourceLine" id="cb18-4" data-line-number="4">    <span class="dt">component =</span> <span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span>(nested, heddle, <span class="st">"This is a pattern - CODE "</span>, <span class="st">"CODE"</span> =<span class="st"> </span>Species),</a>
+<a class="sourceLine" id="cb18-5" data-line-number="5">    <span class="dt">component =</span> <span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map_chr</a></span>(component, make_template)</a>
+<a class="sourceLine" id="cb18-6" data-line-number="6">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb18-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="dv">2</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb18-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="../reference/make_template.html">make_template</a></span>(component)</a>
+<a class="sourceLine" id="cb18-9" data-line-number="9"><span class="co">#&gt; [1] "This is a pattern - setosa This is a pattern - setosa "</span></a></code></pre></div>
 <p>If instead the first argument we pass it is a vector, it will combine all the vectors you provide it into a single string:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw"><a href="../reference/make_template.html">make_template</a></span>(<span class="st">"Part one, "</span>, <span class="st">"part two"</span>)</a>
 <a class="sourceLine" id="cb19-2" data-line-number="2"><span class="co">#&gt; [1] "Part one, part two"</span></a></code></pre></div>
@@ -269,7 +282,7 @@ iris %&gt;%
 <a class="sourceLine" id="cb20-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/make_template.html">make_template</a></span>(component)</a>
 <a class="sourceLine" id="cb20-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb20-6" data-line-number="6">report_template &lt;-<span class="st"> </span><span class="kw"><a href="../reference/make_template.html">make_template</a></span>(iris_draft<span class="op">$</span>setup_pattern, species_template)</a></code></pre></div>
-<p>I refer to these output strings as <em>templates</em>, which are the second to last step in the <code>heddlr</code> pipeline. However, in order to actually create our reports, we need to export these templates to .Rmd files. In order to do that, <code>heddlr</code> provides a helpful function aptly named <code><a href="../reference/export_template.html">heddlr::export_template()</a></code>. Normally, <code>export_template</code> takes two arguments – the template to write out, and the file to write it out to. Here, I’m going to tell it to print to <code><a href="https://rdrr.io/r/base/showConnections.html">stdout()</a></code> instead – both in order to keep this vignette self-contained, and to show what our end report file will look like:</p>
+<p>I refer to these output strings as <em>templates</em>, which are the second to last step in the <code>heddlr</code> pipeline. However, in order to actually create our reports, we need to export these templates to .Rmd files. In order to do that, <code>heddlr</code> provides a helpful function, aptly named <code><a href="../reference/export_template.html">heddlr::export_template()</a></code>. Normally, <code>export_template</code> takes two arguments – the template to write out, and the file to write it out to. Here, I’m going to tell it to print to <code><a href="https://rdrr.io/r/base/showConnections.html">stdout()</a></code> instead – that will just output here what our sample report would look like:</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/warning.html">suppressWarnings</a></span>(<span class="kw"><a href="../reference/export_template.html">export_template</a></span>(report_template, <span class="kw"><a href="https://rdrr.io/r/base/showConnections.html">stdout</a></span>()))</a>
 <a class="sourceLine" id="cb21-2" data-line-number="2"><span class="co">#&gt; ---</span></a>
 <a class="sourceLine" id="cb21-3" data-line-number="3"><span class="co">#&gt; title: "My cool report!"</span></a>
@@ -337,6 +350,7 @@ iris %&gt;%
 </li>
 </ul>
 <p>I’ll usually save these steps into a “generator” file, which I can then run every time I need to regenerate my report. I’ll also often include a step in that file that calls <code><a href="https://rdrr.io/pkg/rmarkdown/man/render.html">rmarkdown::render()</a></code> on the generated report file, so that I can just run a single script in order to remake and rebuild my entire report. Obviously, this can be something of an overkill for reports as simple as our example here, but it can be a huge timesaver for more complex reports that have more repeating sections, built more often, or are based on more dynamic data sources that require maintenance to add or remove components between builds. It also can help make your code DRYer<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> so you can make edits in a single place and see them replicated across your entire report.</p>
+<p>If you want to see this process applied to a somewhat more complicated example, check out how we can make <a href="https://mikemahoney218.github.io/heddlr/flights-example/flights_dashboard.html">this dashboard</a> via <a href="https://mikemahoney218.github.io/heddlr/flights-example/flexdashboards-with-heddlr.html">this article</a>.</p>
 <div class="footnotes">
 <hr>
 <ol>

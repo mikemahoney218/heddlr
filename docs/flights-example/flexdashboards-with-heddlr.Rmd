@@ -51,42 +51,46 @@ function for each of those graphics.
 
 ```{r}
 graph_flights_per_hour <- function(origin_code) {
- flights %>%
-  filter(origin == origin_code) %>%
-  count(time_hour, hour) %>%
-  group_by(hour) %>%
-  summarise(n = mean(n)) %>%
-  ggplot(aes(hour, n, fill = n)) +
-  geom_col(color = "black") + 
-  scale_x_continuous(breaks = seq(2, 24, 2)) +
-  scale_fill_viridis_c(begin = 0, end = 0.7, name = "") +
-  theme_minimal() %+replace%
-  theme(axis.text.y = element_blank()) +
-  coord_polar() + 
-  labs(title = "Average number of flights per hour",
-       subtitle = paste(origin_code, "Airport"),
-       x = "",
-       y = "") 
+  flights %>%
+    filter(origin == origin_code) %>%
+    count(time_hour, hour) %>%
+    group_by(hour) %>%
+    summarise(n = mean(n)) %>%
+    ggplot(aes(hour, n, fill = n)) +
+    geom_col(color = "black") +
+    scale_x_continuous(breaks = seq(2, 24, 2)) +
+    scale_fill_viridis_c(begin = 0, end = 0.7, name = "") +
+    theme_minimal() %+replace%
+    theme(axis.text.y = element_blank()) +
+    coord_polar() +
+    labs(
+      title = "Average number of flights per hour",
+      subtitle = paste(origin_code, "Airport"),
+      x = "",
+      y = ""
+    )
 }
 graph_flights_per_hour("EWR")
 ```
 
 ```{r}
 graph_mean_delay <- function(origin_code, month_number) {
- flights %>%
-  filter(origin == origin_code &
-           month == month_number) %>%
+  flights %>%
+    filter(origin == origin_code &
+      month == month_number) %>%
     mutate(date = lubridate::as_date(time_hour)) %>%
-  group_by(date) %>%
-  summarise(delay = mean(dep_delay, na.rm = T)) %>%
-  ggplot(aes(date, delay)) + 
-  geom_col(color = "black") + 
-  scale_y_continuous(expand = expand_scale(mult = c(0, 0.07))) + 
-  theme_classic() + 
-  labs(x = "Day of month",
-       y = "Delay (minutes)",
-       title = "Average flight departure delays per day",
-       subtitle = paste(origin_code, "Airport,", month.name[[month_number]]))
+    group_by(date) %>%
+    summarise(delay = mean(dep_delay, na.rm = T)) %>%
+    ggplot(aes(date, delay)) +
+    geom_col(color = "black") +
+    scale_y_continuous(expand = expand_scale(mult = c(0, 0.07))) +
+    theme_classic() +
+    labs(
+      x = "Day of month",
+      y = "Delay (minutes)",
+      title = "Average flight departure delays per day",
+      subtitle = paste(origin_code, "Airport,", month.name[[month_number]])
+    )
 }
 
 graph_mean_delay("EWR", 1)
@@ -95,19 +99,23 @@ graph_mean_delay("EWR", 1)
 ```{r}
 graph_sankey <- function(origin_code) {
   flights %>%
-  count(origin, dest) %>%
-  mutate(highlight = ifelse(origin == origin_code, 1, 0)) %>%
-  ggplot(aes(axis1 = origin, axis2 = dest, y = n)) +
-  geom_alluvium(aes(fill = highlight)) + 
-  geom_stratum(width = 1/10) + 
+    count(origin, dest) %>%
+    mutate(highlight = ifelse(origin == origin_code, 1, 0)) %>%
+    ggplot(aes(axis1 = origin, axis2 = dest, y = n)) +
+    geom_alluvium(aes(fill = highlight)) +
+    geom_stratum(width = 1 / 10) +
     geom_label(stat = "stratum", infer.label = TRUE) +
-  scale_y_continuous(expand = expand_scale(mult = c(0, 0.07))) + 
-  theme_classic() %+replace%
-  theme(legend.position = "none",
-        axis.text = element_blank()) + 
-  labs(x = "",
-       y = "",
-       title = paste("Flights out of", "EWR"))
+    scale_y_continuous(expand = expand_scale(mult = c(0, 0.07))) +
+    theme_classic() %+replace%
+    theme(
+      legend.position = "none",
+      axis.text = element_blank()
+    ) +
+    labs(
+      x = "",
+      y = "",
+      title = paste("Flights out of", "EWR")
+    )
 }
 
 graph_sankey("EWR")
@@ -115,18 +123,20 @@ graph_sankey("EWR")
 
 ```{r}
 graph_carriers <- function(origin_code) {
- flights %>%
-  filter(origin == origin_code) %>%
-  group_by(carrier) %>%
-  summarise(dep_delay = mean(dep_delay, na.rm = T)) %>%
-  ggplot(aes(carrier, dep_delay)) +
-  geom_col() + 
-  scale_y_continuous(expand = expand_scale(mult = c(0, 0.07))) + 
-  theme_classic() + 
-  labs(x = "Carrier",
-       y = "Average departure delay (minutes)",
-       title = "Mean departure delay by carrier",
-       subtitle = paste("EWR", "Airport")) 
+  flights %>%
+    filter(origin == origin_code) %>%
+    group_by(carrier) %>%
+    summarise(dep_delay = mean(dep_delay, na.rm = T)) %>%
+    ggplot(aes(carrier, dep_delay)) +
+    geom_col() +
+    scale_y_continuous(expand = expand_scale(mult = c(0, 0.07))) +
+    theme_classic() +
+    labs(
+      x = "Carrier",
+      y = "Average departure delay (minutes)",
+      title = "Mean departure delay by carrier",
+      subtitle = paste("EWR", "Airport")
+    )
 }
 
 graph_carriers("EWR")
@@ -158,8 +168,10 @@ nice to keep them all in one place. `heddlr` helps you do this as well via the
 `assemble_draft` function, which takes named filepaths and stores them in a list:
 
 ```{r}
-draft <- assemble_draft("site_pattern" = "flights_site_level.Rmd",
-               "month_pattern" = "flights_month_level.Rmd")
+draft <- assemble_draft(
+  "site_pattern" = "flights_site_level.Rmd",
+  "month_pattern" = "flights_month_level.Rmd"
+)
 draft
 ```
 
@@ -182,7 +194,7 @@ dashboard_header <- list(
   ),
   "output" = list("flexdashboard::flex_dashboard" = list(
     "vertical_layout" = "fill",
-        "orientation" = "rows"
+    "orientation" = "rows"
   ))
 )
 
@@ -210,8 +222,10 @@ dashboard_body <- flights %>%
   distinct(origin, month) %>%
   arrange(month) %>%
   tidyr::nest(month = month) %>%
-  mutate(sitepattern = heddle(origin, draft$site_pattern, "AIRCODE"),
-         monthpattern = purrr::map(month, heddle, draft$month_pattern, "MONTHNUM" = month))
+  mutate(
+    sitepattern = heddle(origin, draft$site_pattern, "AIRCODE"),
+    monthpattern = purrr::map(month, heddle, draft$month_pattern, "MONTHNUM" = month)
+  )
 
 dashboard_body
 ```
@@ -234,8 +248,10 @@ one object, which will form the bulk of our dashboard:
 
 ```{r}
 dashboard_body <- dashboard_body %>%
-  mutate(monthpattern = purrr::map_chr(monthpattern, make_template),
-         template = paste0(sitepattern, monthpattern)) %>%
+  mutate(
+    monthpattern = purrr::map_chr(monthpattern, make_template),
+    template = paste0(sitepattern, monthpattern)
+  ) %>%
   make_template(template)
 
 substr(dashboard_body, 1, 40)
@@ -266,13 +282,14 @@ step, and will include them in this render call as well:
 
 ```{r results="hide"}
 rmarkdown::render("flights_dashboard.Rmd",
-                  params = list(
-                    flights = flights,
-                    graph_flights_per_hour = graph_flights_per_hour,
-  graph_mean_delay = graph_mean_delay,
-  graph_sankey = graph_sankey,
-  graph_carriers = graph_carriers
-                  ))
+  params = list(
+    flights = flights,
+    graph_flights_per_hour = graph_flights_per_hour,
+    graph_mean_delay = graph_mean_delay,
+    graph_sankey = graph_sankey,
+    graph_carriers = graph_carriers
+  )
+)
 ```
 
 We've now fully automated the building and rendering of our dashboard, using
