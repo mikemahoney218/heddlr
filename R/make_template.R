@@ -29,8 +29,8 @@ make_template.default <- function(data, ...) {
 
 #' @export
 make_template.data.frame <- function(data, ...) {
-  dots <- enquos(...)
-  if (length(dots) == 0) stop("argument '...' is missing, with no default")
+  dots <- rlang::enquos(...)
+  if (length(dots) == 0) stop("No column was specified to make a template from.")
   vars <- as.list(rlang::set_names(seq_along(data), names(data)))
   output <- vector("list", length(dots))
   for (j in 1:length(dots)) {

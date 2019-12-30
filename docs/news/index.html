@@ -67,7 +67,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">heddlr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -99,7 +99,12 @@
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/mikemahoney218/heddlr">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -114,9 +119,63 @@
   <div class="col-md-9 contents">
     <div class="page-header">
       <h1>Changelog <small></small></h1>
-      
+      <small>Source: <a href='https://github.com/mikemahoney218/heddlr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="heddlr-development-version" class="section level1">
+<h1 class="page-header">
+<a href="#heddlr-development-version" class="anchor"></a>heddlr (development version)</h1>
+</div>
+    <div id="version-0-4-0" class="section level1">
+<h1 class="page-header">
+<a href="#version-0-4-0" class="anchor"></a>Version 0.4.0</h1>
+<ul>
+<li>This will be the first version released to CRAN</li>
+<li>Functionality changes:
+<ul>
+<li>
+<code><a href="../reference/assemble_draft.html">assemble_draft()</a></code> now wraps an <code>lapply</code> call and is much more open to different naming conventions</li>
+<li>Remove utils-tidy-eval, as it doesn’t provide much utility and makes finding functions in <code>heddlr::</code> harder.</li>
+<li>Fixed a few latent bugs in heddle:
+<ul>
+<li>Export methods in order to, well, use the methods</li>
+</ul>
+</li>
+<li>Fixed a few latent bugs in make_template:
+<ul>
+<li>Export methods in order to, well, use the methods</li>
+<li>Fix vector handling so nested vectors are flattened properly</li>
+</ul>
+</li>
+<li>Export export_template and fix documentation</li>
+</ul>
+</li>
+<li>Documentation changes:
+<ul>
+<li>Add documentation page for ?heddlr</li>
+<li>Add URLs to DESCRIPTION</li>
+<li>Add links between vignettes</li>
+<li>Remove README.Rmd until needed</li>
+<li>Remove most README content in favor of vignette</li>
+<li>Change package lifecycle to maturing</li>
+<li>Add CII badge (closes issue <a href='https://github.com/mikemahoney218/heddlr/issues/7'>#7</a>)</li>
+<li>New vignettes introducing the concepts behind heddlr</li>
+<li>New hidden docs pages to be linked from vignettes and other docs</li>
+<li>Add Suggests section for vignettes</li>
+<li>Add date to DESCRIPTION</li>
+<li>Edit DESCRIPTION to pass R CMD CHECK</li>
+</ul>
+</li>
+<li>Internal changes:
+<ul>
+<li>Remove most tidyverse links from GitHub customizations</li>
+<li>Add quick “do this before committing” shell script</li>
+<li>Style .R and .Rmd files</li>
+<li>Only test on r-oldrel, r-release, and r-devel (Linux and Windows only)</li>
+</ul>
+</li>
+</ul>
+</div>
     <div id="version-0-3-0-2019-12-28" class="section level1">
 <h1 class="page-header">
 <a href="#version-0-3-0-2019-12-28" class="anchor"></a>Version 0.3.0 (2019-12-28)</h1>
@@ -134,6 +193,8 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#heddlr-development-version">development version</a></li>
+        <li><a href="#version-0-4-0">0.4.0</a></li>
         <li><a href="#version-0-3-0-2019-12-28">0.3.0</a></li>
       </ul>
     </div>

@@ -12,6 +12,8 @@
 #' @export
 
 import_pattern <- function(filepath) {
-  if (nchar(readChar(filepath, file.info(filepath)$size)) == 0) warning(paste(filepath, "imported 0 characters."))
+  if (nchar(readChar(filepath, file.info(filepath)$size)) == 0) {
+    warning(paste(filepath, "imported 0 characters."))
+  }
   readChar(filepath, file.info(filepath)$size)
 }
