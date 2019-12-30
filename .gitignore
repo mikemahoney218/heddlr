@@ -2,3 +2,6 @@
 devel/*
 .Rhistory
 *.Rproj
+inst/doc
+doc
+Meta

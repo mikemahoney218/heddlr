@@ -150,9 +150,3 @@ compatible with `heddlr`, because `heddlr` just doesn’t care what your
 end result will look like – its only goal is to make it easier for you
 to get there.
 
-Code of Conduct
----------------
-
-Please note that the ‘heddlr’ project is released with a [Contributor
-Code of Conduct](.github/CODE_OF_CONDUCT.md). By contributing to this project,
-you agree to abide by its terms.

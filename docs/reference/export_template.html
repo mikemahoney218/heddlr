@@ -36,7 +36,12 @@
 
 
 <meta property="og:title" content="Safely export templates to file. — export_template" />
-<meta property="og:description" content="Safely export templates to file." />
+<meta property="og:description" content="This is a simple wrapper function around as_utf8 and
+writeLines, letting users write their template strings
+to file without having to worry about file encodings. For more details on
+why UTF-8 encoding is necessary, check out
+[Yihui Xie's](https://yihui.org/en/2018/11/biggest-regret-knitr/) post on
+the subject." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -69,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">heddlr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
       </span>
     </div>
 
@@ -83,6 +88,21 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/modular-reporting-with-heddlr.html">Modular Reporting with heddlr</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -106,7 +126,12 @@
     </div>
 
     <div class="ref-description">
-    <p>Safely export templates to file.</p>
+    <p>This is a simple wrapper function around <code><a href='https://rdrr.io/pkg/utf8/man/as_utf8.html'>as_utf8</a></code> and
+<code><a href='https://rdrr.io/r/base/writeLines.html'>writeLines</a></code>, letting users write their template strings
+to file without having to worry about file encodings. For more details on
+why UTF-8 encoding is necessary, check out
+[Yihui Xie's](https://yihui.org/en/2018/11/biggest-regret-knitr/) post on
+the subject.</p>
     </div>
 
     <pre class="usage"><span class='fu'>export_template</span>(<span class='no'>template</span>, <span class='no'>filename</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>""</span>,

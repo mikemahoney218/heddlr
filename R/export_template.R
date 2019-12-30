@@ -1,7 +1,7 @@
 #' Safely export templates to file.
 #'
 #' This is a simple wrapper function around \code{\link[utf8]{as_utf8}} and
-#' \code{\link{[base]{writeLines}}, letting users write their template strings
+#' \code{\link[base]{writeLines}}, letting users write their template strings
 #' to file without having to worry about file encodings. For more details on
 #' why UTF-8 encoding is necessary, check out
 #' [Yihui Xie's](https://yihui.org/en/2018/11/biggest-regret-knitr/) post on
@@ -24,6 +24,8 @@
 #' filename parameter is expected to be a string (that is, a character
 #' vector). Setting the value to FALSE disables the warning when a
 #' non-character argument is passed, but this is unsupported functionality.
+#'
+#' @export
 
 export_template <- function(template,
                             filename,

@@ -14,18 +14,20 @@ make_template <- function(data, ...) {
   UseMethod("make_template")
 }
 
+#' @export
 make_template.default <- function(data, ...) {
   dots <- list(...)
-  output <- vector("character", length(dots) + 1)
+  output <- vector("list", length(dots) + 1)
   output[[1]] <- paste0(data, collapse = "")
   if (length(dots) != 0) {
     for (i in 1:length(dots)) {
-      output[[i + 1]] <- paste0(dots[[i]], collapse = "")
+      output[[i + 1]] <- paste0(unlist(dots[[i]]), collapse = "")
     }
   }
-  paste0(output, collapse = "")
+  paste0(unlist(output), collapse = "")
 }
 
+#' @export
 make_template.data.frame <- function(data, ...) {
   dots <- enquos(...)
   if (length(dots) == 0) stop("argument '...' is missing, with no default")

@@ -1,0 +1,356 @@
+---
+title: "Modular Reporting with heddlr"
+author: Mike Mahoney
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Modular Reporting with heddlr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This vignette serves as a basic introduction to the `heddlr` package, a set of 
+utilities to make it easier to write R Markdown documents with sections that 
+repeat or which might need to add or remove sections based on an underlying 
+data source. In order to demonstrate the essentials of how the package works,
+let's imagine we have a super cool R Markdown document, which looks something
+like this:
+
+```
+---
+title: "My cool report!"
+author: "Captain heddlr"
+output: html_document
+---
+# Let's talk about irises!
+
+## Iris setosa
+
+This species of flower is great! It has a mean sepal length of 
+`r mean(iris[iris$Species == "setosa", "Sepal.Length"])`, and 
+mean sepal width of `r mean(iris[iris$Species == "setosa", "Sepal.Width"])`. 
+That looks like this on a graph!
+
+.```{r}
+iris %>%
+  filter(Species == "setosa") %>%
+  ggplot(aes(Sepal.Length, Sepal.Width)) + 
+  geom_point()
+.```
+
+## Iris virginica
+
+This species of flower is great! It has a mean sepal length of 
+`r mean(iris[iris$Species == "virginica", "Sepal.Length"])`, and 
+mean sepal width of `r mean(iris[iris$Species == "virginica", "Sepal.Width"])`. 
+That looks like this on a graph!
+
+.```{r}
+iris %>%
+  filter(Species == "virginica") %>%
+  ggplot(aes(Sepal.Length, Sepal.Width)) + 
+  geom_point()
+.```
+
+```
+
+This is a great report, and it probably didn't take that long to create.
+However, maybe one day Joe down the hall points out that there are actually
+more types of irises than the ones you're always talking about - and your
+database already has information about one called versicolor!
+
+If you wanted, you could go ahead and copy and paste the species section again,
+making sure to change all the species names to versicolor. However, there's 
+some level of risk associated with that -- for instance, you can wind up 
+reporting bad data if you miss replacing a value. More importantly, though, 
+is that copying and pasting by hand doesn't scale to reports which are put
+out often and need multiple sections added or removed. It can save a lot of 
+time and energy to instead automate that task away.
+
+That's the motivation behind `heddlr`^[It's a play on the 
+[loom component](https://en.wikipedia.org/wiki/Heddle), since we're trying to 
+automate the Sweave/knitr process and someone already took the name `loomr`. ]:
+to reduce that repetitive work and, as a side effect, simplify your code. To do
+so, `heddlr` looks at reports as a collection of components, which we'll call
+patterns. For instance, our example report is made up of two patterns. The 
+first of those is the setup material:
+
+```
+---
+title: "My cool report!"
+author: "Captain heddlr"
+output: html_document
+---
+
+.```{r setup}
+library(dplyr)
+library(ggplot2)
+.```
+# Let's talk about irises!
+
+```
+
+The second is the species-specific section, which gets repeated for each
+species in our dataset -- I've swapped the specific name out for a placeholder
+value:
+
+```
+## Iris SPECIES_NAME
+
+This species of flower is great! It has a mean sepal length of 
+`r mean(iris[iris$Species == "SPECIES_NAME", "Sepal.Length"])`, and 
+mean sepal width of `r mean(iris[iris$Species == "SPECIES_NAME", "Sepal.Width"])`. 
+That looks like this on a graph!
+
+.```{r}
+iris %>%
+  filter(Species == "SPECIES_NAME") %>%
+  ggplot(aes(Sepal.Length, Sepal.Width)) + 
+  geom_point()
+.```
+
+```
+
+When using `heddlr`, we'll usually go ahead and save each of those patterns in
+their own files. We'll refer to these patterns as `setup_pattern.Rmd` and
+`species_pattern.Rmd` respectively^[In order for the vignettes for this package
+to build correctly, I haven't actually saved these files off separately -- if 
+you look at the source code for this vignette, you'll notice I'm not actually
+using the `heddlr` functions, but rather using some workarounds to get the same
+exact results. ].
+
+We then have a few ways we can import them into our R session. Let's load 
+`heddlr` and then walk through them:
+
+```{r}
+library(heddlr)
+```
+
+The first and most straightforward method is to use `heddlr::import_pattern()`,
+which does more or less what you'd expect and import a single pattern into a 
+single R object.
+
+```{r include=FALSE}
+setup_pattern <- "---\ntitle: \"My cool report!\"\nauthor: \"Captain heddlr\"\noutput: html_document\n---\n\n```{r setup}\nlibrary(dplyr)\nlibrary(ggplot2)\n```\n\n# Let's talk about irises!\n\n"
+species_pattern <- "## Iris SPECIES_NAME\n\nThis species of flower is great! It has a mean sepal length of \n`r mean(iris[iris$Species == \"SPECIES_NAME\", \"Sepal.Length\"])`, and \nmean sepal width of `r mean(iris[iris$Species == \"SPECIES_NAME\", \"Sepal.Width\"])`. \nThat looks like this on a graph!\n\n```{r}\niris %>%\n  filter(Species == \"SPECIES_NAME\") %>%\n  ggplot(aes(Sepal.Length, Sepal.Width)) + \n  geom_point()\n```\n"
+```
+
+```{r eval=FALSE}
+# These can be any sort of plaintext file -- I tend to save them as .Rmd, 
+# so that I can see code highlighting in R Studio with them, but any extension
+# should work fine
+setup_pattern <- import_pattern("setup_pattern.Rmd")
+species_pattern <- import_pattern("species_pattern.Rmd")
+```
+
+This gives us objects that contain strings like this:
+
+```{r}
+setup_pattern
+```
+
+However, it can be helpful in reports with multiple patterns to store 
+everything in one object, just to have fewer things floating around your 
+top-level environment. `heddlr` supports this out of the box via
+`heddlr::assemble_draft()`, which will return a single list object holding all
+of your patterns:
+
+```{r eval=FALSE}
+iris_draft <- assemble_draft("setup_pattern" = "setup_pattern.Rmd",
+                             "species_pattern" = "species_pattern.Rmd")
+```
+
+```{r include=FALSE}
+iris_draft <- list("setup_pattern" = setup_pattern,
+                   "species_pattern" = species_pattern)
+```
+
+```{r}
+iris_draft
+```
+
+Now that we've got our patterns into R, it's time to start working with them. 
+To demonstrate how we do that with `heddlr`, we first need to load a few 
+libraries:
+
+```{r}
+library(dplyr)
+library(tidyr)
+library(purrr)
+```
+
+Our first function that we'll use to work with patterns is `heddlr::heddle()`.
+On the most basic level, this is the function that will replace the 
+placeholders in our patterns with our data. If we have a vector containing 
+the values we want to use for each pattern, we're able to use this function
+as follows and get a vector in return:
+
+```{r}
+# heddle takes three arguments: data, pattern, placeholder to replace
+heddle(unique(iris$Species), "This is a pattern - CODE ", "CODE")
+```
+
+In the context of our example document, this function call would look like 
+this:
+
+```{r}
+heddle(unique(iris$Species), iris_draft$species_pattern, "SPECIES_NAME")[[1]]
+```
+
+It isn't super important, but I think of the outputs from `heddle()` as being 
+_components_ of a larger _template_, and will be using similar terminology
+from here on out.
+
+If we wanted to instead use `heddle()` as part of a magrittr pipeline, we can 
+create new dataframe columns using `dplyr::mutate()`:
+
+```{r}
+iris %>%
+  distinct(Species) %>%
+  # exact same pattern of arguments: data, pattern, placeholder to replace
+  mutate(component = heddle(Species, iris_draft$species_pattern, "SPECIES_NAME"))
+```
+
+We can also use `heddle()` as its own step in a pipeline. When we pass 
+`heddle()` a dataframe like this, instead of a vector, we have to specify which
+column we want to replace the placeholder with:
+
+```{r}
+iris %>%
+  distinct(Species) %>%
+  # the data argument is provided by %>%
+  # so we just provide the pattern and placeholder 
+  # (format "PLACEHOLDER" = Variable)
+  heddle("This is a pattern - CODE ", "CODE" = Species)
+```
+
+An advantage of this method is we can now replace multiple placeholders with 
+our data in a single function call:
+
+```{r}
+iris %>%
+  distinct(Species) %>%
+  heddle("This is a pattern - CODE ", "CODE" = Species, "This" = Species)
+```
+
+One last way we can use `heddle()` is to use `purrr::map()` to apply it to 
+nested columns made via `tidyr::nest()`. To do so, we just provide arguments 
+in the same way as the other time we provided `heddle()` a dataframe:
+
+```{r}
+iris %>%
+  nest(nested = Species) %>%
+  mutate(component = map(nested, heddle, "This is a pattern - CODE ", "CODE" = Species)) %>%
+  head(2)
+```
+
+This is also the supported way to change multiple placeholder values while 
+saving a component as a column in a dataframe via mutate -- nest the columns 
+you're using to replace placeholders with and then use `purrr` to replace the
+placeholders in one step.
+
+You'll notice that the output of this method is another list column, not the 
+same string column we're used to seeing as an output. Those familiar with 
+`purrr:map()` might know that we can get a character output from most 
+dataframes with `purrr::map_chr()` -- however, this doesn't work with 
+dataframes where you'll get more than one output from the `map()` call:
+
+```{r eval=FALSE}
+iris %>%
+  nest(nested = Species) %>%
+  mutate(component = map_chr(nested, heddle, "This is a pattern - CODE ", "CODE" = Species))
+#> Error: Result 102 must be a single string, not a character vector of length 2
+```
+
+Instead, we can turn to our next function, `heddlr::make_template()`. There 
+are a few different ways that we can use this function. For our current 
+situation, for instance, we can use `purrr::map_chr()` to apply 
+`make_template()` to our new component list column, transforming it into the
+normal set of strings we're used to:
+
+```{r}
+iris %>%
+  nest(nested = Species) %>%
+  mutate(component = map(nested, heddle, "This is a pattern - CODE ", "CODE" = Species),
+         component = map_chr(component, make_template)) %>%
+  head(2)
+```
+
+In addition to this, there are two other contexts we can use `make_template()`.
+If we pass it a dataframe and a vector, it will collapse that vector into a 
+single string:
+
+```{r}
+iris %>%
+  nest(nested = Species) %>%
+  mutate(component = map(nested, heddle, "This is a pattern - CODE ", "CODE" = Species),
+         component = map_chr(component, make_template)) %>%
+  head(2) %>%
+  make_template(component)
+```
+
+If instead the first argument we pass it is a vector, it will combine all the 
+vectors you provide it into a single string:
+
+```{r}
+make_template("Part one, ", "part two")
+```
+
+In the context of our example report, these steps would look something like 
+this:
+
+```{r}
+species_template <- iris %>%
+  distinct(Species) %>%
+  mutate(component = heddle(Species, iris_draft$species_pattern, "SPECIES_NAME")) %>%
+  make_template(component)
+
+report_template <- make_template(iris_draft$setup_pattern, species_template)
+```
+
+I refer to these output strings as _templates_, which are the second to last
+step in the `heddlr` pipeline. However, in order to actually create our 
+reports, we need to export these templates to .Rmd files. In order to do that,
+`heddlr` provides a helpful function aptly named `heddlr::export_template()`. 
+Normally, `export_template` takes two arguments -- the template to write out, 
+and the file to write it out to. Here, I'm going to tell it to print to 
+`stdout()` instead -- both in order to keep this vignette self-contained, and 
+to show what our end report file will look like:
+
+```{r}
+suppressWarnings(export_template(report_template, stdout()))
+```
+
+And there we have it! Repeating the above steps will always generate sections 
+for each flower included in your dataset, whether or not Joe down the hall
+remembered to tell you about it.
+
+To recap, the essential steps to make our report can be summed up as follows:
+
+* First, we decomposed our report into patterns, saved as individual .Rmd 
+  files.
+* We then imported those files using either `import_pattern()` or 
+  `assemble_draft()`
+* We replicated the patterns and replaced placeholders using `heddle()`
+* We combined those components into templates via `make_template()`
+* We exported our final template into a report through `export_template()`
+
+I'll usually save these steps into a "generator" file, which I can then run 
+every time I need to regenerate my report. I'll also often include a step in 
+that file that calls `rmarkdown::render()` on the generated report file, so 
+that I can just run a single script in order to remake and rebuild my entire 
+report. Obviously, this can be something of an overkill for reports as simple
+as our example here, but it can be a huge timesaver for more complex reports 
+that have more repeating sections, built more often, or are based on more 
+dynamic data sources that require maintenance to add or remove components
+between builds. It also can help make your code 
+DRYer^[[Don't repeat yourself](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)]
+so you can make edits in a single place and see them replicated across your
+entire report.

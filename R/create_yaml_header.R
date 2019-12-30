@@ -38,7 +38,6 @@ create_yaml_header <- function(...,
 
   header.content <- vector("list")
   for (i in seq_along(yaml.parts)) {
-
     if (length(names(yaml.parts[i])) == 0) {
       header.content <- c(header.content, yaml.parts[[i]])
     } else if (names(yaml.parts[i]) == "") {
