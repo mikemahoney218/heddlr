@@ -143,7 +143,7 @@ species_pattern <- "## Iris SPECIES_NAME\n\nThis species of flower is great! It 
 ```
 
 ```{r eval=FALSE}
-# These can be any sort of plaintext file -- I tend to save them as .Rmd, 
+# These can be any sort of plaintext file -- I tend to save them as .Rmd,
 # so that I can see code highlighting in R Studio with them, but any extension
 # should work fine
 setup_pattern <- import_pattern("setup_pattern.Rmd")
@@ -163,13 +163,17 @@ top-level environment. `heddlr` supports this out of the box via
 of your patterns:
 
 ```{r eval=FALSE}
-iris_draft <- assemble_draft("setup_pattern" = "setup_pattern.Rmd",
-                             "species_pattern" = "species_pattern.Rmd")
+iris_draft <- assemble_draft(
+  "setup_pattern" = "setup_pattern.Rmd",
+  "species_pattern" = "species_pattern.Rmd"
+)
 ```
 
 ```{r include=FALSE}
-iris_draft <- list("setup_pattern" = setup_pattern,
-                   "species_pattern" = species_pattern)
+iris_draft <- list(
+  "setup_pattern" = setup_pattern,
+  "species_pattern" = species_pattern
+)
 ```
 
 ```{r}
@@ -226,7 +230,7 @@ column we want to replace the placeholder with:
 iris %>%
   distinct(Species) %>%
   # the data argument is provided by %>%
-  # so we just provide the pattern and placeholder 
+  # so we just provide the pattern and placeholder
   # (format "PLACEHOLDER" = Variable)
   heddle("This is a pattern - CODE ", "CODE" = Species)
 ```
@@ -266,7 +270,7 @@ dataframes where you'll get more than one output from the `map()` call:
 iris %>%
   nest(nested = Species) %>%
   mutate(component = map_chr(nested, heddle, "This is a pattern - CODE ", "CODE" = Species))
-#> Error: Result 102 must be a single string, not a character vector of length 2
+# > Error: Result 102 must be a single string, not a character vector of length 2
 ```
 
 Instead, we can turn to our next function, `heddlr::make_template()`. There 
@@ -278,8 +282,10 @@ normal set of strings we're used to:
 ```{r}
 iris %>%
   nest(nested = Species) %>%
-  mutate(component = map(nested, heddle, "This is a pattern - CODE ", "CODE" = Species),
-         component = map_chr(component, make_template)) %>%
+  mutate(
+    component = map(nested, heddle, "This is a pattern - CODE ", "CODE" = Species),
+    component = map_chr(component, make_template)
+  ) %>%
   head(2)
 ```
 
@@ -290,8 +296,10 @@ single string:
 ```{r}
 iris %>%
   nest(nested = Species) %>%
-  mutate(component = map(nested, heddle, "This is a pattern - CODE ", "CODE" = Species),
-         component = map_chr(component, make_template)) %>%
+  mutate(
+    component = map(nested, heddle, "This is a pattern - CODE ", "CODE" = Species),
+    component = map_chr(component, make_template)
+  ) %>%
   head(2) %>%
   make_template(component)
 ```
@@ -354,3 +362,7 @@ between builds. It also can help make your code
 DRYer^[[Don't repeat yourself](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)]
 so you can make edits in a single place and see them replicated across your
 entire report.
+
+If you want to see this process applied to a somewhat more complicated example,
+check out how we can make [this dashboard](https://mikemahoney218.github.io/heddlr/flights-example/flights_dashboard.html)
+via [this article](https://mikemahoney218.github.io/heddlr/flights-example/flexdashboards-with-heddlr.html).

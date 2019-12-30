@@ -1,5 +1,22 @@
-# Version 0.3.1 (2019-12-29)
+# heddlr (development version)
 
+# Version 0.4.0
+
+* This will be the first version released to CRAN
+* Remove utils-tidy-eval, as it doesn't provide much utility and makes finding
+  functions in `heddlr::` harder
+* Documentation changes:
+    * Add documentation page for ?heddlr
+    * Add URLs to DESCRIPTION
+    * Add links between vignettes
+    * Remove README.Rmd until needed
+    * Remove most README content in favor of vignette
+    * Change package lifecycle to maturing
+    * Add CII badge (closes issue #7)
+* Internal changes: 
+    * Remove most tidyverse links from GitHub customizations
+    * Add quick "do this before committing" shell script
+* Style .R and .Rmd files
 * New vignettes introducing the concepts behind heddlr
 * New hidden docs pages to be linked from vignettes and other docs
 * Fixed a few latent bugs in heddle:

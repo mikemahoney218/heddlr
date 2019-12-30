@@ -48,7 +48,7 @@ heddle.default <- function(data, pattern, ..., strip.whitespace = F) {
 
 #' @export
 heddle.data.frame <- function(data, pattern, ..., strip.whitespace = F) {
-  dots <- enquos(...)
+  dots <- rlang::enquos(...)
   if (any(names(dots) == "") || any(is.null(names(dots)))) {
     stop("All variables passed to '...' must have names matching the keyword they're replacing.")
   }
