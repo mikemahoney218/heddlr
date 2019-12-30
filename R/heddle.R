@@ -23,6 +23,7 @@ heddle <- function(data, pattern, ..., strip.whitespace = F) {
   UseMethod("heddle")
 }
 
+#' @export
 heddle.default <- function(data, pattern, ..., strip.whitespace = F) {
   dots <- list(...)
   if (length(dots) == 0) stop("argument '...' is missing, with no default")
@@ -45,6 +46,7 @@ heddle.default <- function(data, pattern, ..., strip.whitespace = F) {
   )
 }
 
+#' @export
 heddle.data.frame <- function(data, pattern, ..., strip.whitespace = F) {
   dots <- enquos(...)
   if (any(names(dots) == "") || any(is.null(names(dots)))) {

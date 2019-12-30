@@ -20,9 +20,13 @@ test_that("create_yaml_header creates headers as expected", {
     "---\ntitle: Testing YAML\nauthor: Mike Mahoney\noutput:\n  flexdashboard::flex_dashboard:\n    vertical_layout: fill\n    orientation: rows\n    css: bootstrap.css\n---\n"
   )
 
-  expect_match(create_yaml_header(headerContent),
-               "---\ntitle: Testing YAML\nauthor: Mike Mahoney\noutput:\n  flexdashboard::flex_dashboard:\n    vertical_layout: fill\n    orientation: rows\n    css: bootstrap.css\n---\n")
+  expect_match(
+    create_yaml_header(headerContent),
+    "---\ntitle: Testing YAML\nauthor: Mike Mahoney\noutput:\n  flexdashboard::flex_dashboard:\n    vertical_layout: fill\n    orientation: rows\n    css: bootstrap.css\n---\n"
+  )
 
-  expect_match(create_yaml_header("title" = "testing", "params" = list("data" = "NA"), list("author" = "Mike Mahoney")),
-               "---\ntitle: testing\nparams:\n  data: NA\nauthor: Mike Mahoney\n---\n")
+  expect_match(
+    create_yaml_header("title" = "testing", "params" = list("data" = "NA"), list("author" = "Mike Mahoney")),
+    "---\ntitle: testing\nparams:\n  data: NA\nauthor: Mike Mahoney\n---\n"
+  )
 })

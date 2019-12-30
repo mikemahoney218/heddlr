@@ -8,8 +8,15 @@ test_that("export_template doesn't fail silently", {
 test_that("export_template exports a template", {
   pattern <- import_pattern("../rmd/sample_pattern.Rmd")
   export_template(pattern, "../rmd/export_template_output.Rmd")
-  expect_equal(
-    nchar(import_pattern("../rmd/export_template_output.Rmd")),
-    nchar(pattern)
-  )
+  if (grepl("Windows", Sys.info()["sysname"])) {
+    expect_equal(
+      nchar(import_pattern("../rmd/export_template_output.Rmd")),
+      nchar(pattern) + 6
+    )
+  } else {
+    expect_equal(
+      nchar(import_pattern("../rmd/export_template_output.Rmd")),
+      nchar(pattern)
+    )
+  }
 })

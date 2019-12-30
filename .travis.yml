@@ -1,7 +1,5 @@
 language: r
 r:
-  - 3.2
-  - 3.3
   - 3.4
   - 3.5
   - 3.6
@@ -11,10 +9,6 @@ os:
   - osx
 jobs:
   exclude:
-  - r: 3.2
-    os: osx
-  - r: 3.3
-    os: osx
   - r: devel
     os: osx
 after_success:

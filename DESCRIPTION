@@ -1,17 +1,16 @@
 Package: heddlr
 Title: Dynamic R Markdown Document Generation
-Version: 0.3.0
+Version: 0.3.1
 Authors@R: 
     person(given = "Michael",
            family = "Mahoney",
            role = c("aut", "cre"),
            email = "mike.mahoney.218@gmail.com",
            comment = c(ORCID = "https://orcid.org/0000-0003-2402-304X"))
-Description: heddlr is a package designed to make
-    dynamically generating R Markdown documents easier, by providing an
-    easy way to create section patterns, define how those patterns work
-    together to form a template, and then using data to generate a report
-    that fits your templating needs.
+Description: Helper functions designed to make
+    dynamically generating R Markdown documents easier by providing a
+    simple and tidy way to create report pieces, shape them to your data,
+    and combine them for exporting into a single R Markdown document.
 License: MIT + file LICENSE
 Depends: 
     R (>= 3.2.5)
@@ -26,7 +25,12 @@ Suggests:
     roxygen2,
     testthat (>= 2.1.0),
     dplyr,
-    tidyr
+    tidyr,
+    nycflights13,
+    ggplot2,
+    knitr,
+    purrr
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
+VignetteBuilder: knitr
