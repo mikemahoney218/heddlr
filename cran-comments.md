@@ -15,7 +15,7 @@ Maintainer: 'Michael Mahoney <mike.mahoney.218@gmail.com>'
 
 New submission
 
-This is my first submission of this or any package.
+This is my first submission of this package.
 
 ## Downstream Dependencies
 

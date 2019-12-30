@@ -355,7 +355,7 @@ every time I need to regenerate my report. I'll also often include a step in
 that file that calls `rmarkdown::render()` on the generated report file, so 
 that I can just run a single script in order to remake and rebuild my entire 
 report. Obviously, this can be something of an overkill for reports as simple
-as our example here, but it can be a huge timesaver for more complex reports 
+as our example here, but it can be a huge time saver for more complex reports 
 that have more repeating sections, built more often, or are based on more 
 dynamic data sources that require maintenance to add or remove components
 between builds. It also can help make your code 
