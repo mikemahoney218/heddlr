@@ -16,15 +16,9 @@
 
 assemble_draft <- function(...) {
   patterns <- list(...)
+  if (length(patterns) < 1) stop("No arguments provided to assemble_draft.")
   patterns <- unlist(patterns, recursive = FALSE)
-  if (!is.vector(patterns)) stop("Argument 1 must be a named vector.")
-  if (any(names(patterns) == "") | length(patterns) != length(names(patterns))) stop("All arguments must be named.")
-
-  draft <- vector("list", length = length(patterns))
-
-  for (i in seq_along(patterns)) {
-    names(draft)[i] <- names(patterns)[i]
-    draft[names(patterns)[i]] <- import_pattern(patterns[[i]])
-  }
+  draft <- lapply(patterns, import_pattern)
+  names(draft) <- names(patterns)
   draft
 }

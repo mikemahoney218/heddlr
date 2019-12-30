@@ -1,8 +1,8 @@
 ## Test environments
 * Local Ubuntu 19.04 install, R 3.6.2
-* Linux 16.04 (travis-ci), R devel, 3.6.2, 3.5.3, 3.4.4
-* Mac OSX (travis-ci), R 3.6.2, 3.5.3, 3.4.4
-* win-builder (devel and release) 
+* Linux 16.04 (travis-ci), R devel, 3.6.2, 3.5.3
+* Mac OSX (travis-ci), R 3.6.2, 3.5.3
+* win-builder (devel, release, and oldrelease) 
 
 ## R CMD check results
 

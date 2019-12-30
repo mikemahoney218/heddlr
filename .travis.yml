@@ -1,6 +1,6 @@
 language: r
 r:
-  - oldrelease
+  - oldrel
   - release
   - devel
 os:
