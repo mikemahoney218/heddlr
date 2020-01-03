@@ -85,7 +85,7 @@
       <h1>Modular Reporting with heddlr</h1>
                         <h4 class="author">Mike Mahoney</h4>
             
-            <h4 class="date">2019-12-30</h4>
+            <h4 class="date">2020-01-02</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/mikemahoney218/heddlr/blob/master/vignettes/modular-reporting-with-heddlr.Rmd"><code>vignettes/modular-reporting-with-heddlr.Rmd</code></a></small>
       <div class="hidden name"><code>modular-reporting-with-heddlr.Rmd</code></div>
@@ -349,7 +349,7 @@ iris %&gt;%
 <li>We exported our final template into a report through <code><a href="../reference/export_template.html">export_template()</a></code>
 </li>
 </ul>
-<p>I’ll usually save these steps into a “generator” file, which I can then run every time I need to regenerate my report. I’ll also often include a step in that file that calls <code><a href="https://rdrr.io/pkg/rmarkdown/man/render.html">rmarkdown::render()</a></code> on the generated report file, so that I can just run a single script in order to remake and rebuild my entire report. Obviously, this can be something of an overkill for reports as simple as our example here, but it can be a huge timesaver for more complex reports that have more repeating sections, built more often, or are based on more dynamic data sources that require maintenance to add or remove components between builds. It also can help make your code DRYer<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> so you can make edits in a single place and see them replicated across your entire report.</p>
+<p>I’ll usually save these steps into a “generator” file, which I can then run every time I need to regenerate my report. I’ll also often include a step in that file that calls <code><a href="https://rdrr.io/pkg/rmarkdown/man/render.html">rmarkdown::render()</a></code> on the generated report file, so that I can just run a single script in order to remake and rebuild my entire report. Obviously, this can be something of an overkill for reports as simple as our example here, but it can be a huge time saver for more complex reports that have more repeating sections, built more often, or are based on more dynamic data sources that require maintenance to add or remove components between builds. It also can help make your code DRYer<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> so you can make edits in a single place and see them replicated across your entire report.</p>
 <p>If you want to see this process applied to a somewhat more complicated example, check out how we can make <a href="https://mikemahoney218.github.io/heddlr/flights-example/flights_dashboard.html">this dashboard</a> via <a href="https://mikemahoney218.github.io/heddlr/flights-example/flexdashboards-with-heddlr.html">this article</a>.</p>
 <div class="footnotes">
 <hr>

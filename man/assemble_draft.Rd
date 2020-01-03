@@ -9,13 +9,13 @@ assemble_draft(...)
 \arguments{
 \item{...}{A named vector of filenames which will be imported as
 patterns stored in the returned draft, with the names used as indices.
-Files should be plaintext.}
+Files should be plain text.}
 }
 \value{
 A list ("draft") object containing the imported patterns.
 }
 \description{
-When working with multiple patterns that will be woven into a tetmplate,
+When working with multiple patterns that will be woven into a template,
 it makes sense to have all patterns stored in a central object. This
 function creates that object from a named vector of filenames to be used
 in further generation, importing the files via
