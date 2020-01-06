@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">heddlr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
       </span>
     </div>
 
@@ -84,23 +84,25 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="heddlr-literate-programming-extensions-for-dynamic-r-markdown-documents" class="section level1">
+<div id="heddlr-functional-programming-concepts-for-r-markdown-documents" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#heddlr-literate-programming-extensions-for-dynamic-r-markdown-documents" class="anchor"></a><code>heddlr</code>: Literate programming extensions for dynamic R Markdown documents</h1></div>
+<a href="#heddlr-functional-programming-concepts-for-r-markdown-documents" class="anchor"></a>heddlr: Functional Programming Concepts for R Markdown Documents</h1></div>
 <!-- badges: start -->
-<p><a href="https://travis-ci.com/mikemahoney218/heddlr"><img src="https://travis-ci.com/mikemahoney218/heddlr.svg?branch=master" alt="Travis CI Status"></a> <a href="https://codecov.io/gh/mikemahoney218/heddlr?branch=master"><img src="https://codecov.io/gh/mikemahoney218/heddlr/branch/master/graph/badge.svg" alt="Codecov Coverage"></a> <a href="https://bestpractices.coreinfrastructure.org/projects/3535"><img src="https://bestpractices.coreinfrastructure.org/projects/3535/badge" alt="CII Best Practices"></a> <a href="https://www.tidyverse.org/lifecycle/"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="Package lifecycle"></a> <img src="https://www.r-pkg.org/badges/version/heddlr" alt="CRAN version"><img src="reference/figures/heddlr-badge.png" alt="Heddlr hex badge" width="40px"><!-- badges: end --></p>
-<div id="what" class="section level2">
-<h2 class="hasAnchor">
-<a href="#what" class="anchor"></a>What</h2>
-<p><a href="https://github.com/rstudio/rmarkdown">R Markdown</a> is one of the coolest parts of the Tidyverse, making it trivial to create professional-looking HTML and PDF documents using simple markdown language. <code>heddlr</code> looks to extend that functionality by making it easier to dynamically piece together documents by intelligently using your data to combine defined components into a cohesive whole, leading to cleaner code and faster creation of reports that have many repeating pieces or dashboards which need to respond to changes in their data sources.</p>
-</div>
-<div id="why" class="section level2">
-<h2 class="hasAnchor">
-<a href="#why" class="anchor"></a>Why</h2>
-<p>R Markdown is already fantastic at creating reports where each part can efficiently be defined explicitly, thanks to how easily it combines Markdown and R code.</p>
-<p>However, sometimes cases arise where it isn’t practical to script out every inch of a report. For instance, reports which repeat the same sections over and over again with different subsets of the data, common when each grouping needs its own Markdown headers, can quickly become hundreds or thousands of lines long, depending on the number of groups involved. Similarly, if the list of groups included in the report will change over time it makes sense to automate away the work of updating the dashboard, making mistakes less likely and freeing up resources for more valuable work.</p>
-<p>In the past, my solution for these sorts of problems has been to hard-code dashboard generation into a separate R script, spending time to make a new framework that was only applicable to that report before it was time to start in on the next one. I’ve started to believe that this process can and should be generalized out to all reports with changing or repeating sections. <code>heddlr</code> is my attempt to scratch that itch.</p>
+<p><a href="https://travis-ci.com/mikemahoney218/heddlr"><img src="https://travis-ci.com/mikemahoney218/heddlr.svg?branch=master" alt="Travis CI Status"></a> <a href="https://codecov.io/gh/mikemahoney218/heddlr?branch=master"><img src="https://codecov.io/gh/mikemahoney218/heddlr/branch/master/graph/badge.svg" alt="Codecov Coverage"></a> <a href="https://bestpractices.coreinfrastructure.org/projects/3535"><img src="https://bestpractices.coreinfrastructure.org/projects/3535/badge" alt="CII Best Practices"></a> <a href="https://www.tidyverse.org/lifecycle/"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="Package Lifecycle"></a> <a href="https://cran.r-project.org/web/packages/heddlr"><img src="https://www.r-pkg.org/badges/version/heddlr" alt="CRAN Version"></a> <!-- badges: end --> <img src="reference/figures/heddlr-badge.png" alt="Heddlr hex badge" width="120px" align="middle"></p>
+<p><a href="https://github.com/rstudio/rmarkdown">R Markdown</a> is an incredible tool, allowing you to trivially create professional-quality HTML (and PDF and more) documents from simple Markdown documents. However, if those documents have sections which repeat multiple times for different slices of your data, you can wind up spending a lot of time copying and pasting parts of your document. This can make it tricky to update your documents if you decide you want to tweak pieces of your report, and can force you to spend a lot of time updating and double-checking your document if you’re trying to report on information from an changing data set.</p>
+<p><code>heddlr</code> seeks to address these challenges by providing tools to make your R Markdown DRYer (that is, <a href="https://r4ds.had.co.nz/functions.html#when-should-you-write-a-function">don’t repeat yourself.</a>. By making it easier to dynamically piece together components of your document based on your data source, <code>heddlr</code> makes it easier for you to write cleaner documents and create your reports faster.</p>
 <p>For examples of what this looks like, check out the <a href="https://mikemahoney218.github.io/heddlr/articles/modular-reporting-with-heddlr.html">intro vignette</a> and the <a href="https://mikemahoney218.github.io/heddlr/flights-example/flexdashboards-with-heddlr.html">more involved example.</a> For more information on where development is headed, check out <a href="https://github.com/mikemahoney218/heddlr/issues/1">The Road to 0.5.0</a>.</p>
+<div id="installation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#installation" class="anchor"></a>Installation</h2>
+<p>If the CRAN version badge above is green, you can install the released version of heddlr from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"heddlr"</span>)</a></code></pre></div>
+<p>You can always get the most up-to-date stable version with:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># install.packages("devtools")</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"mikemahoney218/heddlr"</span>)</a></code></pre></div>
+<p>And the unstable development version via:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># install.packages("devtools")</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"mikemahoney218/heddlr"</span>, <span class="dt">refs =</span> <span class="st">"development"</span>)</a></code></pre></div>
 </div>
 </div>
   </div>
