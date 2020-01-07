@@ -14,7 +14,7 @@ Lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://ww
 [![Repo
 Status](https://www.repostatus.org/badges/latest/active.svg)](repostatus.org)
 [![CRAN
-Version](https://www.r-pkg.org/badges/version/heddlr)](https://cran.r-project.org/web/packages/heddlr)
+Version](https://www.r-pkg.org/badges/version/heddlr)](https://cran.r-project.org/package=heddlr)
 <!-- badges: end -->
 <img src="man/figures/heddlr-badge.png" alt="Heddlr hex badge" width = 120px align = "middle">
 
