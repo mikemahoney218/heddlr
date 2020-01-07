@@ -14,6 +14,12 @@
 #'
 #' @family import functions
 #'
+#' @examples
+#' \dontrun{
+#' export_template("my sample pattern", out.Rmd)
+#' assemble_draft("sample_pattern" = "out.Rmd")
+#' }
+#'
 #' @export
 
 assemble_draft <- function(...) {

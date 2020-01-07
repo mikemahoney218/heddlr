@@ -18,6 +18,24 @@
 #'
 #' @family manipulation functions
 #'
+#' @examples
+#' headerContent <- list(
+#'   "title" = "Testing YAML",
+#'   "author" = "Mike Mahoney",
+#'   "output" = list(
+#'     "flexdashboard::flex_dashboard" = list(
+#'       "vertical_layout" = "fill",
+#'       "orientation" = "rows",
+#'       "css" = "bootstrap.css"
+#'     )
+#'   )
+#' )
+#' create_yaml_header(headerContent)
+#' create_yaml_header(
+#'   "title" = "testing",
+#'   "params" = list("data" = "NA"),
+#'   list("author" = "Mike Mahoney")
+#' )
 #' @export
 
 create_yaml_header <- function(...,

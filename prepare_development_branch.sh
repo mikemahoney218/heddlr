@@ -8,3 +8,5 @@ R -e "styler::style_dir()"
 R -e 'styler::style_dir(filetype = "Rmd")'
 
 R -e "devtools::check()"
+
+R -e "codemetar::write_codemeta()"

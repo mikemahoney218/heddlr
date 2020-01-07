@@ -33,6 +33,20 @@ iteration with values from the provided data. This allows efficiently
 creating R Markdown documents with many repeating pieces which may shift
 alongside the underlying data.
 }
+\examples{
+# When passed a vector, heddle replaces all placeholders passed to ...
+# with each value
+spList <- unique(iris$Species)
+heddle(spList, "SPECIES CODE GWAR ", "GWAR")
+heddle(spList, "SPECIES CODE GWAR ", "GWAR", "CODE")
+heddle("test string", "pattern tk", "tk", strip.whitespace = TRUE)
+
+# When passed a dataframe, heddle uses "Name" = Variable syntax to determine
+# which values should replace which placeholders
+spList <- data.frame(Species = c(unique(iris$Species), "test string"))
+heddle(spList, "SPECIES CODE GWAR ", "GWAR" = Species)
+heddle(spList, "SPECIES CODE GWAR ", "GWAR" = Species, "CODE" = Species)
+}
 \seealso{
 Other manipulation functions: \code{\link{create_yaml_header}},
   \code{\link{make_template}}

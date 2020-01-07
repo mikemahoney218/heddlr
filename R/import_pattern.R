@@ -11,6 +11,12 @@
 #'
 #' @family import functions
 #'
+#' @examples
+#' \dontrun{
+#' export_template("my sample pattern", out.Rmd)
+#' import_template("out.Rmd")
+#' }
+#'
 #' @export
 
 import_pattern <- function(filepath) {

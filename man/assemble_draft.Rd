@@ -21,6 +21,13 @@ function creates that object from a named vector of filenames to be used
 in further generation, importing the files via
 \code{\link[heddlr]{import_pattern}}.
 }
+\examples{
+\dontrun{
+export_template("my sample pattern", out.Rmd)
+assemble_draft("sample_pattern" = "out.Rmd")
+}
+
+}
 \seealso{
 Other import functions: \code{\link{import_pattern}}
 }
