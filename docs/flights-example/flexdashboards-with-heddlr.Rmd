@@ -1,5 +1,5 @@
 ---
-title: "Creating Modular Repoorting with heddlr"
+title: "Creating Modular Reporting with heddlr"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Creating Modular Repoorting with heddlr}
