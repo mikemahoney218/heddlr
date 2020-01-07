@@ -9,6 +9,8 @@
 #'
 #' @return A character string, typically used to assemble a draft.
 #'
+#' @family import functions
+#'
 #' @export
 
 import_pattern <- function(filepath) {

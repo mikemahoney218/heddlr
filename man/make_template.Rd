@@ -11,9 +11,17 @@ make_template(data, ...)
 
 \item{...}{The variables to be combined into a template object.}
 }
+\value{
+Returns the collapsed template as a character string.
+}
 \description{
 Applying heddle can leave your template pieces stored as either string
 objects, vectors (standalone or in a dataframe), or nested vectors
 (if applied using map()). This function takes those elements and combines
 them into a single exportable template.
 }
+\seealso{
+Other manipulation functions: \code{\link{create_yaml_header}},
+  \code{\link{heddle}}
+}
+\concept{manipulation functions}

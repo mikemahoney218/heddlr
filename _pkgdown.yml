@@ -1,0 +1,50 @@
+url: https://mikemahoney218.github.io/heddlr/
+authors:
+  Mike Mahoney:
+    href: https://www.mikemahoney218.com/
+template:
+  params:
+    bootswatch: flatly
+    ganalytics: UA-127971769-2
+reference:
+  - title: "Importing Patterns"
+    contents:
+      - import_pattern
+      - assemble_draft
+  - title: "Manipulating Markdown"
+    contents:
+      - create_yaml_header
+      - heddle
+      - make_template
+  - title: "Exporting Templates"
+    contents:
+      - export_template
+navbar:
+  structure:
+    right:
+    - home
+    - articles
+    - reference
+    - tutorials
+    - news
+    - github
+  components:
+    home:
+      icon: fas fa-home fa-lg
+      href: index.html
+    articles:
+      text: Articles
+      menu:
+      - text: Introduction - Modular Reporting with heddlr
+        href: articles/modular-reporting-with-heddlr.html
+      - text: More Complex Examples - Simple Flexdashboard
+        href: https://mikemahoney218.github.io/heddlr/flights-example/flexdashboards-with-heddlr.html
+    reference:
+      text: Reference
+      href: reference/index.html
+    news:
+      text: News
+      href: news/index.html
+    github:
+      icon: fab fa-github fa-lg
+      href: https://github.com/mikemahoney218/heddlr

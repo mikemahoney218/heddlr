@@ -19,7 +19,7 @@ translate to title: "My Report").}
 \item{line.sep, indent, omap, column.major, unicode, precision, indent.mapping.sequence, handlers}{Additional arguments to be passed to \code{\link[yaml]{as.yaml}}}
 }
 \value{
-A string, formatted for use as an R Markdown YAML header
+Returns a string formatted for use as an R Markdown YAML header.
 }
 \description{
 This function tweaks the behavior of \code{\link[yaml]{as.yaml}} to return a string
@@ -27,3 +27,8 @@ which can immediately be used as an R Markdown YAML header. It's designed
 to accept both deeply nested lists and simpler list formats to make
 reasoning about your header easier.
 }
+\seealso{
+Other manipulation functions: \code{\link{heddle}},
+  \code{\link{make_template}}
+}
+\concept{manipulation functions}

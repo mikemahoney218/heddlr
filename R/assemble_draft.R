@@ -10,7 +10,9 @@
 #' patterns stored in the returned draft, with the names used as indices.
 #' Files should be plain text.
 #'
-#' @return A list ("draft") object containing the imported patterns.
+#' @return Returns a list containing the imported patterns.
+#'
+#' @family import functions
 #'
 #' @export
 

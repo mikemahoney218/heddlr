@@ -18,3 +18,7 @@ Longer, multi-chunk patterns can benefit from being developed in files
 independent of the rest of a draft. This is a quick wrapper function to import
 those patterns as objects for assembly into a draft.
 }
+\seealso{
+Other import functions: \code{\link{assemble_draft}}
+}
+\concept{import functions}

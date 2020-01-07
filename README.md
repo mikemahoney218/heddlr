@@ -1,10 +1,8 @@
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
-# heddlr: Functional Programming Concepts for R Markdown Documents
+heddlr: Functional Programming Concepts for R Markdown Documents
+================================================================
 
 <!-- badges: start -->
-
 [![Travis CI
 Status](https://travis-ci.com/mikemahoney218/heddlr.svg?branch=master)](https://travis-ci.com/mikemahoney218/heddlr)
 [![Codecov
@@ -13,10 +11,12 @@ Coverage](https://codecov.io/gh/mikemahoney218/heddlr/branch/master/graph/badge.
 Practices](https://bestpractices.coreinfrastructure.org/projects/3535/badge)](https://bestpractices.coreinfrastructure.org/projects/3535)
 [![Package
 Lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)
+[![Repo
+Status](https://www.repostatus.org/badges/latest/active.svg)](repostatus.org)
 [![CRAN
-Version](https://www.r-pkg.org/badges/version/heddlr)](https://cran.r-project.org/web/packages/heddlr)
+Version](https://www.r-pkg.org/badges/version/heddlr)](https://cran.r-project.org/package=heddlr)
 <!-- badges: end -->
-<img src="man/figures/heddlr-badge.png" alt="Heddlr hex badge" width = 40px>
+<img src="man/figures/heddlr-badge.png" alt="Heddlr hex badge" width = 120px align = "middle">
 
 [R Markdown](https://github.com/rstudio/rmarkdown) is an incredible
 tool, allowing you to trivially create professional-quality HTML (and
@@ -31,7 +31,7 @@ set.
 
 `heddlr` seeks to address these challenges by providing tools to make
 your R Markdown DRYer (that is, [don’t repeat
-yourself.](https://r4ds.had.co.nz/functions.html#when-should-you-write-a-function).
+yourself.](https://r4ds.had.co.nz/functions.html#when-should-you-write-a-function)).
 By making it easier to dynamically piece together components of your
 document based on your data source, `heddlr` makes it easier for you to
 write cleaner documents and create your reports faster.
@@ -43,25 +43,20 @@ example.](https://mikemahoney218.github.io/heddlr/flights-example/flexdashboards
 For more information on where development is headed, check out [The Road
 to 0.5.0](https://github.com/mikemahoney218/heddlr/issues/1).
 
-## Installation
+Installation
+------------
 
 If the CRAN version badge above is green, you can install the released
 version of heddlr from [CRAN](https://CRAN.R-project.org) with:
 
-``` r
-install.packages("heddlr")
-```
+    install.packages("heddlr")
 
 You can always get the most up-to-date stable version with:
 
-``` r
-# install.packages("devtools")
-devtools::install_github("mikemahoney218/heddlr")
-```
+    # install.packages("devtools")
+    devtools::install_github("mikemahoney218/heddlr")
 
 And the unstable development version via:
 
-``` r
-# install.packages("devtools")
-devtools::install_github("mikemahoney218/heddlr", refs = "development")
-```
+    # install.packages("devtools")
+    devtools::install_github("mikemahoney218/heddlr", refs = "development")
