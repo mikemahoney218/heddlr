@@ -11,3 +11,5 @@ prepare_development_branch.sh
 cran-comments.md
 ^doc$
 ^Meta$
+^codemeta\.json$
+^_pkgdown\.yml$

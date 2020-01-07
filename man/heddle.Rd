@@ -23,9 +23,18 @@ not.}
 whitespace should be removed from the replacement variable. Toggle this
 on if you're using the variable in chunk labels or similar places.}
 }
+\value{
+Returns a character vector of the pattern with placeholders
+replaced by variables.
+}
 \description{
 This function replicates pattern objects, replacing keywords in each
 iteration with values from the provided data. This allows efficiently
 creating R Markdown documents with many repeating pieces which may shift
 alongside the underlying data.
 }
+\seealso{
+Other manipulation functions: \code{\link{create_yaml_header}},
+  \code{\link{make_template}}
+}
+\concept{manipulation functions}

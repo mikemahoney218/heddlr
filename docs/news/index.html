@@ -12,8 +12,8 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
@@ -50,6 +50,16 @@
 <![endif]-->
 
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127971769-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-127971769-2');
+</script>
+
 
   </head>
 
@@ -73,14 +83,14 @@
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="../index.html">
     <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
-</li>
-<li>
-  <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -90,16 +100,20 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/modular-reporting-with-heddlr.html">Modular Reporting with heddlr</a>
+      <a href="../articles/modular-reporting-with-heddlr.html">Introduction - Modular Reporting with heddlr</a>
+    </li>
+    <li>
+      <a href="https://mikemahoney218.github.io/heddlr/flights-example/flexdashboards-with-heddlr.html">More Complex Examples - Simple Flexdashboard</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">Changelog</a>
+  <a href="../reference/index.html">Reference</a>
 </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
+<li>
+  <a href="../news/index.html">News</a>
+</li>
+<li>
   <a href="https://github.com/mikemahoney218/heddlr">
     <span class="fab fa fab fa-github fa-lg"></span>
      
@@ -122,20 +136,16 @@
       <small>Source: <a href='https://github.com/mikemahoney218/heddlr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="heddlr-development-version" class="section level1">
+    <div id="heddlr-0-4-0" class="section level1">
 <h1 class="page-header">
-<a href="#heddlr-development-version" class="anchor"></a>heddlr (development version)</h1>
-</div>
-    <div id="version-0-4-0" class="section level1">
-<h1 class="page-header">
-<a href="#version-0-4-0" class="anchor"></a>Version 0.4.0</h1>
+<a href="#heddlr-0-4-0" class="anchor"></a>heddlr 0.4.0</h1>
 <ul>
 <li>This will be the first version released to CRAN</li>
 <li>Functionality changes:
 <ul>
 <li>
 <code><a href="../reference/assemble_draft.html">assemble_draft()</a></code> now wraps an <code>lapply</code> call and is much more open to different naming conventions</li>
-<li>Remove utils-tidy-eval, as it doesn’t provide much utility and makes finding functions in <code>heddlr::</code> harder.</li>
+<li>Remove <code>utils-tidy-eval</code>, as it doesn’t provide much utility and makes finding functions in <code>heddlr::</code> harder.</li>
 <li>Fixed a few latent bugs in heddle:
 <ul>
 <li>Export methods in order to, well, use the methods</li>
@@ -152,23 +162,27 @@
 </li>
 <li>Documentation changes:
 <ul>
-<li>Add documentation page for ?heddlr</li>
-<li>Add URLs to DESCRIPTION</li>
+<li>Add documentation page for <code><a href="../reference/heddlr-package.html">?heddlr</a></code>
+</li>
+<li>Add URLs to <code>DESCRIPTION</code>
+</li>
 <li>Add links between vignettes</li>
-<li>Remove README.Rmd until needed</li>
-<li>Remove most README content in favor of vignette</li>
-<li>Change package lifecycle to maturing</li>
-<li>Add CII badge (closes issue <a href='https://github.com/mikemahoney218/heddlr/issues/7'>#7</a>)</li>
+<li>Remove <code>README.Rmd</code> until needed</li>
+<li>Remove most <code>README</code> content in favor of vignette</li>
+<li>Change package <code>lifecycle</code> to maturing</li>
+<li>Add <code>CII</code> badge (closes issue <a href='https://github.com/mikemahoney218/heddlr/issues/7'>#7</a>)</li>
 <li>New vignettes introducing the concepts behind heddlr</li>
 <li>New hidden docs pages to be linked from vignettes and other docs</li>
 <li>Add Suggests section for vignettes</li>
-<li>Add date to DESCRIPTION</li>
-<li>Edit DESCRIPTION to pass R CMD CHECK</li>
+<li>Add date to <code>DESCRIPTION</code>
+</li>
+<li>Edit <code>DESCRIPTION</code> to pass <code>R CMD CHECK</code>
+</li>
 </ul>
 </li>
 <li>Internal changes:
 <ul>
-<li>Remove most tidyverse links from GitHub customizations</li>
+<li>Remove most <code>tidyverse</code> links from GitHub customizations</li>
 <li>Add quick “do this before committing” shell script</li>
 <li>Style .R and .Rmd files</li>
 <li>Only test on r-oldrel, r-release, and r-devel (Linux and Windows only)</li>
@@ -176,9 +190,9 @@
 </li>
 </ul>
 </div>
-    <div id="version-0-3-0-2019-12-28" class="section level1">
+    <div id="heddlr-0-3-0" class="section level1">
 <h1 class="page-header">
-<a href="#version-0-3-0-2019-12-28" class="anchor"></a>Version 0.3.0 (2019-12-28)</h1>
+<a href="#heddlr-0-3-0" class="anchor"></a>heddlr 0.3.0</h1>
 <ul>
 <li>Implement <code>heddle</code> function, making it easy to swap out placeholder keywords in piped code</li>
 <li>Implement <code>make_template</code> function, letting you combine <code>heddle</code> elements into single exportable templates</li>
@@ -193,9 +207,8 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#heddlr-development-version">development version</a></li>
-        <li><a href="#version-0-4-0">0.4.0</a></li>
-        <li><a href="#version-0-3-0-2019-12-28">0.3.0</a></li>
+        <li><a href="#heddlr-0-4-0">0.4.0</a></li>
+        <li><a href="#heddlr-0-3-0">0.3.0</a></li>
       </ul>
     </div>
   </div>

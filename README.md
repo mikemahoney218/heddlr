@@ -11,6 +11,8 @@ Coverage](https://codecov.io/gh/mikemahoney218/heddlr/branch/master/graph/badge.
 Practices](https://bestpractices.coreinfrastructure.org/projects/3535/badge)](https://bestpractices.coreinfrastructure.org/projects/3535)
 [![Package
 Lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)
+[![Repo
+Status](https://www.repostatus.org/badges/latest/active.svg)](repostatus.org)
 [![CRAN
 Version](https://www.r-pkg.org/badges/version/heddlr)](https://cran.r-project.org/web/packages/heddlr)
 <!-- badges: end -->
@@ -29,7 +31,7 @@ set.
 
 `heddlr` seeks to address these challenges by providing tools to make
 your R Markdown DRYer (that is, [don’t repeat
-yourself.](https://r4ds.had.co.nz/functions.html#when-should-you-write-a-function).
+yourself.](https://r4ds.had.co.nz/functions.html#when-should-you-write-a-function)).
 By making it easier to dynamically piece together components of your
 document based on your data source, `heddlr` makes it easier for you to
 write cleaner documents and create your reports faster.

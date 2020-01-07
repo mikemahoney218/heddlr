@@ -8,6 +8,10 @@
 #' @param data The dataframe containing variables to be combined.
 #' @param ... The variables to be combined into a template object.
 #'
+#' @return Returns the collapsed template as a character string.
+#'
+#' @family manipulation functions
+#'
 #' @export
 
 make_template <- function(data, ...) {
@@ -16,14 +20,8 @@ make_template <- function(data, ...) {
 
 #' @export
 make_template.default <- function(data, ...) {
-  dots <- list(...)
-  output <- vector("list", length(dots) + 1)
-  output[[1]] <- paste0(data, collapse = "")
-  if (length(dots) != 0) {
-    for (i in 1:length(dots)) {
-      output[[i + 1]] <- paste0(unlist(dots[[i]]), collapse = "")
-    }
-  }
+  dots <- list(data, ...)
+  output <- vapply(dots, function(x) paste0(unlist(x), collapse = ""), character(1))
   paste0(unlist(output), collapse = "")
 }
 
@@ -32,13 +30,6 @@ make_template.data.frame <- function(data, ...) {
   dots <- rlang::enquos(...)
   if (length(dots) == 0) stop("No column was specified to make a template from.")
   vars <- as.list(rlang::set_names(seq_along(data), names(data)))
-  output <- vector("list", length(dots))
-  for (j in 1:length(dots)) {
-    if (is.list(data[[rlang::eval_tidy(dots[[j]], vars)]])) {
-      output[j] <- paste0(unlist(data[[rlang::eval_tidy(dots[[j]], vars)]]), collapse = "")
-    } else {
-      output[j] <- paste0(data[[rlang::eval_tidy(dots[[j]], vars)]], collapse = "")
-    }
-  }
+  output <- vapply(dots, function(x) paste0(unlist(data[[rlang::eval_tidy(x, vars)]]), collapse = ""), character(1))
   paste0(output, collapse = "")
 }

@@ -4,7 +4,7 @@
 #' \code{\link[base]{writeLines}}, letting users write their template strings
 #' to file without having to worry about file encodings. For more details on
 #' why UTF-8 encoding is necessary, check out
-#' [Yihui Xie's](https://yihui.org/en/2018/11/biggest-regret-knitr/) post on
+#' \href{https://yihui.org/en/2018/11/biggest-regret-knitr/}{Yihui Xie's} post on
 #' the subject.
 #'
 #' Note that this function is effectively the inverse of
@@ -25,6 +25,10 @@
 #' vector). Setting the value to FALSE disables the warning when a
 #' non-character argument is passed, but this is unsupported functionality.
 #'
+#' @return Returns the input template invisibly.
+#'
+#' @family export functions
+#'
 #' @export
 
 export_template <- function(template,
@@ -35,4 +39,5 @@ export_template <- function(template,
     warning("Argument filename was passed something other than a string. You may get unexpected results.")
   }
   writeLines(utf8::as_utf8(template), filename, sep = sep, useBytes = T)
+  invisible(template)
 }

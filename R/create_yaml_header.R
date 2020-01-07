@@ -14,7 +14,9 @@
 #' @param line.sep,indent,omap,column.major,unicode,precision,indent.mapping.sequence,handlers
 #' Additional arguments to be passed to \code{\link[yaml]{as.yaml}}
 #'
-#' @return A string, formatted for use as an R Markdown YAML header
+#' @return Returns a string formatted for use as an R Markdown YAML header.
+#'
+#' @family manipulation functions
 #'
 #' @export
 
