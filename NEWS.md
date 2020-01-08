@@ -1,9 +1,3 @@
-# heddlr 0.4.2
-
-* Current development branch
-* Documentation changes:
-    * Examples added to function documentation
-    * Typo fixed in flexdashboard vignette
 
 # heddlr 0.4.1
 
@@ -15,6 +9,8 @@
 * Documentation changes:
     * Functions are now grouped into families for easier reference
     * More involved example vignette edited, links to final product
+    * Examples added to function documentation
+    * Typo fixed in flexdashboard vignette
     * Website overhauled
     * `README` edits
 * Internal changes:
