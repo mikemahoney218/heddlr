@@ -15,6 +15,8 @@ Lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://ww
 Status](https://www.repostatus.org/badges/latest/active.svg)](repostatus.org)
 [![CRAN
 Version](https://www.r-pkg.org/badges/version/heddlr)](https://cran.r-project.org/package=heddlr)
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/mikemahoney218/heddlr?branch=master&svg=true)](https://ci.appveyor.com/project/mikemahoney218/heddlr)
 <!-- badges: end -->
 <img src="man/figures/heddlr-badge.png" alt="Heddlr hex badge" width = 120px align = "middle">
 
