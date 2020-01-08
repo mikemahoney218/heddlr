@@ -180,7 +180,7 @@
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
-      "version": ">= 3.2.5"
+      "version": ">= 3.4.0"
     },
     {
       "@type": "SoftwareApplication",
