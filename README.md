@@ -12,7 +12,7 @@ Practices](https://bestpractices.coreinfrastructure.org/projects/3535/badge)](ht
 [![Package
 Lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)
 [![Repo
-Status](https://www.repostatus.org/badges/latest/active.svg)](repostatus.org)
+Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/)
 [![CRAN
 Version](https://www.r-pkg.org/badges/version/heddlr)](https://cran.r-project.org/package=heddlr)
 [![AppVeyor build
