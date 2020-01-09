@@ -36,10 +36,10 @@
 
 
 <meta property="og:title" content="Convert list objects into R Markdown YAML headers — create_yaml_header" />
-<meta property="og:description" content="This function tweaks the behavior of as.yaml to return a string
-which can immediately be used as an R Markdown YAML header. It's designed
-to accept both deeply nested lists and simpler list formats to make
-reasoning about your header easier." />
+<meta property="og:description" content="This function tweaks the behavior of as.yaml to return 
+a string which can immediately be used as an R Markdown YAML header. 
+It's designed to accept both deeply nested lists and simpler list formats 
+to make reasoning about your header easier." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -143,15 +143,14 @@ reasoning about your header easier." />
     </div>
 
     <div class="ref-description">
-    <p>This function tweaks the behavior of <code><a href='https://rdrr.io/pkg/yaml/man/as.yaml.html'>as.yaml</a></code> to return a string
-which can immediately be used as an R Markdown YAML header. It's designed
-to accept both deeply nested lists and simpler list formats to make
-reasoning about your header easier.</p>
+    <p>This function tweaks the behavior of <code><a href='https://rdrr.io/pkg/yaml/man/as.yaml.html'>as.yaml</a></code> to return 
+a string which can immediately be used as an R Markdown YAML header. 
+It's designed to accept both deeply nested lists and simpler list formats 
+to make reasoning about your header easier.</p>
     </div>
 
     <pre class="usage"><span class='fu'>create_yaml_header</span>(<span class='no'>...</span>, <span class='kw'>line.sep</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"\n"</span>, <span class='st'>"\r\n"</span>, <span class='st'>"\r"</span>),
-  <span class='kw'>indent</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>omap</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>column.major</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>unicode</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>precision</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"digits"</span>), <span class='kw'>indent.mapping.sequence</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>indent</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>unicode</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>indent.mapping.sequence</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>handlers</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -166,7 +165,7 @@ or as single-item named vectors (passing "title" = "My Report" to ... will
 translate to title: "My Report").</p></td>
     </tr>
     <tr>
-      <th>line.sep, indent, omap, column.major, unicode, precision, indent.mapping.sequence, handlers</th>
+      <th>line.sep, indent, unicode, indent.mapping.sequence, handlers</th>
       <td><p>Additional arguments to be passed to <code><a href='https://rdrr.io/pkg/yaml/man/as.yaml.html'>as.yaml</a></code></p></td>
     </tr>
     </table>

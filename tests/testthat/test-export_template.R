@@ -8,7 +8,12 @@ test_that("export_template doesn't fail silently", {
 test_that("export_template exports a template", {
   pattern <- import_pattern("../rmd/sample_pattern.Rmd")
   expect_equal(
-    nchar(paste0(capture.output(export_template(pattern, stdout(), filename.is.string = F)), collapse = "\n")) + 1,
+    nchar(paste0(capture.output(export_template(pattern,
+      stdout(),
+      filename.is.string = F
+    )),
+    collapse = "\n"
+    )) + 1,
     nchar(pattern)
   )
 })

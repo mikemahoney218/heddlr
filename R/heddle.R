@@ -38,12 +38,12 @@
 #' heddle(spList, "SPECIES CODE GWAR ", "GWAR" = Species, "CODE" = Species)
 #' @export
 
-heddle <- function(data, pattern, ..., strip.whitespace = F) {
+heddle <- function(data, pattern, ..., strip.whitespace = FALSE) {
   UseMethod("heddle")
 }
 
 #' @export
-heddle.default <- function(data, pattern, ..., strip.whitespace = F) {
+heddle.default <- function(data, pattern, ..., strip.whitespace = FALSE) {
   dots <- list(...)
   if (length(dots) == 0) stop("argument '...' is missing, with no default")
   if (length(dots) > 1) {
@@ -66,10 +66,11 @@ heddle.default <- function(data, pattern, ..., strip.whitespace = F) {
 }
 
 #' @export
-heddle.data.frame <- function(data, pattern, ..., strip.whitespace = F) {
+heddle.data.frame <- function(data, pattern, ..., strip.whitespace = FALSE) {
   dots <- rlang::enquos(...)
   if (any(names(dots) == "") || any(is.null(names(dots)))) {
-    stop("All variables passed to '...' must have names matching the keyword they're replacing.")
+    stop("All variables passed to '...' must have names 
+          matching the keyword they're replacing.")
   }
   if (!is.logical(strip.whitespace) || length(strip.whitespace) != 1) {
     stop("strip.whitespace must be either TRUE or FALSE")
@@ -77,13 +78,13 @@ heddle.data.frame <- function(data, pattern, ..., strip.whitespace = F) {
   return <- rep(pattern, nrow(data))
   vars <- as.list(rlang::set_names(seq_along(data), names(data)))
 
-  for (j in 1:length(dots)) {
+  for (j in seq_along(dots)) {
     if (strip.whitespace) {
       data[, rlang::eval_tidy(dots[[j]], vars)] <- as.character(data[, rlang::eval_tidy(dots[[j]], vars)])
       data[, rlang::eval_tidy(dots[[j]], vars)] <- gsub("[[:space:]]", "", data[, rlang::eval_tidy(dots[[j]], vars)])
     }
 
-    for (i in 1:nrow(data)) {
+    for (i in seq_len(nrow(data))) {
       return[[i]] <- paste(gsub(names(dots)[[j]], data[[i, rlang::eval_tidy(dots[[j]], vars)]], return[[i]]), sep = "", collapse = "")
     }
   }

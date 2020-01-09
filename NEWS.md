@@ -1,3 +1,9 @@
+# heddlr 0.4.2
+
+* Development version
+* Internal changes:
+    * Code now (mostly) passes `goodpractices::gp()`
+    * Removed DATE from DESCRIPTION
 
 # heddlr 0.4.1
 

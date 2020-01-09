@@ -4,9 +4,15 @@ test_that("make_template fails when expected", {
 })
 
 test_that("make_template handles vectors correctly", {
-  spList4 <- data.frame(Species = c(as.character(unique(iris$Species)), "test string"))
+  spList4 <- data.frame(Species = c(
+    as.character(unique(iris$Species)),
+    "test string"
+  ))
   expect_match(
-    make_template(heddle(spList4, "SPECIES CODE GWAR ", "GWAR" = Species)),
+    make_template(heddle(spList4,
+      "SPECIES CODE GWAR ",
+      "GWAR" = Species
+    )),
     "SPECIES CODE setosa SPECIES CODE versicolor SPECIES CODE virginica SPECIES CODE test string "
   )
   expect_match(
@@ -19,7 +25,10 @@ test_that("make_template handles vectors correctly", {
 })
 
 test_that("make_template handles dataframes correctly", {
-  spList4 <- data.frame(Species = c(as.character(unique(iris$Species)), "test string"))
+  spList4 <- data.frame(Species = c(
+    as.character(unique(iris$Species)),
+    "test string"
+  ))
   spList4$template <- heddle(spList4, "SPECIES CODE GWAR ", "GWAR" = Species)
   expect_match(
     make_template(spList4, template),

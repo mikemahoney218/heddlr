@@ -5,8 +5,7 @@
 \title{Convert list objects into R Markdown YAML headers}
 \usage{
 create_yaml_header(..., line.sep = c("\\n", "\\r\\n", "\\r"),
-  indent = 2, omap = FALSE, column.major = TRUE, unicode = TRUE,
-  precision = getOption("digits"), indent.mapping.sequence = FALSE,
+  indent = 2, unicode = TRUE, indent.mapping.sequence = FALSE,
   handlers = NULL)
 }
 \arguments{
@@ -16,16 +15,16 @@ list("outputs" = "html_document") translates to outputs: html_document)
 or as single-item named vectors (passing "title" = "My Report" to ... will
 translate to title: "My Report").}
 
-\item{line.sep, indent, omap, column.major, unicode, precision, indent.mapping.sequence, handlers}{Additional arguments to be passed to \code{\link[yaml]{as.yaml}}}
+\item{line.sep, indent, unicode, indent.mapping.sequence, handlers}{Additional arguments to be passed to \code{\link[yaml]{as.yaml}}}
 }
 \value{
 Returns a string formatted for use as an R Markdown YAML header.
 }
 \description{
-This function tweaks the behavior of \code{\link[yaml]{as.yaml}} to return a string
-which can immediately be used as an R Markdown YAML header. It's designed
-to accept both deeply nested lists and simpler list formats to make
-reasoning about your header easier.
+This function tweaks the behavior of \code{\link[yaml]{as.yaml}} to return
+a string which can immediately be used as an R Markdown YAML header.
+It's designed to accept both deeply nested lists and simpler list formats
+to make reasoning about your header easier.
 }
 \examples{
 headerContent <- list(

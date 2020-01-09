@@ -4,7 +4,7 @@
 \alias{heddle}
 \title{Transform pattern objects into template pieces}
 \usage{
-heddle(data, pattern, ..., strip.whitespace = F)
+heddle(data, pattern, ..., strip.whitespace = FALSE)
 }
 \arguments{
 \item{data}{Input dataframe to pull replacement values from. Accepts either

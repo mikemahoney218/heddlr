@@ -26,7 +26,11 @@ test_that("create_yaml_header creates headers as expected", {
   )
 
   expect_match(
-    create_yaml_header("title" = "testing", "params" = list("data" = "NA"), list("author" = "Mike Mahoney")),
+    create_yaml_header(
+      "title" = "testing",
+      "params" = list("data" = "NA"),
+      list("author" = "Mike Mahoney")
+    ),
     "---\ntitle: testing\nparams:\n  data: NA\nauthor: Mike Mahoney\n---\n"
   )
 })

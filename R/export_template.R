@@ -4,8 +4,8 @@
 #' \code{\link[base]{writeLines}}, letting users write their template strings
 #' to file without having to worry about file encodings. For more details on
 #' why UTF-8 encoding is necessary, check out
-#' \href{https://yihui.org/en/2018/11/biggest-regret-knitr/}{Yihui Xie's} post on
-#' the subject.
+#' \href{https://yihui.org/en/2018/11/biggest-regret-knitr/}{Yihui Xie's} post
+#' on the subject.
 #'
 #' Note that this function is effectively the inverse of
 #' \code{\link{import_pattern}} --
@@ -41,8 +41,9 @@ export_template <- function(template,
                             sep = "",
                             filename.is.string = TRUE) {
   if (filename.is.string && !is.character(filename)) {
-    warning("Argument filename was passed something other than a string. You may get unexpected results.")
+    warning("Argument filename was passed something other than a string. 
+             You may get unexpected results.")
   }
-  writeLines(utf8::as_utf8(template), filename, sep = sep, useBytes = T)
+  writeLines(utf8::as_utf8(template), filename, sep = sep, useBytes = TRUE)
   invisible(template)
 }

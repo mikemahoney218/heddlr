@@ -1,8 +1,8 @@
 #' Quickly import plaintext files.
 #'
 #' Longer, multi-chunk patterns can benefit from being developed in files
-#' independent of the rest of a draft. This is a quick wrapper function to import
-#' those patterns as objects for assembly into a draft.
+#' independent of the rest of a draft. This is a quick wrapper function to
+#' import those patterns as objects for assembly into a draft.
 #'
 #' @param filepath A valid character string to the plaintext file containing
 #' the pattern.
