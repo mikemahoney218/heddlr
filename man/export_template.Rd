@@ -41,4 +41,10 @@ Note that this function is effectively the inverse of
 always result in an unchanged file, and exceptions to this rule would be
 considered bugs.
 }
+\examples{
+\dontrun{
+export_template("my sample pattern", out.Rmd)
+}
+
+}
 \concept{export functions}

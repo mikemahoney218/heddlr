@@ -7,16 +7,8 @@ test_that("export_template doesn't fail silently", {
 
 test_that("export_template exports a template", {
   pattern <- import_pattern("../rmd/sample_pattern.Rmd")
-  export_template(pattern, "../rmd/export_template_output.Rmd")
-  if (grepl("Windows", Sys.info()["sysname"])) {
-    expect_equal(
-      nchar(import_pattern("../rmd/export_template_output.Rmd")),
-      nchar(pattern) + 6
-    )
-  } else {
-    expect_equal(
-      nchar(import_pattern("../rmd/export_template_output.Rmd")),
-      nchar(pattern)
-    )
-  }
+  expect_equal(
+    nchar(paste0(capture.output(export_template(pattern, stdout(), filename.is.string = F)), collapse = "\n")) + 1,
+    nchar(pattern)
+  )
 })

@@ -27,6 +27,25 @@ which can immediately be used as an R Markdown YAML header. It's designed
 to accept both deeply nested lists and simpler list formats to make
 reasoning about your header easier.
 }
+\examples{
+headerContent <- list(
+  "title" = "Testing YAML",
+  "author" = "Mike Mahoney",
+  "output" = list(
+    "flexdashboard::flex_dashboard" = list(
+      "vertical_layout" = "fill",
+      "orientation" = "rows",
+      "css" = "bootstrap.css"
+    )
+  )
+)
+create_yaml_header(headerContent)
+create_yaml_header(
+  "title" = "testing",
+  "params" = list("data" = "NA"),
+  list("author" = "Mike Mahoney")
+)
+}
 \seealso{
 Other manipulation functions: \code{\link{heddle}},
   \code{\link{make_template}}

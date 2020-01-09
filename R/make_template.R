@@ -12,6 +12,27 @@
 #'
 #' @family manipulation functions
 #'
+#' @examples
+#'
+#' # When passed vectors, make_template flattens each vector into a single
+#' # string and then combines its arguments from left to right
+#' spList <- data.frame(Species = c(unique(iris$Species), "test string"))
+#' make_template(
+#'   heddle(spList, "SPECIES CODE GWAR ", "GWAR" = Species),
+#'   heddle(spList, "SPECIES CODE GWAR ", "GWAR" = Species)
+#' )
+#'
+#' # When passed variables in a dataframe, make_template collapses each column
+#' # in turn, then combines the output strings from left to right
+#' spList <- data.frame(Species = c(unique(iris$Species), "test string"))
+#' spList$template <- heddle(spList, "SPECIES CODE GWAR ", "GWAR" = Species)
+#' make_template(spList, template)
+#' make_template(spList, template, template)
+#'
+#' # When passed nested columns, heddlr collapses each cell into a string,
+#' # then collapses each column into a string, and then combines the outputs
+#' # from left to right
+#' make_template(tidyr::nest(spList, nested = template), nested)
 #' @export
 
 make_template <- function(data, ...) {

@@ -1,6 +1,7 @@
+
 # heddlr 0.4.1
 
-* This will be the first version released to CRAN
+* This will be the first version submitted to CRAN
 * Functionality changes:
     * make_template now uses vectorized `vapply` functions instead of loops
     * `heddle` stops you a second earlier if your `strip.whitespace` argument is
@@ -8,6 +9,8 @@
 * Documentation changes:
     * Functions are now grouped into families for easier reference
     * More involved example vignette edited, links to final product
+    * Examples added to function documentation
+    * Typo fixed in flexdashboard vignette
     * Website overhauled
     * `README` edits
 * Internal changes:

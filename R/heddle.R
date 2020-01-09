@@ -23,6 +23,19 @@
 #'
 #' @family manipulation functions
 #'
+#' @examples
+#' # When passed a vector, heddle replaces all placeholders passed to ...
+#' # with each value
+#' spList <- unique(iris$Species)
+#' heddle(spList, "SPECIES CODE GWAR ", "GWAR")
+#' heddle(spList, "SPECIES CODE GWAR ", "GWAR", "CODE")
+#' heddle("test string", "pattern tk", "tk", strip.whitespace = TRUE)
+#'
+#' # When passed a dataframe, heddle uses "Name" = Variable syntax to determine
+#' # which values should replace which placeholders
+#' spList <- data.frame(Species = c(unique(iris$Species), "test string"))
+#' heddle(spList, "SPECIES CODE GWAR ", "GWAR" = Species)
+#' heddle(spList, "SPECIES CODE GWAR ", "GWAR" = Species, "CODE" = Species)
 #' @export
 
 heddle <- function(data, pattern, ..., strip.whitespace = F) {

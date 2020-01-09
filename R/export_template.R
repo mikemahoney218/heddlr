@@ -29,6 +29,11 @@
 #'
 #' @family export functions
 #'
+#' @examples
+#' \dontrun{
+#' export_template("my sample pattern", out.Rmd)
+#' }
+#'
 #' @export
 
 export_template <- function(template,

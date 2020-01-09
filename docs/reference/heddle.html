@@ -189,6 +189,20 @@ replaced by variables.</p>
     <div class='dont-index'><p>Other manipulation functions: <code><a href='create_yaml_header.html'>create_yaml_header</a></code>,
   <code><a href='make_template.html'>make_template</a></code></p></div>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># When passed a vector, heddle replaces all placeholders passed to ...</span>
+<span class='co'># with each value</span>
+<span class='no'>spList</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span>(<span class='no'>iris</span>$<span class='no'>Species</span>)
+<span class='fu'>heddle</span>(<span class='no'>spList</span>, <span class='st'>"SPECIES CODE GWAR "</span>, <span class='st'>"GWAR"</span>)</div><div class='output co'>#&gt; [1] "SPECIES CODE setosa "     "SPECIES CODE versicolor "
+#&gt; [3] "SPECIES CODE virginica " </div><div class='input'><span class='fu'>heddle</span>(<span class='no'>spList</span>, <span class='st'>"SPECIES CODE GWAR "</span>, <span class='st'>"GWAR"</span>, <span class='st'>"CODE"</span>)</div><div class='output co'>#&gt; [1] "SPECIES setosa setosa "         "SPECIES versicolor versicolor "
+#&gt; [3] "SPECIES virginica virginica "  </div><div class='input'><span class='fu'>heddle</span>(<span class='st'>"test string"</span>, <span class='st'>"pattern tk"</span>, <span class='st'>"tk"</span>, <span class='kw'>strip.whitespace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;           teststring 
+#&gt; "pattern teststring" </div><div class='input'>
+<span class='co'># When passed a dataframe, heddle uses "Name" = Variable syntax to determine</span>
+<span class='co'># which values should replace which placeholders</span>
+<span class='no'>spList</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>Species</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span>(<span class='no'>iris</span>$<span class='no'>Species</span>), <span class='st'>"test string"</span>))
+<span class='fu'>heddle</span>(<span class='no'>spList</span>, <span class='st'>"SPECIES CODE GWAR "</span>, <span class='st'>"GWAR"</span> <span class='kw'>=</span> <span class='no'>Species</span>)</div><div class='output co'>#&gt; [1] "SPECIES CODE 1 "           "SPECIES CODE 2 "          
+#&gt; [3] "SPECIES CODE 3 "           "SPECIES CODE test string "</div><div class='input'><span class='fu'>heddle</span>(<span class='no'>spList</span>, <span class='st'>"SPECIES CODE GWAR "</span>, <span class='st'>"GWAR"</span> <span class='kw'>=</span> <span class='no'>Species</span>, <span class='st'>"CODE"</span> <span class='kw'>=</span> <span class='no'>Species</span>)</div><div class='output co'>#&gt; [1] "SPECIES 1 1 "                     "SPECIES 2 2 "                    
+#&gt; [3] "SPECIES 3 3 "                     "SPECIES test string test string "</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -196,6 +210,7 @@ replaced by variables.</p>
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
       <li><a href="#see-also">See also</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

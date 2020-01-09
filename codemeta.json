@@ -1,5 +1,8 @@
 {
-  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@context": [
+    "https://doi.org/10.5063/schema/codemeta-2.0",
+    "http://schema.org"
+  ],
   "@type": "SoftwareSourceCode",
   "identifier": "heddlr",
   "description": "Helper functions designed to make\n    dynamically generating R Markdown documents easier by providing a\n    simple and tidy way to create report pieces, shape them to your data,\n    and combine them for exporting into a single R Markdown document.",
@@ -115,6 +118,7 @@
       "@type": "SoftwareApplication",
       "identifier": "tidyr",
       "name": "tidyr",
+      "version": ">= 1.0.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -177,7 +181,7 @@
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
-      "version": ">= 3.2.5"
+      "version": ">= 3.4.0"
     },
     {
       "@type": "SoftwareApplication",
@@ -219,7 +223,16 @@
   ],
   "releaseNotes": "https://github.com/mikemahoney218/heddlr/blob/master/NEWS.md",
   "readme": "https://github.com/mikemahoney218/heddlr/blob/master/README.md",
-  "contIntegration": ["https://travis-ci.com/mikemahoney218/heddlr", "https://codecov.io/gh/mikemahoney218/heddlr?branch=master"],
+  "contIntegration": [
+    "https://travis-ci.com/mikemahoney218/heddlr",
+    "https://codecov.io/gh/mikemahoney218/heddlr?branch=master"
+  ],
   "developmentStatus": "https://www.tidyverse.org/lifecycle/",
-  "keywords": ["r", "rmarkdown", "heddlr", "rstats", "r-package"]
+  "keywords": [
+    "r",
+    "rmarkdown",
+    "heddlr",
+    "rstats",
+    "r-package"
+  ]
 }

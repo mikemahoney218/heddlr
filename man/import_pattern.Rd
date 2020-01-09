@@ -18,6 +18,13 @@ Longer, multi-chunk patterns can benefit from being developed in files
 independent of the rest of a draft. This is a quick wrapper function to import
 those patterns as objects for assembly into a draft.
 }
+\examples{
+\dontrun{
+export_template("my sample pattern", out.Rmd)
+import_template("out.Rmd")
+}
+
+}
 \seealso{
 Other import functions: \code{\link{assemble_draft}}
 }

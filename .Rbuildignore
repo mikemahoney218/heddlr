@@ -13,3 +13,6 @@ cran-comments.md
 ^Meta$
 ^codemeta\.json$
 ^_pkgdown\.yml$
+^CRAN-RELEASE$
+^appveyor\.yml$
+.gitattributes
