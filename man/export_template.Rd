@@ -4,8 +4,7 @@
 \alias{export_template}
 \title{Safely export templates to file.}
 \usage{
-export_template(template, filename, sep = "",
-  filename.is.string = TRUE)
+export_template(template, filename, sep = "", filename.is.string = TRUE)
 }
 \arguments{
 \item{template}{The template string to be written out}

@@ -1,9 +1,14 @@
 # heddlr 0.4.2
 
 * Development version
+* Functionality changes:
+    * `heddle` now can handle patterns vectors with length > 1 (in case you want
+    to store your pattern as a column in a dataframe next to the data you're 
+    replacing it with)
 * Internal changes:
     * Code now (mostly) passes `goodpractices::gp()`
     * Removed DATE from DESCRIPTION
+    * Travis builds now cache packages
 
 # heddlr 0.4.1
 

@@ -95,3 +95,9 @@ test_that("heddle works as expected on data frames", {
     "SPECIES setosa setosa"
   )
 })
+
+test_that("heddle handles patterns with length > 1", {
+  spList <- unique(iris$Species)
+  expect_error(heddle(spList, rep("x", 2), "x"))
+  expect_match(heddle(spList, rep("x", 3), "x")[[1]], "setosa")
+})

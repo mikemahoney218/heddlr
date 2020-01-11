@@ -29,6 +29,7 @@ assemble_draft("sample_pattern" = "out.Rmd")
 
 }
 \seealso{
-Other import functions: \code{\link{import_pattern}}
+Other import functions: 
+\code{\link{import_pattern}()}
 }
 \concept{import functions}

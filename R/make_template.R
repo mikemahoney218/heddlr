@@ -57,10 +57,12 @@ make_template.data.frame <- function(data, ...) {
   vars <- as.list(rlang::set_names(seq_along(data), names(data)))
   output <- vapply(
     dots,
-    function(x) paste0(
+    function(x) {
+      paste0(
         unlist(data[[rlang::eval_tidy(x, vars)]]),
         collapse = ""
-      ),
+      )
+    },
     character(1)
   )
   paste0(output, collapse = "")

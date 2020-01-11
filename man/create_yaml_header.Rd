@@ -4,9 +4,14 @@
 \alias{create_yaml_header}
 \title{Convert list objects into R Markdown YAML headers}
 \usage{
-create_yaml_header(..., line.sep = c("\\n", "\\r\\n", "\\r"),
-  indent = 2, unicode = TRUE, indent.mapping.sequence = FALSE,
-  handlers = NULL)
+create_yaml_header(
+  ...,
+  line.sep = c("\\n", "\\r\\n", "\\r"),
+  indent = 2,
+  unicode = TRUE,
+  indent.mapping.sequence = FALSE,
+  handlers = NULL
+)
 }
 \arguments{
 \item{...}{A set of objects that will be combined into the YAML header.
@@ -46,7 +51,8 @@ create_yaml_header(
 )
 }
 \seealso{
-Other manipulation functions: \code{\link{heddle}},
-  \code{\link{make_template}}
+Other manipulation functions: 
+\code{\link{heddle}()},
+\code{\link{make_template}()}
 }
 \concept{manipulation functions}

@@ -26,6 +26,7 @@ import_template("out.Rmd")
 
 }
 \seealso{
-Other import functions: \code{\link{assemble_draft}}
+Other import functions: 
+\code{\link{assemble_draft}()}
 }
 \concept{import functions}
