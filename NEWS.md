@@ -13,10 +13,14 @@
       plaintext file, by indicating via signpost keywords what to import
     * `extract_draft` makes it easy to extract multiple patterns from the same
       file in a single function call, returning a single draft object
+    * `use_parameters` lets you add parameter boilerplate to your templates 
+       easily, including objects in your YAML header and initializing them 
+       in an R chunk to let you use the same objects in your report that you 
+       used to make it
 * Functionality changes:
-    * `heddle` now can handle patterns vectors with length > 1 (in case you want
-    to store your pattern as a column in a dataframe next to the data you're 
-    replacing it with)
+    * `heddle` now can handle patterns vectors with length > 1 (in case you 
+    want to store your pattern as a column in a dataframe next to the data 
+    you're replacing it with)
 * Documentation changes:
     * Examples using `export_template` now properly quote their filename 
       argument
@@ -30,8 +34,8 @@
 * This will be the first version submitted to CRAN
 * Functionality changes:
     * make_template now uses vectorized `vapply` functions instead of loops
-    * `heddle` stops you a second earlier if your `strip.whitespace` argument is
-      bad
+    * `heddle` stops you a second earlier if your `strip.whitespace` argument 
+      is bad
 * Documentation changes:
     * Functions are now grouped into families for easier reference
     * More involved example vignette edited, links to final product

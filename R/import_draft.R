@@ -33,7 +33,7 @@ import_draft <- function(...) {
 
 #' Deprecated function for draft import
 #'
-#' assemble_draft has been deprecated (as of development version 0.5.0) in
+#' assemble_draft has been deprecated (as of development version 0.4.2) in
 #' favor of import_draft, which has the same semantics (and is actually now
 #' the same code -- assemble_draft is now only an alias for import_draft.) This
 #' should hopefully make the link between import_draft and import_pattern clear,
