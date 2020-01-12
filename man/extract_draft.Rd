@@ -26,11 +26,9 @@ in further generation, importing the files via
 \code{\link[heddlr]{extract_pattern}}.
 }
 \examples{
-\dontrun{
-export_template("EXTRACT my sample pattern EXTRACT", "out.Rmd")
-extract_draft("out.Rmd", "one" = "EXTRACT")
-}
-
+pattern_file <- tempfile("out", tempdir(), ".Rmd")
+export_template("EXTRACT my sample pattern EXTRACT", pattern_file)
+extract_draft(pattern_file, "one" = "EXTRACT")
 }
 \seealso{
 Other import functions: 

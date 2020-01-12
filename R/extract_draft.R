@@ -18,11 +18,9 @@
 #' @family import functions
 #'
 #' @examples
-#' \dontrun{
-#' export_template("EXTRACT my sample pattern EXTRACT", "out.Rmd")
-#' extract_draft("out.Rmd", "one" = "EXTRACT")
-#' }
-#'
+#' pattern_file <- tempfile("out", tempdir(), ".Rmd")
+#' export_template("EXTRACT my sample pattern EXTRACT", pattern_file)
+#' extract_draft(pattern_file, "one" = "EXTRACT")
 #' @export
 
 extract_draft <- function(filepath, ...) {

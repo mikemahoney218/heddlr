@@ -16,11 +16,9 @@
 #' @family import functions
 #'
 #' @examples
-#' \dontrun{
-#' export_template("my sample pattern", "out.Rmd")
-#' import_draft("sample_pattern" = "out.Rmd")
-#' }
-#'
+#' pattern_file <- tempfile("out", tempdir(), ".Rmd")
+#' export_template("my sample pattern", pattern_file)
+#' import_draft("sample_pattern" = pattern_file)
 #' @export
 import_draft <- function(...) {
   patterns <- list(...)
@@ -48,11 +46,9 @@ import_draft <- function(...) {
 #' containing the imported patterns.
 #'
 #' @examples
-#' \dontrun{
-#' export_template("my sample pattern", "out.Rmd")
-#' assemble_draft("sample_pattern" = "out.Rmd")
-#' }
-#'
+#' pattern_file <- tempfile("out", tempdir(), ".Rmd")
+#' export_template("my sample pattern", pattern_file)
+#' assemble_draft("sample_pattern" = pattern_file)
 #' @export
 assemble_draft <- function(...) {
   warning("assemble_draft has been deprecated in favor of import_draft, and 

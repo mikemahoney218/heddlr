@@ -34,11 +34,8 @@ so you can use the same object names in your generated document as in your
 generator.
 }
 \examples{
-\dontrun{
-export_template("---\\\\ntitle: I rule!\\\\n---\\\\n", "out.Rmd")
-use_parameters("out.Rmd", reasons)
-}
-
+template <- make_template("---\ntitle: Cool Report\noutput: html_document\n---\n")
+use_parameters(template, data)
 }
 \seealso{
 Other manipulation functions: 

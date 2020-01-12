@@ -83,7 +83,7 @@ import_pattern." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">heddlr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -176,10 +176,11 @@ containing the imported patterns.</p>
 <code><a href='import_pattern.html'>import_pattern</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'><a href='export_template.html'>export_template</a></span>(<span class='st'>"my sample pattern"</span>, <span class='st'>"out.Rmd"</span>)
-<span class='fu'>import_draft</span>(<span class='st'>"sample_pattern"</span> <span class='kw'>=</span> <span class='st'>"out.Rmd"</span>)
-}</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>pattern_file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>(<span class='st'>"out"</span>, <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>".Rmd"</span>)
+<span class='fu'><a href='export_template.html'>export_template</a></span>(<span class='st'>"my sample pattern"</span>, <span class='no'>pattern_file</span>)
+<span class='fu'>import_draft</span>(<span class='st'>"sample_pattern"</span> <span class='kw'>=</span> <span class='no'>pattern_file</span>)</div><div class='output co'>#&gt; $sample_pattern
+#&gt; [1] "my sample pattern"
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

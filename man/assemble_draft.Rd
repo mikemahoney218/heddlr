@@ -24,9 +24,7 @@ and more importantly distinguish these functions from extract_pattern and
 the new extract_draft function.
 }
 \examples{
-\dontrun{
-export_template("my sample pattern", "out.Rmd")
-assemble_draft("sample_pattern" = "out.Rmd")
-}
-
+pattern_file <- tempfile("out", tempdir(), ".Rmd")
+export_template("my sample pattern", pattern_file)
+assemble_draft("sample_pattern" = pattern_file)
 }

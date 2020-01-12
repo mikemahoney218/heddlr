@@ -25,11 +25,8 @@
 #' @family manipulation functions
 #'
 #' @examples
-#' \dontrun{
-#' export_template("---\\ntitle: I rule!\\n---\\n", "out.Rmd")
-#' use_parameters("out.Rmd", reasons)
-#' }
-#'
+#' template <- make_template("---\ntitle: Cool Report\noutput: html_document\n---\n")
+#' use_parameters(template, data)
 #' @export
 use_parameters <- function(template, ..., init.params = TRUE, is.file = FALSE) {
   stopifnot(

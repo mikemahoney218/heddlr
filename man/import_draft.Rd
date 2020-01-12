@@ -23,11 +23,9 @@ in further generation, importing the files via
 \code{\link[heddlr]{import_pattern}}.
 }
 \examples{
-\dontrun{
-export_template("my sample pattern", "out.Rmd")
-import_draft("sample_pattern" = "out.Rmd")
-}
-
+pattern_file <- tempfile("out", tempdir(), ".Rmd")
+export_template("my sample pattern", pattern_file)
+import_draft("sample_pattern" = pattern_file)
 }
 \seealso{
 Other import functions: 

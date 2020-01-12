@@ -251,7 +251,11 @@ in the same way as above:
 ```{r}
 iris %>%
   nest(nested = Species) %>%
-  mutate(component = map(nested, heddle, "This is a pattern - CODE ", "CODE" = Species)) %>%
+  mutate(component = map(nested,
+    heddle,
+    "This is a pattern - CODE ",
+    "CODE" = Species
+  )) %>%
   head(2)
 ```
 
@@ -269,7 +273,10 @@ dataframes where you'll get more than one output from the `map()` call:
 ```{r eval=FALSE}
 iris %>%
   nest(nested = Species) %>%
-  mutate(component = map_chr(nested, heddle, "This is a pattern - CODE ", "CODE" = Species))
+  mutate(component = map_chr(nested, heddle,
+    "This is a pattern - CODE ",
+    "CODE" = Species
+  ))
 # > Error: Result 102 must be a single string, not a character vector of length 2
 ```
 
@@ -297,7 +304,10 @@ single string:
 iris %>%
   nest(nested = Species) %>%
   mutate(
-    component = map(nested, heddle, "This is a pattern - CODE ", "CODE" = Species),
+    component = map(nested, heddle,
+      "This is a pattern - CODE ",
+      "CODE" = Species
+    ),
     component = map_chr(component, make_template)
   ) %>%
   head(2) %>%
@@ -317,7 +327,11 @@ this:
 ```{r}
 species_template <- iris %>%
   distinct(Species) %>%
-  mutate(component = heddle(Species, iris_draft$species_pattern, "SPECIES_NAME")) %>%
+  mutate(component = heddle(
+    Species,
+    iris_draft$species_pattern,
+    "SPECIES_NAME"
+  )) %>%
   make_template(component)
 
 report_template <- make_template(iris_draft$setup_pattern, species_template)

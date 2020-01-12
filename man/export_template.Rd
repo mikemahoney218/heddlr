@@ -41,9 +41,7 @@ always result in an unchanged file, and exceptions to this rule would be
 considered bugs.
 }
 \examples{
-\dontrun{
-export_template("my sample pattern", out.Rmd)
-}
-
+pattern_file <- tempfile("out", tempdir(), ".Rmd")
+export_template("my sample pattern", pattern_file)
 }
 \concept{export functions}

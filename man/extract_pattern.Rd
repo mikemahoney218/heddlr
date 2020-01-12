@@ -27,11 +27,9 @@ keywords for manipulation as a pattern. For extracting multiple patterns at
 once from a single file, check out \code{\link[heddlr]{extract_draft}}.
 }
 \examples{
-\dontrun{
-export_template("EXTRACT my sample pattern EXTRACT", "out.Rmd")
-extract_pattern("out.Rmd", EXTRACT)
-}
-
+pattern_file <- tempfile("out", tempdir(), ".Rmd")
+export_template("EXTRACT my sample pattern EXTRACT", pattern_file)
+extract_pattern(pattern_file, "EXTRACT")
 }
 \seealso{
 Other import functions: 

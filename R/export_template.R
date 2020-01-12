@@ -30,10 +30,8 @@
 #' @family export functions
 #'
 #' @examples
-#' \dontrun{
-#' export_template("my sample pattern", out.Rmd)
-#' }
-#'
+#' pattern_file <- tempfile("out", tempdir(), ".Rmd")
+#' export_template("my sample pattern", pattern_file)
 #' @export
 
 export_template <- function(template,
