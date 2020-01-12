@@ -10,7 +10,9 @@ reference:
   - title: "Importing Patterns"
     contents:
       - import_pattern
-      - assemble_draft
+      - import_draft
+      - extract_pattern
+      - extract_draft
   - title: "Manipulating Markdown"
     contents:
       - create_yaml_header

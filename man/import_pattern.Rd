@@ -20,13 +20,15 @@ import those patterns as objects for assembly into a draft.
 }
 \examples{
 \dontrun{
-export_template("my sample pattern", out.Rmd)
+export_template("my sample pattern", "out.Rmd")
 import_template("out.Rmd")
 }
 
 }
 \seealso{
 Other import functions: 
-\code{\link{assemble_draft}()}
+\code{\link{extract_draft}()},
+\code{\link{extract_pattern}()},
+\code{\link{import_draft}()}
 }
 \concept{import functions}

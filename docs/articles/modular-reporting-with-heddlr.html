@@ -180,8 +180,8 @@ iris %&gt;%
 <p>This gives us objects that contain strings like this:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">setup_pattern</a>
 <a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">#&gt; [1] "---\ntitle: \"My cool report!\"\nauthor: \"Captain heddlr\"\noutput: html_document\n---\n\n```{r setup}\nlibrary(dplyr)\nlibrary(ggplot2)\n```\n\n# Let's talk about irises!\n\n"</span></a></code></pre></div>
-<p>However, it can be helpful in reports with multiple patterns to store everything in one object, just to have fewer things floating around your top-level environment. <code>heddlr</code> provides <code><a href="../reference/assemble_draft.html">heddlr::assemble_draft()</a></code> for this purpose, wrapping an <code>lapply</code> call which will return a single list object holding all of your patterns:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">iris_draft &lt;-<span class="st"> </span><span class="kw"><a href="../reference/assemble_draft.html">assemble_draft</a></span>(</a>
+<p>However, it can be helpful in reports with multiple patterns to store everything in one object, just to have fewer things floating around your top-level environment. <code>heddlr</code> provides <code><a href="../reference/import_draft.html">heddlr::import_draft()</a></code> for this purpose, wrapping an <code>lapply</code> call which will return a single list object holding all of your patterns:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">iris_draft &lt;-<span class="st"> </span><span class="kw"><a href="../reference/import_draft.html">import_draft</a></span>(</a>
 <a class="sourceLine" id="cb7-2" data-line-number="2">  <span class="st">"setup_pattern"</span> =<span class="st"> "setup_pattern.Rmd"</span>,</a>
 <a class="sourceLine" id="cb7-3" data-line-number="3">  <span class="st">"species_pattern"</span> =<span class="st"> "species_pattern.Rmd"</span></a>
 <a class="sourceLine" id="cb7-4" data-line-number="4">)</a></code></pre></div>
@@ -348,7 +348,7 @@ iris %&gt;%
 <p>To recap, the essential steps to make our report can be summed up as follows:</p>
 <ul>
 <li>First, we decomposed our report into patterns, saved as individual .Rmd files.</li>
-<li>We then imported those files using either <code><a href="../reference/import_pattern.html">import_pattern()</a></code> or <code><a href="../reference/assemble_draft.html">assemble_draft()</a></code>
+<li>We then imported those files using either <code><a href="../reference/import_pattern.html">import_pattern()</a></code> or <code><a href="../reference/import_draft.html">import_draft()</a></code>
 </li>
 <li>We replicated the patterns and replaced placeholders using <code><a href="../reference/heddle.html">heddle()</a></code>
 </li>

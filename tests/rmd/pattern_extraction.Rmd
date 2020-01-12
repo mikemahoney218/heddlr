@@ -1,0 +1,37 @@
+AIRPORT_SECTION
+
+# AIRCODE {data-navmenu="Airport Overviews"}
+
+##
+
+###
+
+```{r warning=FALSE}
+airportcode <- "AIRCODE"
+
+graph_flights_per_hour(airportcode)
+```
+
+###
+```{r warning=FALSE}
+graph_sankey(airportcode)
+```
+
+###
+```{r warning=FALSE}
+graph_carriers(airportcode)
+```
+
+## {.tabset}
+
+AIRPORT_SECTION
+MONTHLY_SECTION
+
+### `r month.name[[MONTHNUM]]`
+
+```{r, fig.width=16, fig.height=3.5, warning=FALSE}
+graph_mean_delay(airportcode, MONTHNUM)
+```
+
+
+MONTHLY_SECTION

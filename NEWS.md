@@ -1,10 +1,25 @@
-# heddlr 0.4.2
+# heddlr 0.4.2.9000
 
-* Development version
+* Development version, to be released as 0.5.0
+* Deprecations:
+    * `assemble_draft` has been deprecated in favor of `import_draft`, and 
+       will be removed in a future release. `import_draft` works exactly the 
+       same as `assemble_draft` (in fact, `assemble_draft` is just an alias for
+       `import_draft`) and more clearly communicates the relationship with 
+       `import_pattern` while also making the distinction from `extract_draft`
+       more obvious.
+* New functionality:
+    * `extract_pattern` now helps you extract individual patterns from a larger
+      plaintext file, by indicating via signpost keywords what to import
+    * `extract_draft` makes it easy to extract multiple patterns from the same
+      file in a single function call, returning a single draft object
 * Functionality changes:
     * `heddle` now can handle patterns vectors with length > 1 (in case you want
     to store your pattern as a column in a dataframe next to the data you're 
     replacing it with)
+* Documentation changes:
+    * Examples using `export_template` now properly quote their filename 
+      argument
 * Internal changes:
     * Code now (mostly) passes `goodpractices::gp()`
     * Removed DATE from DESCRIPTION

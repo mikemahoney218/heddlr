@@ -30,8 +30,8 @@ Returns a character vector of the pattern with placeholders
 replaced by variables.
 }
 \description{
-This function replicates pattern objects, replacing keywords in each
-iteration with values from the provided data. This allows efficiently
+This function replicates pattern objects, replacing placeholder keywords in
+each iteration with values from the provided data. This allows efficiently
 creating R Markdown documents with many repeating pieces which may shift
 alongside the underlying data.
 }
