@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">heddlr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -136,6 +136,47 @@
       <small>Source: <a href='https://github.com/mikemahoney218/heddlr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="heddlr-0-5-0" class="section level1">
+<h1 class="page-header">
+<a href="#heddlr-0-5-0" class="anchor"></a>heddlr 0.5.0</h1>
+<ul>
+<li>Deprecations:
+<ul>
+<li>
+<code>assemble_draft</code> has been deprecated in favor of <code>import_draft</code>, and will be removed in a future release. <code>import_draft</code> works exactly the same as <code>assemble_draft</code> (in fact, <code>assemble_draft</code> is just an alias for <code>import_draft</code>) and more clearly communicates the relationship with <code>import_pattern</code> while also making the distinction from <code>extract_draft</code> more obvious.</li>
+</ul>
+</li>
+<li>New functionality:
+<ul>
+<li>
+<code>extract_pattern</code> now helps you extract individual patterns from a larger plaintext file, by indicating via signpost keywords what to import</li>
+<li>
+<code>extract_draft</code> makes it easy to extract multiple patterns from the same file in a single function call, returning a single draft object</li>
+<li>
+<code>use_parameters</code> lets you add parameter boilerplate to your templates easily, including objects in your YAML header and initializing them in an R chunk to let you use the same objects in your report that you used to make it</li>
+</ul>
+</li>
+<li>Functionality changes:
+<ul>
+<li>
+<code>heddle</code> now can handle patterns vectors with length &gt; 1 (in case you want to store your pattern as a column in a dataframe next to the data you’re replacing it with)</li>
+</ul>
+</li>
+<li>Documentation changes:
+<ul>
+<li>Examples now utilize <code><a href="https://rdrr.io/r/base/tempfile.html">tempdir()</a></code> to hopefully pass CRAN checks</li>
+</ul>
+</li>
+<li>Internal changes:
+<ul>
+<li>Code now (mostly) passes <code>goodpractices::gp()</code>
+</li>
+<li>Removed DATE from DESCRIPTION</li>
+<li>Travis builds now cache packages</li>
+</ul>
+</li>
+</ul>
+</div>
     <div id="heddlr-0-4-1" class="section level1">
 <h1 class="page-header">
 <a href="#heddlr-0-4-1" class="anchor"></a>heddlr 0.4.1</h1>
@@ -237,6 +278,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#heddlr-0-5-0">0.5.0</a></li>
         <li><a href="#heddlr-0-4-1">0.4.1</a></li>
         <li><a href="#heddlr-0-4-0">0.4.0</a></li>
         <li><a href="#heddlr-0-3-0">0.3.0</a></li>

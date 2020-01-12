@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Assemble multiple patterns into a single draft object — assemble_draft • heddlr</title>
+<title>Deprecated function for draft import — assemble_draft • heddlr</title>
 
 
 <!-- jquery -->
@@ -35,12 +35,13 @@
 
 
 
-<meta property="og:title" content="Assemble multiple patterns into a single draft object — assemble_draft" />
-<meta property="og:description" content="When working with multiple patterns that will be woven into a template,
-it makes sense to have all patterns stored in a central object. This
-function creates that object from a named vector of filenames to be used
-in further generation, importing the files via
-import_pattern." />
+<meta property="og:title" content="Deprecated function for draft import — assemble_draft" />
+<meta property="og:description" content="assemble_draft has been deprecated (as of development version 0.4.2) in
+favor of import_draft, which has the same semantics (and is actually now
+the same code -- assemble_draft is now only an alias for import_draft.) This
+should hopefully make the link between import_draft and import_pattern clear,
+and more importantly distinguish these functions from extract_pattern and
+the new extract_draft function." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -83,7 +84,7 @@ import_pattern." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">heddlr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -138,17 +139,18 @@ import_pattern." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Assemble multiple patterns into a single draft object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mikemahoney218/heddlr/blob/master/R/assemble_draft.R'><code>R/assemble_draft.R</code></a></small>
+    <h1>Deprecated function for draft import</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mikemahoney218/heddlr/blob/master/R/import_draft.R'><code>R/import_draft.R</code></a></small>
     <div class="hidden name"><code>assemble_draft.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>When working with multiple patterns that will be woven into a template,
-it makes sense to have all patterns stored in a central object. This
-function creates that object from a named vector of filenames to be used
-in further generation, importing the files via
-<code><a href='import_pattern.html'>import_pattern</a></code>.</p>
+    <p>assemble_draft has been deprecated (as of development version 0.4.2) in
+favor of import_draft, which has the same semantics (and is actually now
+the same code -- assemble_draft is now only an alias for import_draft.) This
+should hopefully make the link between import_draft and import_pattern clear,
+and more importantly distinguish these functions from extract_pattern and
+the new extract_draft function.</p>
     </div>
 
     <pre class="usage"><span class='fu'>assemble_draft</span>(<span class='no'>...</span>)</pre>
@@ -166,23 +168,23 @@ Files should be plain text.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Returns a list containing the imported patterns.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>Other import functions: <code><a href='import_pattern.html'>import_pattern</a></code></p></div>
+    <p>Returns a list (the same length as ...)
+containing the imported patterns.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'><a href='export_template.html'>export_template</a></span>(<span class='st'>"my sample pattern"</span>, <span class='no'>out.Rmd</span>)
-<span class='fu'>assemble_draft</span>(<span class='st'>"sample_pattern"</span> <span class='kw'>=</span> <span class='st'>"out.Rmd"</span>)
-}</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>pattern_file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>(<span class='st'>"out"</span>, <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>".Rmd"</span>)
+<span class='fu'><a href='export_template.html'>export_template</a></span>(<span class='st'>"my sample pattern"</span>, <span class='no'>pattern_file</span>)
+<span class='fu'>assemble_draft</span>(<span class='st'>"sample_pattern"</span> <span class='kw'>=</span> <span class='no'>pattern_file</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: assemble_draft has been deprecated in favor of import_draft, and </span>
+#&gt; <span class='warning'>          will be removed in a future release. </span>
+#&gt; <span class='warning'>          Please use import_draft instead.</span></div><div class='output co'>#&gt; $sample_pattern
+#&gt; [1] "my sample pattern"
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
-      <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

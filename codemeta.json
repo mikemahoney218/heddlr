@@ -11,7 +11,7 @@
   "relatedLink": "https://mikemahoney218.github.io/heddlr/",
   "issueTracker": "https://github.com/mikemahoney218/heddlr/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",

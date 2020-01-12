@@ -42,15 +42,28 @@ make_template <- function(data, ...) {
 #' @export
 make_template.default <- function(data, ...) {
   dots <- list(data, ...)
-  output <- vapply(dots, function(x) paste0(unlist(x), collapse = ""), character(1))
+  output <- vapply(
+    dots,
+    function(x) paste0(unlist(x), collapse = ""),
+    character(1)
+  )
   paste0(unlist(output), collapse = "")
 }
 
 #' @export
 make_template.data.frame <- function(data, ...) {
   dots <- rlang::enquos(...)
-  if (length(dots) == 0) stop("No column was specified to make a template from.")
+  if (length(dots) == 0) stop("No column was specified to turn into a template")
   vars <- as.list(rlang::set_names(seq_along(data), names(data)))
-  output <- vapply(dots, function(x) paste0(unlist(data[[rlang::eval_tidy(x, vars)]]), collapse = ""), character(1))
+  output <- vapply(
+    dots,
+    function(x) {
+      paste0(
+        unlist(data[[rlang::eval_tidy(x, vars)]]),
+        collapse = ""
+      )
+    },
+    character(1)
+  )
   paste0(output, collapse = "")
 }

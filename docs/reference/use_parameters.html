@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • heddlr</title>
+<title>Automatically include session objects as report parameters — use_parameters • heddlr</title>
 
 
 <!-- jquery -->
@@ -35,7 +35,15 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Automatically include session objects as report parameters — use_parameters" />
+<meta property="og:description" content="R Markdown documents allow you to pass almost any object -- including large
+data frames and functions -- to the document as parameters, letting you
+only define them once to use them in both your document generator and
+the generated document. This function makes it slightly easier to do so,
+by adding your objects to the YAML header and then initializing them
+so you can use the same object names in your generated document as in your
+generator." />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -64,7 +72,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -130,108 +138,74 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Automatically include session objects as report parameters</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mikemahoney218/heddlr/blob/master/R/use_parameters.R'><code>R/use_parameters.R</code></a></small>
+    <div class="hidden name"><code>use_parameters.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>R Markdown documents allow you to pass almost any object -- including large
+data frames and functions -- to the document as parameters, letting you
+only define them once to use them in both your document generator and
+the generated document. This function makes it slightly easier to do so,
+by adding your objects to the YAML header and then initializing them
+so you can use the same object names in your generated document as in your
+generator.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>use_parameters</span>(<span class='no'>template</span>, <span class='no'>...</span>, <span class='kw'>init.params</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>is.file</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-importing-patterns" class="hasAnchor"><a href="#section-importing-patterns" class="anchor"></a>Importing Patterns</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="import_pattern.html">import_pattern()</a></code> </p>
-        </td>
-        <td><p>Quickly import plaintext files.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="import_draft.html">import_draft()</a></code> </p>
-        </td>
-        <td><p>Import multiple patterns into a single draft object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="extract_pattern.html">extract_pattern()</a></code> </p>
-        </td>
-        <td><p>Extract patterns from larger documents</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="extract_draft.html">extract_draft()</a></code> </p>
-        </td>
-        <td><p>Extract multiple patterns into a single draft object</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-manipulating-markdown" class="hasAnchor"><a href="#section-manipulating-markdown" class="anchor"></a>Manipulating Markdown</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="create_yaml_header.html">create_yaml_header()</a></code> </p>
-        </td>
-        <td><p>Convert list objects into R Markdown YAML headers</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="heddle.html">heddle()</a></code> </p>
-        </td>
-        <td><p>Transform pattern objects into template pieces</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="make_template.html">make_template()</a></code> </p>
-        </td>
-        <td><p>Linearly combine template elements into templates</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="use_parameters.html">use_parameters()</a></code> </p>
-        </td>
-        <td><p>Automatically include session objects as report parameters</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-exporting-templates" class="hasAnchor"><a href="#section-exporting-templates" class="anchor"></a>Exporting Templates</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="export_template.html">export_template()</a></code> </p>
-        </td>
-        <td><p>Safely export templates to file.</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>template</th>
+      <td><p>An atomic (<code>length(template) == 1</code>) character vector
+containing either the template to manipulate OR the path to the file storing
+the template, which will be imported via import_pattern.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Objects to be included as parameters. Objects should be unquoted
+and exist in the current session environment. This function currently will
+always assign parameters NA as a default value, and does not yet provide an
+option to override that.</p></td>
+    </tr>
+    <tr>
+      <th>init.params</th>
+      <td><p>A boolean (<code>TRUE/FALSE</code>) value indicating if
+a chunk initalizing the parameters (that is, assigning them via
+<code>object &lt;- params$object</code>) should be included. Default <code>TRUE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>is.file</th>
+      <td><p>A boolean value indicating if the template argument is a
+vector containing the template (<code>FALSE</code>, default) or the path to the
+template file (<code>TRUE</code>).</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other manipulation functions: 
+<code><a href='create_yaml_header.html'>create_yaml_header</a>()</code>,
+<code><a href='heddle.html'>heddle</a>()</code>,
+<code><a href='make_template.html'>make_template</a>()</code></p></div>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>template</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='make_template.html'>make_template</a></span>(<span class='st'>"---\ntitle: Cool Report\noutput: html_document\n---\n"</span>)
+<span class='fu'>use_parameters</span>(<span class='no'>template</span>, <span class='no'>data</span>)</div><div class='output co'>#&gt; [1] "---\ntitle: Cool Report\noutput: html_document\nparams:\n  data: NA\n---\n```{r}\ndata &lt;- params$data\n```\n\n"</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-importing-patterns">Importing Patterns</a></li>
-      <li><a href="#section-manipulating-markdown">Manipulating Markdown</a></li>
-      <li><a href="#section-exporting-templates">Exporting Templates</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#see-also">See also</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
+
   </div>
 </div>
 

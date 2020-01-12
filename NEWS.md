@@ -1,11 +1,39 @@
+# heddlr 0.5.0
+
+* Deprecations:
+    * `assemble_draft` has been deprecated in favor of `import_draft`, and 
+       will be removed in a future release. `import_draft` works exactly the 
+       same as `assemble_draft` (in fact, `assemble_draft` is just an alias for
+       `import_draft`) and more clearly communicates the relationship with 
+       `import_pattern` while also making the distinction from `extract_draft`
+       more obvious.
+* New functionality:
+    * `extract_pattern` now helps you extract individual patterns from a larger
+      plaintext file, by indicating via signpost keywords what to import
+    * `extract_draft` makes it easy to extract multiple patterns from the same
+      file in a single function call, returning a single draft object
+    * `use_parameters` lets you add parameter boilerplate to your templates 
+       easily, including objects in your YAML header and initializing them 
+       in an R chunk to let you use the same objects in your report that you 
+       used to make it
+* Functionality changes:
+    * `heddle` now can handle patterns vectors with length > 1 (in case you 
+    want to store your pattern as a column in a dataframe next to the data 
+    you're replacing it with)
+* Documentation changes:
+    * Examples now utilize `tempdir()` to hopefully pass CRAN checks
+* Internal changes:
+    * Code now (mostly) passes `goodpractices::gp()`
+    * Removed DATE from DESCRIPTION
+    * Travis builds now cache packages
 
 # heddlr 0.4.1
 
 * This will be the first version submitted to CRAN
 * Functionality changes:
     * make_template now uses vectorized `vapply` functions instead of loops
-    * `heddle` stops you a second earlier if your `strip.whitespace` argument is
-      bad
+    * `heddle` stops you a second earlier if your `strip.whitespace` argument 
+      is bad
 * Documentation changes:
     * Functions are now grouped into families for easier reference
     * More involved example vignette edited, links to final product

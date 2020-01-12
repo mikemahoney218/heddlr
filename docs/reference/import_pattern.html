@@ -37,8 +37,8 @@
 
 <meta property="og:title" content="Quickly import plaintext files. — import_pattern" />
 <meta property="og:description" content="Longer, multi-chunk patterns can benefit from being developed in files
-independent of the rest of a draft. This is a quick wrapper function to import
-those patterns as objects for assembly into a draft." />
+independent of the rest of a draft. This is a quick wrapper function to
+import those patterns as objects for assembly into a draft." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -81,7 +81,7 @@ those patterns as objects for assembly into a draft." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">heddlr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -143,8 +143,8 @@ those patterns as objects for assembly into a draft." />
 
     <div class="ref-description">
     <p>Longer, multi-chunk patterns can benefit from being developed in files
-independent of the rest of a draft. This is a quick wrapper function to import
-those patterns as objects for assembly into a draft.</p>
+independent of the rest of a draft. This is a quick wrapper function to
+import those patterns as objects for assembly into a draft.</p>
     </div>
 
     <pre class="usage"><span class='fu'>import_pattern</span>(<span class='no'>filepath</span>)</pre>
@@ -164,13 +164,15 @@ the pattern.</p></td>
     <p>A character string, typically used to assemble a draft.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other import functions: <code><a href='assemble_draft.html'>assemble_draft</a></code></p></div>
+    <div class='dont-index'><p>Other import functions: 
+<code><a href='extract_draft.html'>extract_draft</a>()</code>,
+<code><a href='extract_pattern.html'>extract_pattern</a>()</code>,
+<code><a href='import_draft.html'>import_draft</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'><a href='export_template.html'>export_template</a></span>(<span class='st'>"my sample pattern"</span>, <span class='no'>out.Rmd</span>)
-<span class='fu'>import_template</span>(<span class='st'>"out.Rmd"</span>)
-}</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>pattern_file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>(<span class='st'>"out"</span>, <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>".Rmd"</span>)
+<span class='fu'><a href='export_template.html'>export_template</a></span>(<span class='st'>"my sample pattern"</span>, <span class='no'>pattern_file</span>)
+<span class='fu'>import_pattern</span>(<span class='no'>pattern_file</span>)</div><div class='output co'>#&gt; [1] "my sample pattern"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

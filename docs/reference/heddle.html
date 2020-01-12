@@ -36,8 +36,8 @@
 
 
 <meta property="og:title" content="Transform pattern objects into template pieces — heddle" />
-<meta property="og:description" content="This function replicates pattern objects, replacing keywords in each
-iteration with values from the provided data. This allows efficiently
+<meta property="og:description" content="This function replicates pattern objects, replacing placeholder keywords in
+each iteration with values from the provided data. This allows efficiently
 creating R Markdown documents with many repeating pieces which may shift
 alongside the underlying data." />
 <meta name="twitter:card" content="summary" />
@@ -82,7 +82,7 @@ alongside the underlying data." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">heddlr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -143,13 +143,13 @@ alongside the underlying data." />
     </div>
 
     <div class="ref-description">
-    <p>This function replicates pattern objects, replacing keywords in each
-iteration with values from the provided data. This allows efficiently
+    <p>This function replicates pattern objects, replacing placeholder keywords in
+each iteration with values from the provided data. This allows efficiently
 creating R Markdown documents with many repeating pieces which may shift
 alongside the underlying data.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>heddle</span>(<span class='no'>data</span>, <span class='no'>pattern</span>, <span class='no'>...</span>, <span class='kw'>strip.whitespace</span> <span class='kw'>=</span> <span class='no'>F</span>)</pre>
+    <pre class="usage"><span class='fu'>heddle</span>(<span class='no'>data</span>, <span class='no'>pattern</span>, <span class='no'>...</span>, <span class='kw'>strip.whitespace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -161,8 +161,10 @@ vector or dataframe inputs.</p></td>
     </tr>
     <tr>
       <th>pattern</th>
-      <td><p>The base pattern, which will be replicated for each value in
-the vector with keywords replaced by data.</p></td>
+      <td><p>The base pattern, as either an atomic vector (which will be
+recycled for every value in your data) or a vector of the same length as
+your data (which will be applied element-wise to your data, so that
+<code>data[[1]]</code> will replace <code>pattern[[1]]</code>).</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -186,8 +188,10 @@ on if you're using the variable in chunk labels or similar places.</p></td>
 replaced by variables.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other manipulation functions: <code><a href='create_yaml_header.html'>create_yaml_header</a></code>,
-  <code><a href='make_template.html'>make_template</a></code></p></div>
+    <div class='dont-index'><p>Other manipulation functions: 
+<code><a href='create_yaml_header.html'>create_yaml_header</a>()</code>,
+<code><a href='make_template.html'>make_template</a>()</code>,
+<code><a href='use_parameters.html'>use_parameters</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># When passed a vector, heddle replaces all placeholders passed to ...</span>

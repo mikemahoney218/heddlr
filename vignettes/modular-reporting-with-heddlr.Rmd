@@ -158,12 +158,12 @@ setup_pattern
 
 However, it can be helpful in reports with multiple patterns to store 
 everything in one object, just to have fewer things floating around your 
-top-level environment. `heddlr` provides `heddlr::assemble_draft()` for this
+top-level environment. `heddlr` provides `heddlr::import_draft()` for this
 purpose, wrapping an `lapply` call which will return a single list object 
 holding all of your patterns:
 
 ```{r eval=FALSE}
-iris_draft <- assemble_draft(
+iris_draft <- import_draft(
   "setup_pattern" = "setup_pattern.Rmd",
   "species_pattern" = "species_pattern.Rmd"
 )
@@ -251,7 +251,11 @@ in the same way as above:
 ```{r}
 iris %>%
   nest(nested = Species) %>%
-  mutate(component = map(nested, heddle, "This is a pattern - CODE ", "CODE" = Species)) %>%
+  mutate(component = map(nested,
+    heddle,
+    "This is a pattern - CODE ",
+    "CODE" = Species
+  )) %>%
   head(2)
 ```
 
@@ -269,7 +273,10 @@ dataframes where you'll get more than one output from the `map()` call:
 ```{r eval=FALSE}
 iris %>%
   nest(nested = Species) %>%
-  mutate(component = map_chr(nested, heddle, "This is a pattern - CODE ", "CODE" = Species))
+  mutate(component = map_chr(nested, heddle,
+    "This is a pattern - CODE ",
+    "CODE" = Species
+  ))
 # > Error: Result 102 must be a single string, not a character vector of length 2
 ```
 
@@ -297,7 +304,10 @@ single string:
 iris %>%
   nest(nested = Species) %>%
   mutate(
-    component = map(nested, heddle, "This is a pattern - CODE ", "CODE" = Species),
+    component = map(nested, heddle,
+      "This is a pattern - CODE ",
+      "CODE" = Species
+    ),
     component = map_chr(component, make_template)
   ) %>%
   head(2) %>%
@@ -317,7 +327,11 @@ this:
 ```{r}
 species_template <- iris %>%
   distinct(Species) %>%
-  mutate(component = heddle(Species, iris_draft$species_pattern, "SPECIES_NAME")) %>%
+  mutate(component = heddle(
+    Species,
+    iris_draft$species_pattern,
+    "SPECIES_NAME"
+  )) %>%
   make_template(component)
 
 report_template <- make_template(iris_draft$setup_pattern, species_template)
@@ -345,7 +359,7 @@ To recap, the essential steps to make our report can be summed up as follows:
 * First, we decomposed our report into patterns, saved as individual .Rmd 
   files.
 * We then imported those files using either `import_pattern()` or 
-  `assemble_draft()`
+  `import_draft()`
 * We replicated the patterns and replaced placeholders using `heddle()`
 * We combined those components into templates via `make_template()`
 * We exported our final template into a report through `export_template()`

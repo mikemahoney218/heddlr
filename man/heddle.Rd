@@ -4,14 +4,16 @@
 \alias{heddle}
 \title{Transform pattern objects into template pieces}
 \usage{
-heddle(data, pattern, ..., strip.whitespace = F)
+heddle(data, pattern, ..., strip.whitespace = FALSE)
 }
 \arguments{
 \item{data}{Input dataframe to pull replacement values from. Accepts either
 vector or dataframe inputs.}
 
-\item{pattern}{The base pattern, which will be replicated for each value in
-the vector with keywords replaced by data.}
+\item{pattern}{The base pattern, as either an atomic vector (which will be
+recycled for every value in your data) or a vector of the same length as
+your data (which will be applied element-wise to your data, so that
+\code{data[[1]]} will replace \code{pattern[[1]]}).}
 
 \item{...}{If \code{data} is a vector, a string representing the string to
 replace with data values in each pattern. If \code{data} is a dataframe, a
@@ -28,8 +30,8 @@ Returns a character vector of the pattern with placeholders
 replaced by variables.
 }
 \description{
-This function replicates pattern objects, replacing keywords in each
-iteration with values from the provided data. This allows efficiently
+This function replicates pattern objects, replacing placeholder keywords in
+each iteration with values from the provided data. This allows efficiently
 creating R Markdown documents with many repeating pieces which may shift
 alongside the underlying data.
 }
@@ -48,7 +50,9 @@ heddle(spList, "SPECIES CODE GWAR ", "GWAR" = Species)
 heddle(spList, "SPECIES CODE GWAR ", "GWAR" = Species, "CODE" = Species)
 }
 \seealso{
-Other manipulation functions: \code{\link{create_yaml_header}},
-  \code{\link{make_template}}
+Other manipulation functions: 
+\code{\link{create_yaml_header}()},
+\code{\link{make_template}()},
+\code{\link{use_parameters}()}
 }
 \concept{manipulation functions}

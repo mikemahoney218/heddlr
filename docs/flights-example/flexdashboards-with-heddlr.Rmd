@@ -290,10 +290,10 @@ pattern
 
 Of course, we usually have more than one pattern to work with, and it can be
 nice to keep them all in one place. `heddlr` helps you do this as well via the
-`assemble_draft` function, which takes named filepaths and stores them in a list:
+`import_draft` function, which takes named filepaths and stores them in a list:
 
 ```{r}
-draft <- assemble_draft(
+draft <- import_draft(
   "site_pattern" = "flights_site_level.Rmd",
   "month_pattern" = "flights_month_level.Rmd"
 )
@@ -302,7 +302,7 @@ draft
 
 There's one last function in `heddlr` to help us create pattern objects, named
 `create_yaml_header`. If we wanted, we can include a pattern in our 
-`assemble_draft` call that contains the YAML needed to render our R Markdown
+`import_draft` call that contains the YAML needed to render our R Markdown
 document. However, `create_yaml_header` also provides us the option of 
 creating that header natively in our generator document by passing it a list:
 

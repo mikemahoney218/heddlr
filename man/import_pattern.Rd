@@ -15,17 +15,18 @@ A character string, typically used to assemble a draft.
 }
 \description{
 Longer, multi-chunk patterns can benefit from being developed in files
-independent of the rest of a draft. This is a quick wrapper function to import
-those patterns as objects for assembly into a draft.
+independent of the rest of a draft. This is a quick wrapper function to
+import those patterns as objects for assembly into a draft.
 }
 \examples{
-\dontrun{
-export_template("my sample pattern", out.Rmd)
-import_template("out.Rmd")
-}
-
+pattern_file <- tempfile("out", tempdir(), ".Rmd")
+export_template("my sample pattern", pattern_file)
+import_pattern(pattern_file)
 }
 \seealso{
-Other import functions: \code{\link{assemble_draft}}
+Other import functions: 
+\code{\link{extract_draft}()},
+\code{\link{extract_pattern}()},
+\code{\link{import_draft}()}
 }
 \concept{import functions}

@@ -33,7 +33,7 @@ set.
 
 `heddlr` seeks to address these challenges by providing tools to make
 your R Markdown DRYer (that is, [don’t repeat
-yourself.](https://r4ds.had.co.nz/functions.html#when-should-you-write-a-function)).
+yourself](https://r4ds.had.co.nz/functions.html#when-should-you-write-a-function)).
 By making it easier to dynamically piece together components of your
 document based on your data source, `heddlr` makes it easier for you to
 write cleaner documents and create your reports faster.
