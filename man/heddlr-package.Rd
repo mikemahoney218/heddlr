@@ -21,7 +21,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Michael Mahoney \email{mike.mahoney.218@gmail.com} (\href{https://orcid.org/https://orcid.org/0000-0003-2402-304X}{ORCID})
+\strong{Maintainer}: Michael Mahoney \email{mike.mahoney.218@gmail.com} (\href{https://orcid.org/0000-0003-2402-304X}{ORCID})
 
 }
 \keyword{internal}

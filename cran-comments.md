@@ -3,6 +3,7 @@
 This is a resubmission. In this version I have changed the following:
 
 * Changed all examples to write to tempdir(). 
+* Set all examples to be run (removed all \dontrun{} tags)
 
 ## Test environments
 * Local Ubuntu 19.04 install, R 3.6.2
