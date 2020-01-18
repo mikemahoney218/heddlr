@@ -53,6 +53,7 @@ heddle(spList, "SPECIES CODE GWAR ", "GWAR" = Species, "CODE" = Species)
 Other manipulation functions: 
 \code{\link{create_yaml_header}()},
 \code{\link{make_template}()},
+\code{\link{provide_parameters}()},
 \code{\link{use_parameters}()}
 }
 \concept{manipulation functions}

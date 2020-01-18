@@ -1,3 +1,10 @@
+# heddlr 0.5.0.9000
+
+* New functionality:
+    * `provide_parameters` replaces your old 
+      `rmarkdown::render(..., params = list(x = x, y = y))` calls with a 
+      simpler `rmarkdown::render(..., params = provide_parameters(x, y))`
+
 # heddlr 0.5.0
 
 * Deprecations:

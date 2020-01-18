@@ -46,6 +46,7 @@ make_template(tidyr::nest(spList, nested = template), nested)
 Other manipulation functions: 
 \code{\link{create_yaml_header}()},
 \code{\link{heddle}()},
+\code{\link{provide_parameters}()},
 \code{\link{use_parameters}()}
 }
 \concept{manipulation functions}

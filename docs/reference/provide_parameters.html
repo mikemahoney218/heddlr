@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Extract multiple patterns into a single draft object — extract_draft • heddlr</title>
+<title>Easily provide parameters to R Markdown render calls — provide_parameters • heddlr</title>
 
 
 <!-- jquery -->
@@ -35,12 +35,14 @@
 
 
 
-<meta property="og:title" content="Extract multiple patterns into a single draft object — extract_draft" />
-<meta property="og:description" content="When working with multiple patterns that will be woven into a template,
-it makes sense to have all patterns stored in a central object. This
-function creates that object from a named vector of filenames to be used
-in further generation, importing the files via
-extract_pattern." />
+<meta property="og:title" content="Easily provide parameters to R Markdown render calls — provide_parameters" />
+<meta property="og:description" content="R Markdown documents allow you to pass almost any object -- including large
+data frames and functions -- to the document as parameters, letting you
+only define them once to use them in both your document generator and
+the generated document. This function makes it slightly easier to do so,
+by automatically creating a named list from provided objects rather than
+requiring a named list. This function is a stripped-down variant of
+lst." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -138,60 +140,67 @@ extract_pattern." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Extract multiple patterns into a single draft object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mikemahoney218/heddlr/blob/master/R/extract_draft.R'><code>R/extract_draft.R</code></a></small>
-    <div class="hidden name"><code>extract_draft.Rd</code></div>
+    <h1>Easily provide parameters to R Markdown render calls</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mikemahoney218/heddlr/blob/master/R/provide_parameters.R'><code>R/provide_parameters.R</code></a></small>
+    <div class="hidden name"><code>provide_parameters.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>When working with multiple patterns that will be woven into a template,
-it makes sense to have all patterns stored in a central object. This
-function creates that object from a named vector of filenames to be used
-in further generation, importing the files via
-<code><a href='extract_pattern.html'>extract_pattern</a></code>.</p>
+    <p>R Markdown documents allow you to pass almost any object -- including large
+data frames and functions -- to the document as parameters, letting you
+only define them once to use them in both your document generator and
+the generated document. This function makes it slightly easier to do so,
+by automatically creating a named list from provided objects rather than
+requiring a named list. This function is a stripped-down variant of
+<code><a href='https://tibble.tidyverse.org/reference/lst.html'>lst</a></code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>extract_draft</span>(<span class='no'>filepath</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>provide_parameters</span>(<span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>filepath</th>
-      <td><p>A valid character string to the plaintext file containing
-the pattern.</p></td>
-    </tr>
-    <tr>
       <th>...</th>
-      <td><p>Keywords to be used by <code><a href='extract_pattern.html'>extract_pattern</a></code> to
-extract each pattern. If arguments to ... are named, the returned draft
-will have the same names.</p></td>
+      <td><p>Objects to be included as parameters. Objects should be unquoted
+and exist in the current session environment.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>Returns a list (the same length as ...) containing the extracted
-patterns.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other import functions: 
-<code><a href='extract_pattern.html'>extract_pattern</a>()</code>,
-<code><a href='import_draft.html'>import_draft</a>()</code>,
-<code><a href='import_pattern.html'>import_pattern</a>()</code></p></div>
+    <div class='dont-index'><p>Other manipulation functions: 
+<code><a href='create_yaml_header.html'>create_yaml_header</a>()</code>,
+<code><a href='heddle.html'>heddle</a>()</code>,
+<code><a href='make_template.html'>make_template</a>()</code>,
+<code><a href='use_parameters.html'>use_parameters</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>pattern_file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>(<span class='st'>"out"</span>, <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>".Rmd"</span>)
-<span class='fu'><a href='export_template.html'>export_template</a></span>(<span class='st'>"EXTRACT my sample pattern EXTRACT"</span>, <span class='no'>pattern_file</span>)
-<span class='fu'>extract_draft</span>(<span class='no'>pattern_file</span>, <span class='st'>"one"</span> <span class='kw'>=</span> <span class='st'>"EXTRACT"</span>)</div><div class='output co'>#&gt; $one
-#&gt; [1] " my sample pattern "
-#&gt; </div></pre>
+    <pre class="examples"><div class='input'>
+<span class='no'>template</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='make_template.html'>make_template</a></span>(<span class='st'>"---\ntitle: Example\noutput: html_document\n---\n"</span>,
+                          <span class='st'>"\nThe random number is `r random_number`.\n"</span>)
+<span class='no'>template</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='use_parameters.html'>use_parameters</a></span>(<span class='no'>template</span>, <span class='st'>"random_number"</span>)
+<span class='no'>pattern_file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>(<span class='st'>"out"</span>, <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>".Rmd"</span>)
+<span class='fu'><a href='export_template.html'>export_template</a></span>(<span class='no'>template</span>, <span class='no'>pattern_file</span>)
+
+<span class='no'>random_number</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>1</span>)
+<span class='kw pkg'>rmarkdown</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/rmarkdown/man/render.html'>render</a></span>(<span class='no'>pattern_file</span>, <span class='kw'>params</span> <span class='kw'>=</span> <span class='fu'>provide_parameters</span>(<span class='no'>random_number</span>))</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>processing file: out315e6883dbc6.Rmd</span></div><div class='output co'>#&gt;   |                                                                         |                                                                 |   0%  |                                                                         |......................                                           |  33%
+#&gt;   ordinary text without R code
+#&gt; 
+#&gt;   |                                                                         |...........................................                      |  67%
+#&gt; label: unnamed-chunk-1
+#&gt;   |                                                                         |.................................................................| 100%
+#&gt;    inline R code fragments
+#&gt; 
+#&gt; </div><div class='output co'>#&gt; <span class='message'>output file: out315e6883dbc6.knit.md</span></div><div class='output co'>#&gt; /home/mikemahoney218/anaconda3/bin/pandoc +RTS -K512m -RTS out315e6883dbc6.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash+smart --output out315e6883dbc6.html --email-obfuscation none --self-contained --standalone --section-divs --template /home/mikemahoney218/R/x86_64-pc-linux-gnu-library/3.6/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable 'theme:bootstrap' --include-in-header /tmp/RtmppehjpY/rmarkdown-str315e361fd562.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --lua-filter /home/mikemahoney218/R/x86_64-pc-linux-gnu-library/3.6/rmarkdown/rmd/lua/pagebreak.lua --lua-filter /home/mikemahoney218/R/x86_64-pc-linux-gnu-library/3.6/rmarkdown/rmd/lua/latex-div.lua </div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Output created: out315e6883dbc6.html</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
       <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
