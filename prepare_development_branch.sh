@@ -7,7 +7,7 @@ R -e "devtools::build_site()"
 
 R -e "styler::style_dir()"
 R -e 'styler::style_dir(filetype = "Rmd")'
-
+R -e "devtools::document()"
 R -e "devtools::check()"
 
 R -e "codemetar::write_codemeta()"

@@ -30,7 +30,9 @@ pattern_file <- tempfile("out", tempdir(), ".Rmd")
 export_template(template, pattern_file)
 
 random_number <- rnorm(1)
-rmarkdown::render(pattern_file, params = provide_parameters(random_number))
+if (rmarkdown::pandoc_available()) {
+  rmarkdown::render(pattern_file, params = provide_parameters(random_number))
+}
 }
 \seealso{
 Other manipulation functions: 

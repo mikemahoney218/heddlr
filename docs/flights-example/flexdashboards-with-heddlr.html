@@ -581,12 +581,12 @@ graph_mean_delay(airportcode, MONTHNUM)
 <a class="sourceLine" id="cb14-2" data-line-number="2"><span class="st">  </span><span class="kw">export_template</span>(<span class="st">&quot;flights_dashboard.Rmd&quot;</span>)</a></code></pre></div>
 <p>We’re then able to call <code>rmarkdown::render</code> on our new .Rmd document from the same document we used to generate it. Because we’ve already gone ahead and defined our datasets and functions, we’re able to knit the document with parameters to speed up processing time – this is particularly helpful if your data is particularly large or coming from a SQL connection, so you only need to import the data once. I included the parameters in our <code>create_yaml_header</code> step, and will include them in this render call as well:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">rmarkdown<span class="op">::</span><span class="kw">render</span>(<span class="st">&quot;flights_dashboard.Rmd&quot;</span>,</a>
-<a class="sourceLine" id="cb15-2" data-line-number="2">  <span class="dt">params =</span> <span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb15-3" data-line-number="3">    <span class="dt">flights =</span> flights,</a>
-<a class="sourceLine" id="cb15-4" data-line-number="4">    <span class="dt">graph_flights_per_hour =</span> graph_flights_per_hour,</a>
-<a class="sourceLine" id="cb15-5" data-line-number="5">    <span class="dt">graph_mean_delay =</span> graph_mean_delay,</a>
-<a class="sourceLine" id="cb15-6" data-line-number="6">    <span class="dt">graph_sankey =</span> graph_sankey,</a>
-<a class="sourceLine" id="cb15-7" data-line-number="7">    <span class="dt">graph_carriers =</span> graph_carriers</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">  <span class="dt">params =</span> <span class="kw">provide_parameters</span>(</a>
+<a class="sourceLine" id="cb15-3" data-line-number="3">    flights,</a>
+<a class="sourceLine" id="cb15-4" data-line-number="4">    graph_flights_per_hour,</a>
+<a class="sourceLine" id="cb15-5" data-line-number="5">    graph_mean_delay,</a>
+<a class="sourceLine" id="cb15-6" data-line-number="6">    graph_sankey,</a>
+<a class="sourceLine" id="cb15-7" data-line-number="7">    graph_carriers</a>
 <a class="sourceLine" id="cb15-8" data-line-number="8">  )</a>
 <a class="sourceLine" id="cb15-9" data-line-number="9">)</a>
 <a class="sourceLine" id="cb15-10" data-line-number="10"><span class="co">#&gt; </span></a>
