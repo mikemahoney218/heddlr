@@ -17,15 +17,17 @@
 #' whitespace should be removed from the replacement variable. Toggle this
 #' on if you're using the variable in chunk labels or similar places.
 #'
-#' @section Replacement values:
+#' @section Specifying replacement values:
 #' \code{heddle} can accept multiple different values for \code{...}, depending
 #' on how you call it.
+#'
 #' If \code{data} is a vector (which is the case when either
 #' calling \code{heddle} on a vector directly, or using it in a
 #' \code{\link[dplyr]{mutate}}) call, \code{...} should be unnamed strings
 #' matching the values to be replaced. If any argument passed to \code{...}
 #' isn't found in the pattern, a warning will be raised -- use \code{NA} to
 #' replicate patterns without replacing any values.
+#'
 #' If \code{data} is a dataframe (which is the case both when calling
 #' \code{heddle} on a dataframe directly or using it in combination with
 #' \code{\link[tidyr]{nest}} and \code{\link[purrr]{map}}),
@@ -61,25 +63,32 @@ heddle <- function(data, pattern, ..., strip.whitespace = FALSE) {
 
 #' @export
 heddle.default <- function(data, pattern, ..., strip.whitespace = FALSE) {
+  stopifnot(is.logical(strip.whitespace))
+  stopifnot(length(strip.whitespace) == 1)
+
   dots <- list(...)
+  # allows templates to be stored as column (or any vector of equal length)
   if (length(pattern) != 1 & length(pattern) != length(data)) {
     stop("Argument pattern must be an atomic vector or have the same number of 
          elements as your data.")
   }
-  if (length(dots) == 0) stop("argument '...' is missing, with no default")
-  if (length(dots) > 1) {
+  if (length(dots) > 1) { # all dots handled in one gsub call
+    # might mess things up if you're trying to do higher-order dynamic
+    # replacement (ie only include replacement values if X is true); the
+    # solution is to call heddle twice
     dots <- paste0(unlist(dots), collapse = "|")
   }
   if (!is.null(names(dots))) {
     warning("heddle ignores the names of '...' when passed a vector.")
   }
-  if (!is.logical(strip.whitespace) || length(strip.whitespace) != 1) {
-    stop("strip.whitespace must be a logical value")
-  } else if (strip.whitespace) {
+
+  if (strip.whitespace) {
     data <- gsub("[[:space:]]", "", data)
   }
+
   if (length(pattern) == 1) {
-    if (is.na(dots)) {
+    if (is.na(dots)) { # Can't supply both NA and a value to replace;
+      # then again, I can't imagine why you'd want to
       rep(pattern, length(data))
     } else if (!grepl(dots, pattern)) {
       warning("Placeholder keyword not found in pattern.")
@@ -90,7 +99,8 @@ heddle.default <- function(data, pattern, ..., strip.whitespace = FALSE) {
         FUN.VALUE = character(1)
       )
     }
-  } else {
+  } else { # handle cases where pattern is stored as columns
+
     if (
       any(
         vapply(
@@ -98,10 +108,10 @@ heddle.default <- function(data, pattern, ..., strip.whitespace = FALSE) {
           function(x) grepl(dots, x),
           logical(1)
         )
-      ) == FALSE
-    ) {
+      ) == FALSE) {
       warning("Placeholder keyword not found in pattern.")
     }
+
     mapply(function(x, y) gsub(dots, x, y),
       x = data,
       y = pattern,

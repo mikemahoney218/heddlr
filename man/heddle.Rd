@@ -32,16 +32,18 @@ each iteration with values from the provided data. This allows efficiently
 creating R Markdown documents with many repeating pieces which may shift
 alongside the underlying data.
 }
-\section{Replacement values}{
+\section{Specifying replacement values}{
 
 \code{heddle} can accept multiple different values for \code{...}, depending
 on how you call it.
+
 If \code{data} is a vector (which is the case when either
 calling \code{heddle} on a vector directly, or using it in a
 \code{\link[dplyr]{mutate}}) call, \code{...} should be unnamed strings
 matching the values to be replaced. If any argument passed to \code{...}
 isn't found in the pattern, a warning will be raised -- use \code{NA} to
 replicate patterns without replacing any values.
+
 If \code{data} is a dataframe (which is the case both when calling
 \code{heddle} on a dataframe directly or using it in combination with
 \code{\link[tidyr]{nest}} and \code{\link[purrr]{map}}),

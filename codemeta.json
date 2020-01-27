@@ -8,7 +8,10 @@
   "description": "Helper functions designed to make\n    dynamically generating R Markdown documents easier by providing a\n    simple and tidy way to create report pieces, shape them to your data,\n    and combine them for exporting into a single R Markdown document.",
   "name": "heddlr: Dynamic R Markdown Document Generation",
   "codeRepository": "https://github.com/mikemahoney218/heddlr",
-  "relatedLink": ["https://mikemahoney218.github.io/heddlr/", "https://CRAN.R-project.org/package=heddlr"],
+  "relatedLink": [
+    "https://mikemahoney218.github.io/heddlr/",
+    "https://CRAN.R-project.org/package=heddlr"
+  ],
   "issueTracker": "https://github.com/mikemahoney218/heddlr/issues",
   "license": "https://spdx.org/licenses/MIT",
   "version": "0.5.0.9000",

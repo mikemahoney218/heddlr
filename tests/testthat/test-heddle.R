@@ -21,6 +21,11 @@ test_that("heddle handles unexpected vector cases appropriately", {
     "ribbit",
     "rabbit"
   ))
+  expect_warning(heddle(
+    iris$Species,
+    "SPECIES CODE GWAR ",
+    "NA"
+  ))
 })
 
 test_that("heddle handles unexpected dataframe cases appropriately", {
@@ -79,6 +84,14 @@ test_that("heddle works as expected on vectors", {
     ),
     "pattern teststring"
   )
+  expect_match(
+    heddle(
+      spListChar,
+      "SPECIES CODE GWAR ",
+      NA
+    )[[1]],
+    "SPECIES CODE GWAR "
+  )
 })
 
 test_that("heddle works as expected on data frames", {
@@ -114,5 +127,6 @@ test_that("heddle works as expected on data frames", {
 test_that("heddle handles patterns with length > 1", {
   spList <- unique(iris$Species)
   expect_error(heddle(spList, rep("x", 2), "x"))
+  expect_warning(heddle(spList, rep("x", 3), "NA"))
   expect_match(heddle(spList, rep("x", 3), "x")[[1]], "setosa")
 })

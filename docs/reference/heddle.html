@@ -168,7 +168,7 @@ your data (which will be applied element-wise to your data, so that
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Values indicating what placeholders in the pattern should be 
+      <td><p>Values indicating what placeholders in the pattern should be
 replaced -- see "Specifying replacement values" below for more.</p></td>
     </tr>
     <tr>
@@ -183,25 +183,25 @@ on if you're using the variable in chunk labels or similar places.</p></td>
 
     <p>Returns a character vector of the pattern with placeholders
 replaced by variables.</p>
-    <h2 class="hasAnchor" id="replacement-values"><a class="anchor" href="#replacement-values"></a>Replacement values</h2>
+    <h2 class="hasAnchor" id="specifying-replacement-values"><a class="anchor" href="#specifying-replacement-values"></a>Specifying replacement values</h2>
 
     
-  
+
 <p><code>heddle</code> can accept multiple different values for <code>...</code>, depending
-on how you call it. 
-If <code>data</code> is a vector (which is the case when either 
-calling <code>heddle</code> on a vector directly, or using it in a 
-<code><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></code>) call, <code>...</code> should be unnamed strings 
-matching the values to be replaced. If any argument passed to <code>...</code> 
-isn't found in the pattern, a warning will be raised -- use <code>NA</code> to 
-replicate patterns without replacing any values.
-If <code>data</code> is a dataframe (which is the case both when calling 
-<code>heddle</code> on a dataframe directly or using it in combination with 
+on how you call it.</p>
+<p>If <code>data</code> is a vector (which is the case when either
+calling <code>heddle</code> on a vector directly, or using it in a
+<code><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></code>) call, <code>...</code> should be unnamed strings
+matching the values to be replaced. If any argument passed to <code>...</code>
+isn't found in the pattern, a warning will be raised -- use <code>NA</code> to
+replicate patterns without replacing any values.</p>
+<p>If <code>data</code> is a dataframe (which is the case both when calling
+<code>heddle</code> on a dataframe directly or using it in combination with
 <code><a href='https://tidyr.tidyverse.org/reference/nest.html'>nest</a></code> and <code><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></code>),
-<code>...</code> should be a set of name = variable 
-pairs, with the name matching the keyword to be replaced by that variable. 
-Names should be quoted, variable names don't need to be. As with vectors, 
-if any argument passed to <code>...</code> isn't found in the pattern, a warning 
+<code>...</code> should be a set of name = variable
+pairs, with the name matching the keyword to be replaced by that variable.
+Names should be quoted, variable names don't need to be. As with vectors,
+if any argument passed to <code>...</code> isn't found in the pattern, a warning
 will be raised.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -231,7 +231,7 @@ will be raised.</p>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
-      <li><a href="#replacement-values">Replacement values</a></li>
+      <li><a href="#specifying-replacement-values">Specifying replacement values</a></li>
       <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
