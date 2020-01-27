@@ -41,6 +41,7 @@ use_parameters(template, data)
 Other manipulation functions: 
 \code{\link{create_yaml_header}()},
 \code{\link{heddle}()},
-\code{\link{make_template}()}
+\code{\link{make_template}()},
+\code{\link{provide_parameters}()}
 }
 \concept{manipulation functions}

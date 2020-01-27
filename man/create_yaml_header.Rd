@@ -54,6 +54,7 @@ create_yaml_header(
 Other manipulation functions: 
 \code{\link{heddle}()},
 \code{\link{make_template}()},
+\code{\link{provide_parameters}()},
 \code{\link{use_parameters}()}
 }
 \concept{manipulation functions}

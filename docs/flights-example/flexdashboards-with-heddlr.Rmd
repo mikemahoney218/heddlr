@@ -419,12 +419,12 @@ step, and will include them in this render call as well:
 
 ```{r results="hide"}
 rmarkdown::render("flights_dashboard.Rmd",
-  params = list(
-    flights = flights,
-    graph_flights_per_hour = graph_flights_per_hour,
-    graph_mean_delay = graph_mean_delay,
-    graph_sankey = graph_sankey,
-    graph_carriers = graph_carriers
+  params = provide_parameters(
+    flights,
+    graph_flights_per_hour,
+    graph_mean_delay,
+    graph_sankey,
+    graph_carriers
   )
 )
 ```

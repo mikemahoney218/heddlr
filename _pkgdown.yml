@@ -19,6 +19,7 @@ reference:
       - heddle
       - make_template
       - use_parameters
+      - provide_parameters
   - title: "Exporting Templates"
     contents:
       - export_template

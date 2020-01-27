@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">heddlr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9000</span>
       </span>
     </div>
 
@@ -136,9 +136,38 @@
       <small>Source: <a href='https://github.com/mikemahoney218/heddlr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="heddlr-0-5-0-9001" class="section level1">
+<h1 class="page-header">
+<a href="#heddlr-0-5-0-9001" class="anchor"></a>heddlr 0.5.0.9001<small> Unreleased </small>
+</h1>
+<ul>
+<li>This will be release version 0.6.0, headed to CRAN mid-February/early March.</li>
+<li>New functionality:
+<ul>
+<li>
+<code>provide_parameters</code> replaces your old <code><a href="https://rdrr.io/pkg/rmarkdown/man/render.html">rmarkdown::render(..., params = list(x = x, y = y))</a></code> calls with a simpler <code><a href="https://rdrr.io/pkg/rmarkdown/man/render.html">rmarkdown::render(..., params = provide_parameters(x, y))</a></code>
+</li>
+</ul>
+</li>
+<li>Functionality changes:
+<ul>
+<li>
+<code>heddle</code> now warns you when it doesn’t find your placeholder in the pattern, and lets you replicate patterns without replacement by providing <code>NA</code> as argument to <code>...</code>
+</li>
+</ul>
+</li>
+<li>Documentation changes:
+<ul>
+<li>
+<code>heddle</code>’s miniature essay on <code>...</code> has moved to a separate section</li>
+</ul>
+</li>
+</ul>
+</div>
     <div id="heddlr-0-5-0" class="section level1">
 <h1 class="page-header">
-<a href="#heddlr-0-5-0" class="anchor"></a>heddlr 0.5.0</h1>
+<a href="#heddlr-0-5-0" class="anchor"></a>heddlr 0.5.0<small> 2020-01-23 </small>
+</h1>
 <ul>
 <li>Deprecations:
 <ul>
@@ -179,7 +208,8 @@
 </div>
     <div id="heddlr-0-4-1" class="section level1">
 <h1 class="page-header">
-<a href="#heddlr-0-4-1" class="anchor"></a>heddlr 0.4.1</h1>
+<a href="#heddlr-0-4-1" class="anchor"></a>heddlr 0.4.1<small> Unreleased </small>
+</h1>
 <ul>
 <li>This will be the first version submitted to CRAN</li>
 <li>Functionality changes:
@@ -210,7 +240,8 @@
 </div>
     <div id="heddlr-0-4-0" class="section level1">
 <h1 class="page-header">
-<a href="#heddlr-0-4-0" class="anchor"></a>heddlr 0.4.0</h1>
+<a href="#heddlr-0-4-0" class="anchor"></a>heddlr 0.4.0<small> Unreleased </small>
+</h1>
 <ul>
 <li>Functionality changes:
 <ul>
@@ -263,7 +294,8 @@
 </div>
     <div id="heddlr-0-3-0" class="section level1">
 <h1 class="page-header">
-<a href="#heddlr-0-3-0" class="anchor"></a>heddlr 0.3.0</h1>
+<a href="#heddlr-0-3-0" class="anchor"></a>heddlr 0.3.0<small> Unreleased </small>
+</h1>
 <ul>
 <li>Implement <code>heddle</code> function, making it easy to swap out placeholder keywords in piped code</li>
 <li>Implement <code>make_template</code> function, letting you combine <code>heddle</code> elements into single exportable templates</li>
@@ -278,6 +310,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#heddlr-0-5-0-9001">0.5.0.9001</a></li>
         <li><a href="#heddlr-0-5-0">0.5.0</a></li>
         <li><a href="#heddlr-0-4-1">0.4.1</a></li>
         <li><a href="#heddlr-0-4-0">0.4.0</a></li>
