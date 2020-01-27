@@ -15,11 +15,8 @@ recycled for every value in your data) or a vector of the same length as
 your data (which will be applied element-wise to your data, so that
 \code{data[[1]]} will replace \code{pattern[[1]]}).}
 
-\item{...}{If \code{data} is a vector, a string representing the string to
-replace with data values in each pattern. If \code{data} is a dataframe, a
-set of name = variable pairs, with the name matching the keyword to be
-replaced by that variable. Names should be quoted, variable names should
-not.}
+\item{...}{Values indicating what placeholders in the pattern should be
+replaced -- see "Specifying replacement values" below for more.}
 
 \item{strip.whitespace}{A boolean (TRUE/FALSE) value indicating if
 whitespace should be removed from the replacement variable. Toggle this
@@ -35,6 +32,26 @@ each iteration with values from the provided data. This allows efficiently
 creating R Markdown documents with many repeating pieces which may shift
 alongside the underlying data.
 }
+\section{Replacement values}{
+
+\code{heddle} can accept multiple different values for \code{...}, depending
+on how you call it.
+If \code{data} is a vector (which is the case when either
+calling \code{heddle} on a vector directly, or using it in a
+\code{\link[dplyr]{mutate}}) call, \code{...} should be unnamed strings
+matching the values to be replaced. If any argument passed to \code{...}
+isn't found in the pattern, a warning will be raised -- use \code{NA} to
+replicate patterns without replacing any values.
+If \code{data} is a dataframe (which is the case both when calling
+\code{heddle} on a dataframe directly or using it in combination with
+\code{\link[tidyr]{nest}} and \code{\link[purrr]{map}}),
+\code{...} should be a set of name = variable
+pairs, with the name matching the keyword to be replaced by that variable.
+Names should be quoted, variable names don't need to be. As with vectors,
+if any argument passed to \code{...} isn't found in the pattern, a warning
+will be raised.
+}
+
 \examples{
 # When passed a vector, heddle replaces all placeholders passed to ...
 # with each value

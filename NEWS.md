@@ -1,9 +1,16 @@
-# heddlr 0.5.0.9000
+# heddlr 0.5.0.9001
 
+* This will be release version 0.6.0, headed to CRAN mid-February/early March.
 * New functionality:
     * `provide_parameters` replaces your old 
       `rmarkdown::render(..., params = list(x = x, y = y))` calls with a 
       simpler `rmarkdown::render(..., params = provide_parameters(x, y))`
+* Functionality changes:
+    * `heddle` now warns you when it doesn't find your placeholder in the 
+      pattern, and lets you replicate patterns without replacement by 
+      providing `NA` as argument to `...`
+* Documentation changes:
+    * `heddle`'s miniature essay on `...` has moved to a separate section
 
 # heddlr 0.5.0
 

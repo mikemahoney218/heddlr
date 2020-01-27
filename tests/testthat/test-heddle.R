@@ -10,6 +10,17 @@ test_that("heddle handles unexpected vector cases appropriately", {
     "SPECIES CODE GWAR ",
     "GWAR " = "Species"
   ))
+  expect_warning(heddle(
+    iris$Species,
+    "SPECIES CODE GWAR ",
+    "ribbit"
+  ))
+  expect_warning(heddle(
+    iris$Species,
+    "SPECIES CODE GWAR ",
+    "ribbit",
+    "rabbit"
+  ))
 })
 
 test_that("heddle handles unexpected dataframe cases appropriately", {
@@ -18,6 +29,10 @@ test_that("heddle handles unexpected dataframe cases appropriately", {
   expect_error(heddle(spList4, "SPECIES CODE GWAR ",
     "GWAR" = Species,
     strip.whitespace = 1
+  ))
+  expect_warning(heddle(spList4,
+    "SPECIES CODE GWAR ",
+    "ribbit" = Species
   ))
 })
 
