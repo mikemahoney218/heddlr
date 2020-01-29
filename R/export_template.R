@@ -39,7 +39,7 @@ export_template <- function(template,
                             sep = "",
                             filename.is.string = TRUE,
                             strip.carriage.returns = TRUE) {
-  stopifnot(is.logical(strip.carriage.returns)
+  stopifnot(is.logical(strip.carriage.returns))
   if (filename.is.string && !is.character(filename)) {
     warning("Argument filename was passed something other than a string. 
              You may get unexpected results.")
