@@ -37,11 +37,17 @@
 export_template <- function(template,
                             filename,
                             sep = "",
-                            filename.is.string = TRUE) {
+                            filename.is.string = TRUE,
+                            strip.carriage.returns = TRUE) {
+  stopifnot(is.logical(strip.carriage.returns)
   if (filename.is.string && !is.character(filename)) {
     warning("Argument filename was passed something other than a string. 
              You may get unexpected results.")
   }
-  writeLines(utf8::as_utf8(template), filename, sep = sep, useBytes = TRUE)
+  if (strip.carriage.returns) {
+  writeLines(utf8::as_utf8(gsub("\r", "", template)), filename, sep = sep, useBytes = TRUE)  
+  } else {
+    writeLines(utf8::as_utf8(template), filename, sep = sep, useBytes = TRUE)
+  }
   invisible(template)
 }
