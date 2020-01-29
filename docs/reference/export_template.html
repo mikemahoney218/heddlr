@@ -84,7 +84,7 @@ on the subject." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">heddlr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9002</span>
       </span>
     </div>
 
@@ -153,7 +153,13 @@ why UTF-8 encoding is necessary, check out
 on the subject.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>export_template</span>(<span class='no'>template</span>, <span class='no'>filename</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>filename.is.string</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>export_template</span>(
+  <span class='no'>template</span>,
+  <span class='no'>filename</span>,
+  <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>filename.is.string</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>strip.carriage.returns</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -176,10 +182,19 @@ generally already spaced appropriately.</p></td>
     </tr>
     <tr>
       <th>filename.is.string</th>
-      <td><p>A binary value indicating whether or not the
+      <td><p>A logical value indicating whether or not the
 filename parameter is expected to be a string (that is, a character
 vector). Setting the value to FALSE disables the warning when a
 non-character argument is passed, but this is unsupported functionality.</p></td>
+    </tr>
+    <tr>
+      <th>strip.carriage.returns</th>
+      <td><p>A logical value indicating whether or not to
+strip carriage feed characters, should any exist. This
+preserves line spacing when writing out files originally written on Windows;
+otherwise <code>writeLines</code> appears to not recognize lines as ending with
+a newline and inserts one, resulting in 2x the number of line breaks as
+anticipated.</p></td>
     </tr>
     </table>
 

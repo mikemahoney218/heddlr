@@ -4,7 +4,13 @@
 \alias{export_template}
 \title{Safely export templates to file.}
 \usage{
-export_template(template, filename, sep = "", filename.is.string = TRUE)
+export_template(
+  template,
+  filename,
+  sep = "",
+  filename.is.string = TRUE,
+  strip.carriage.returns = TRUE
+)
 }
 \arguments{
 \item{template}{The template string to be written out}
@@ -17,10 +23,17 @@ export_template(template, filename, sep = "", filename.is.string = TRUE)
 \code{\link[base]{writeLines}}. Defaults to no separator, as templates are
 generally already spaced appropriately.}
 
-\item{filename.is.string}{A binary value indicating whether or not the
+\item{filename.is.string}{A logical value indicating whether or not the
 filename parameter is expected to be a string (that is, a character
 vector). Setting the value to FALSE disables the warning when a
 non-character argument is passed, but this is unsupported functionality.}
+
+\item{strip.carriage.returns}{A logical value indicating whether or not to
+strip carriage feed characters, should any exist. This
+preserves line spacing when writing out files originally written on Windows;
+otherwise \code{writeLines} appears to not recognize lines as ending with
+a newline and inserts one, resulting in 2x the number of line breaks as
+anticipated.}
 }
 \value{
 Returns the input template invisibly.
