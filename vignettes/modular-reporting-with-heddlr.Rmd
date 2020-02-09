@@ -1,5 +1,5 @@
 ---
-title: "Modular Reporting with heddlr"
+title: "Modular Reporting with `heddlr`"
 author: Mike Mahoney
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette

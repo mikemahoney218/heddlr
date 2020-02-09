@@ -12,6 +12,8 @@
     * `export_template` now strips carriage returns from documents by default,
       preventing your templates from turning into extremely sparse haikus. To 
       keep your \r intact, set `strip.carriage.returns` to `FALSE`
+    * `use_parameters` now adds a newline between the YAML header and your 
+      initiation chunk for improved aesthetics (#12)
 * Documentation changes:
     * `heddle`'s miniature essay on `...` has moved to a separate section
 * Internal changes:

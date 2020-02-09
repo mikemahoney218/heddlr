@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Modular Reporting with heddlr • heddlr</title>
+<title>Modular Reporting with `heddlr` • heddlr</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Modular Reporting with heddlr">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Modular Reporting with `heddlr`">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -90,10 +90,11 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Modular Reporting with heddlr</h1>
+      <h1>Modular Reporting with <code>heddlr</code>
+</h1>
                         <h4 class="author">Mike Mahoney</h4>
             
-            <h4 class="date">2020-01-29</h4>
+            <h4 class="date">2020-02-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/mikemahoney218/heddlr/blob/master/vignettes/modular-reporting-with-heddlr.Rmd"><code>vignettes/modular-reporting-with-heddlr.Rmd</code></a></small>
       <div class="hidden name"><code>modular-reporting-with-heddlr.Rmd</code></div>
@@ -251,10 +252,10 @@ iris %&gt;%
 <a class="sourceLine" id="cb15-7" data-line-number="7">  )) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb15-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb15-9" data-line-number="9"><span class="co">#&gt; # A tibble: 2 x 6</span></a>
-<a class="sourceLine" id="cb15-10" data-line-number="10"><span class="co">#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width        nested component</span></a>
-<a class="sourceLine" id="cb15-11" data-line-number="11"><span class="co">#&gt;          &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;list&lt;df[,1]&gt; &lt;list&gt;   </span></a>
-<a class="sourceLine" id="cb15-12" data-line-number="12"><span class="co">#&gt; 1          5.1         3.5          1.4         0.2       [1 × 1] &lt;chr [1]&gt;</span></a>
-<a class="sourceLine" id="cb15-13" data-line-number="13"><span class="co">#&gt; 2          4.9         3            1.4         0.2       [1 × 1] &lt;chr [1]&gt;</span></a></code></pre></div>
+<a class="sourceLine" id="cb15-10" data-line-number="10"><span class="co">#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width nested           component</span></a>
+<a class="sourceLine" id="cb15-11" data-line-number="11"><span class="co">#&gt;          &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;list&gt;           &lt;list&gt;   </span></a>
+<a class="sourceLine" id="cb15-12" data-line-number="12"><span class="co">#&gt; 1          5.1         3.5          1.4         0.2 &lt;tibble [1 × 1]&gt; &lt;chr [1]&gt;</span></a>
+<a class="sourceLine" id="cb15-13" data-line-number="13"><span class="co">#&gt; 2          4.9         3            1.4         0.2 &lt;tibble [1 × 1]&gt; &lt;chr [1]&gt;</span></a></code></pre></div>
 <p>This is also the supported way to change multiple placeholder values while saving a component as a column in a dataframe via mutate – nest the columns you’re using to replace placeholders with and then use <code>purrr</code> to replace the placeholders in one step.</p>
 <p>You’ll notice that the output of this method is another list column, not the same string column we’re used to seeing as an output. Those familiar with <code>purrr:map()</code> might know that we can get a character output from many dataframes with <code><a href="https://purrr.tidyverse.org/reference/map.html">purrr::map_chr()</a></code> – however, this doesn’t work with dataframes where you’ll get more than one output from the <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> call:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">iris <span class="op">%&gt;%</span></a>
@@ -273,10 +274,10 @@ iris %&gt;%
 <a class="sourceLine" id="cb17-6" data-line-number="6">  ) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb17-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb17-8" data-line-number="8"><span class="co">#&gt; # A tibble: 2 x 6</span></a>
-<a class="sourceLine" id="cb17-9" data-line-number="9"><span class="co">#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width    nested component    </span></a>
-<a class="sourceLine" id="cb17-10" data-line-number="10"><span class="co">#&gt;          &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;list&lt;df&gt; &lt;chr&gt;        </span></a>
-<a class="sourceLine" id="cb17-11" data-line-number="11"><span class="co">#&gt; 1          5.1         3.5          1.4         0.2   [1 × 1] "This is a p…</span></a>
-<a class="sourceLine" id="cb17-12" data-line-number="12"><span class="co">#&gt; 2          4.9         3            1.4         0.2   [1 × 1] "This is a p…</span></a></code></pre></div>
+<a class="sourceLine" id="cb17-9" data-line-number="9"><span class="co">#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width nested     component        </span></a>
+<a class="sourceLine" id="cb17-10" data-line-number="10"><span class="co">#&gt;          &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;list&gt;     &lt;chr&gt;            </span></a>
+<a class="sourceLine" id="cb17-11" data-line-number="11"><span class="co">#&gt; 1          5.1         3.5          1.4         0.2 &lt;tibble [… "This is a patte…</span></a>
+<a class="sourceLine" id="cb17-12" data-line-number="12"><span class="co">#&gt; 2          4.9         3            1.4         0.2 &lt;tibble [… "This is a patte…</span></a></code></pre></div>
 <p>In addition to this, there are two other contexts we can use <code><a href="../reference/make_template.html">make_template()</a></code>. If we pass it a dataframe and a vector, it will collapse that vector into a single string:</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">iris <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb18-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/nest.html">nest</a></span>(<span class="dt">nested =</span> Species) <span class="op">%&gt;%</span></a>
