@@ -197,7 +197,7 @@ template file (<code>TRUE</code>).</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>template</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='make_template.html'>make_template</a></span>(<span class='st'>"---\ntitle: Cool Report\noutput: html_document\n---\n"</span>)
-<span class='fu'>use_parameters</span>(<span class='no'>template</span>, <span class='no'>data</span>)</div><div class='output co'>#&gt; [1] "---\ntitle: Cool Report\noutput: html_document\nparams:\n  data: NA\n---\n```{r}\ndata &lt;- params$data\n```\n\n"</div></pre>
+<span class='fu'>use_parameters</span>(<span class='no'>template</span>, <span class='no'>data</span>)</div><div class='output co'>#&gt; [1] "---\ntitle: Cool Report\noutput: html_document\nparams:\n  data: NA\n---\n```{r}\n\ndata &lt;- params$data\n```\n\n"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -50,7 +50,7 @@ test_that("use_parameters works with imports", {
         is.file = TRUE
       )
     ),
-    110
+    111
   )
   expect_equal(
     nchar(
@@ -93,7 +93,7 @@ test_that("use_parameters works with objects", {
         zoot
       )
     ),
-    110
+    111
   )
   expect_equal(
     nchar(

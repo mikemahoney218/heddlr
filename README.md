@@ -42,8 +42,6 @@ For examples of what this looks like, check out the [intro
 vignette](https://mikemahoney218.github.io/heddlr/articles/modular-reporting-with-heddlr.html)
 and the [more involved
 example.](https://mikemahoney218.github.io/heddlr/flights-example/flexdashboards-with-heddlr.html)
-For more information on where development is headed, check out [The Road
-to 0.5.0](https://github.com/mikemahoney218/heddlr/issues/1).
 
 Installation
 ------------
@@ -53,12 +51,7 @@ version of heddlr from [CRAN](https://CRAN.R-project.org) with:
 
     install.packages("heddlr")
 
-You can always get the most up-to-date stable version with:
+You can always get the most up-to-date development version with:
 
     # install.packages("devtools")
     devtools::install_github("mikemahoney218/heddlr")
-
-And the unstable development version via:
-
-    # install.packages("devtools")
-    devtools::install_github("mikemahoney218/heddlr", refs = "development")

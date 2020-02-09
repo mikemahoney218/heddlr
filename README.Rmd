@@ -42,13 +42,11 @@ R Markdown DRYer (that is,
 [don't repeat yourself](https://r4ds.had.co.nz/functions.html#when-should-you-write-a-function)).
 By making it easier to dynamically piece together components of your document
 based on your data source, `heddlr` makes it easier for you to write cleaner 
-documents and create your reports faster.
+documents and create your reports faster. 
 
 For examples of what this looks like, check out the 
 [intro vignette](https://mikemahoney218.github.io/heddlr/articles/modular-reporting-with-heddlr.html) 
 and the [more involved example.](https://mikemahoney218.github.io/heddlr/flights-example/flexdashboards-with-heddlr.html) 
-For more information on where development is headed, check out 
-[The Road to 0.5.0](https://github.com/mikemahoney218/heddlr/issues/1). 
 
 ## Installation
 
@@ -59,16 +57,9 @@ of heddlr from [CRAN](https://CRAN.R-project.org) with:
 install.packages("heddlr")
 ```
 
-You can always get the most up-to-date stable version with:
+You can always get the most up-to-date development version with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("mikemahoney218/heddlr")
-```
-
-And the unstable development version via:
-
-``` r
-# install.packages("devtools")
-devtools::install_github("mikemahoney218/heddlr", refs = "development")
 ```
