@@ -7,6 +7,9 @@
     <loc>https://mikemahoney218.github.io/heddlr//reference/assemble_draft.html</loc>
   </url>
   <url>
+    <loc>https://mikemahoney218.github.io/heddlr//reference/bulk_replace.html</loc>
+  </url>
+  <url>
     <loc>https://mikemahoney218.github.io/heddlr//reference/create_yaml_header.html</loc>
   </url>
   <url>
@@ -38,9 +41,6 @@
   </url>
   <url>
     <loc>https://mikemahoney218.github.io/heddlr//reference/use_parameters.html</loc>
-  </url>
-  <url>
-    <loc>https://mikemahoney218.github.io/heddlr//articles/control-flow-with-heddlr.html</loc>
   </url>
   <url>
     <loc>https://mikemahoney218.github.io/heddlr//articles/modular-reporting-with-heddlr.html</loc>
