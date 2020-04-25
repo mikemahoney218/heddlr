@@ -112,7 +112,7 @@ use_parameters <- function(template, ..., init.params = TRUE, is.file = FALSE) {
         "params:\n",
         new_params,
         "---\n",
-        "```{r}\n",
+        "```{r}\n\n",
         init_params,
         "```\n",
         substr(content, header_length, nchar(content))

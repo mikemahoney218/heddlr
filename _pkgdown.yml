@@ -15,6 +15,7 @@ reference:
       - extract_draft
   - title: "Manipulating Markdown"
     contents:
+      - bulk_replace
       - create_yaml_header
       - heddle
       - make_template

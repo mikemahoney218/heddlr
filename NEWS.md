@@ -1,16 +1,26 @@
-# heddlr 0.5.0.9001
+# heddlr 0.6.0
 
-* This will be release version 0.6.0, headed to CRAN mid-February/early March.
 * New functionality:
     * `provide_parameters` replaces your old 
       `rmarkdown::render(..., params = list(x = x, y = y))` calls with a 
       simpler `rmarkdown::render(..., params = provide_parameters(x, y))`
+    * `bulk_replace` will change a string across all of a list of provided 
+      files, making it easier to change variables as needed.
 * Functionality changes:
     * `heddle` now warns you when it doesn't find your placeholder in the 
       pattern, and lets you replicate patterns without replacement by 
       providing `NA` as argument to `...`
 * Documentation changes:
     * `heddle`'s miniature essay on `...` has moved to a separate section
+    * `export_template` now strips carriage returns from documents by default,
+      preventing your templates from turning into extremely sparse haikus. To 
+      keep your \r intact, set `strip.carriage.returns` to `FALSE`
+* Documentation changes:
+    * `heddle`'s miniature essay on `...` has moved to a separate section
+* Internal changes:
+    * Development now happens on feature branches, with `master` reflecting 
+      the (more) stable development branch and CRAN reflecting the release 
+      version.
 
 # heddlr 0.5.0
 

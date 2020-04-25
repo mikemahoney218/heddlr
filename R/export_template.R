@@ -20,10 +20,16 @@
 #' @param sep Separator to use between lines written, passed to
 #' \code{\link[base]{writeLines}}. Defaults to no separator, as templates are
 #' generally already spaced appropriately.
-#' @param filename.is.string A binary value indicating whether or not the
+#' @param filename.is.string A logical value indicating whether or not the
 #' filename parameter is expected to be a string (that is, a character
 #' vector). Setting the value to FALSE disables the warning when a
 #' non-character argument is passed, but this is unsupported functionality.
+#' @param strip.carriage.returns A logical value indicating whether or not to
+#' strip carriage feed characters, should any exist. This
+#' preserves line spacing when writing out files originally written on Windows;
+#' otherwise \code{writeLines} appears to not recognize lines as ending with
+#' a newline and inserts one, resulting in 2x the number of line breaks as
+#' anticipated.
 #'
 #' @return Returns the input template invisibly.
 #'
@@ -37,11 +43,17 @@
 export_template <- function(template,
                             filename,
                             sep = "",
-                            filename.is.string = TRUE) {
+                            filename.is.string = TRUE,
+                            strip.carriage.returns = TRUE) {
+  stopifnot(is.logical(strip.carriage.returns))
   if (filename.is.string && !is.character(filename)) {
     warning("Argument filename was passed something other than a string. 
              You may get unexpected results.")
   }
-  writeLines(utf8::as_utf8(template), filename, sep = sep, useBytes = TRUE)
+  if (strip.carriage.returns) {
+    writeLines(utf8::as_utf8(gsub("\r", "", template)), filename, sep = sep, useBytes = TRUE)
+  } else {
+    writeLines(utf8::as_utf8(template), filename, sep = sep, useBytes = TRUE)
+  }
   invisible(template)
 }
