@@ -10,6 +10,8 @@
     * `heddle` now warns you when it doesn't find your placeholder in the 
       pattern, and lets you replicate patterns without replacement by 
       providing `NA` as argument to `...`
+* Documentation changes:
+    * `heddle`'s miniature essay on `...` has moved to a separate section
     * `export_template` now strips carriage returns from documents by default,
       preventing your templates from turning into extremely sparse haikus. To 
       keep your \r intact, set `strip.carriage.returns` to `FALSE`
