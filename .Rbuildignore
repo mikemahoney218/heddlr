@@ -16,3 +16,5 @@ cran-comments.md
 ^CRAN-RELEASE$
 ^appveyor\.yml$
 .gitattributes
+paper.md
+paper.bib
