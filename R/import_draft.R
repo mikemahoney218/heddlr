@@ -44,6 +44,7 @@ import_draft <- function(...) {
 #'
 #' @return Returns a list (the same length as ...)
 #' containing the imported patterns.
+#' @keywords internal
 #'
 #' @examples
 #' pattern_file <- tempfile("out", tempdir(), ".Rmd")
@@ -51,8 +52,8 @@ import_draft <- function(...) {
 #' assemble_draft("sample_pattern" = pattern_file)
 #' @export
 assemble_draft <- function(...) {
-  warning("assemble_draft has been deprecated in favor of import_draft, and 
-          will be removed in a future release. 
+  warning("assemble_draft has been deprecated in favor of import_draft, and
+          will be removed in a future release.
           Please use import_draft instead.")
   import_draft(...)
 }

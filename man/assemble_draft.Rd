@@ -28,3 +28,4 @@ pattern_file <- tempfile("out", tempdir(), ".Rmd")
 export_template("my sample pattern", pattern_file)
 assemble_draft("sample_pattern" = pattern_file)
 }
+\keyword{internal}
