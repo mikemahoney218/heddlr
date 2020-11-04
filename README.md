@@ -1,10 +1,12 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
 heddlr: Functional Programming Concepts for R Markdown Documents
 ================================================================
 
 <!-- badges: start -->
-[![Travis CI
-Status](https://travis-ci.com/mikemahoney218/heddlr.svg?branch=master)](https://travis-ci.com/mikemahoney218/heddlr)
+
+[![R build
+status](https://github.com/mikemahoney218/heddlr/workflows/R-CMD-check/badge.svg)](https://github.com/mikemahoney218/heddlr/actions)
 [![Codecov
 Coverage](https://codecov.io/gh/mikemahoney218/heddlr/branch/master/graph/badge.svg)](https://codecov.io/gh/mikemahoney218/heddlr?branch=master)
 [![CII Best
