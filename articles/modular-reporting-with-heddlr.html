@@ -46,7 +46,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -73,7 +73,7 @@
 </li>
 <li>
   <a href="https://github.com/mikemahoney218/heddlr">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -94,7 +94,7 @@
 </h1>
                         <h4 class="author">Mike Mahoney</h4>
             
-            <h4 class="date">2020-11-04</h4>
+            <h4 class="date">2021-01-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/mikemahoney218/heddlr/blob/master/vignettes/modular-reporting-with-heddlr.Rmd"><code>vignettes/modular-reporting-with-heddlr.Rmd</code></a></small>
       <div class="hidden name"><code>modular-reporting-with-heddlr.Rmd</code></div>
@@ -171,35 +171,35 @@ iris %&gt;%
 </code></pre>
 <p>When using <code>heddlr</code>, we’ll usually go ahead and save each of those patterns in their own files – for our example report, we’ll name those files <code>setup_pattern.Rmd</code> and <code>species_pattern.Rmd</code> respectively<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
 <p>We then have a few ways we can import them into our R session. Let’s load <code>heddlr</code> and then walk through them:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mikemahoney218/heddlr">heddlr</a></span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mikemahoney218/heddlr">heddlr</a></span><span class="op">)</span></code></pre></div>
 <p>The first and most straightforward method is to use <code><a href="../reference/import_pattern.html">heddlr::import_pattern()</a></code>, which does more or less what you’d expect and imports a single pattern into a single R object.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="co"># These can be any sort of plaintext file -- I tend to save them as .Rmd,</span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># These can be any sort of plaintext file -- I tend to save them as .Rmd,</span>
 <span class="co"># so that I can see code highlighting in R Studio with them, but any extension</span>
 <span class="co"># should work fine</span>
 <span class="va">setup_pattern</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/import_pattern.html">import_pattern</a></span><span class="op">(</span><span class="st">"setup_pattern.Rmd"</span><span class="op">)</span>
-<span class="va">species_pattern</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/import_pattern.html">import_pattern</a></span><span class="op">(</span><span class="st">"species_pattern.Rmd"</span><span class="op">)</span></pre></div>
+<span class="va">species_pattern</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/import_pattern.html">import_pattern</a></span><span class="op">(</span><span class="st">"species_pattern.Rmd"</span><span class="op">)</span></code></pre></div>
 <p>This gives us objects that contain strings like this:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="va">setup_pattern</span>
-<span class="co">#&gt; [1] "---\ntitle: \"My cool report!\"\nauthor: \"Captain heddlr\"\noutput: html_document\n---\n\n```{r setup}\nlibrary(dplyr)\nlibrary(ggplot2)\n```\n\n# Let's talk about irises!\n\n"</span></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">setup_pattern</span>
+<span class="co">#&gt; [1] "---\ntitle: \"My cool report!\"\nauthor: \"Captain heddlr\"\noutput: html_document\n---\n\n```{r setup}\nlibrary(dplyr)\nlibrary(ggplot2)\n```\n\n# Let's talk about irises!\n\n"</span></code></pre></div>
 <p>However, it can be helpful in reports with multiple patterns to store everything in one object, just to have fewer things floating around your top-level environment. <code>heddlr</code> provides <code><a href="../reference/import_draft.html">heddlr::import_draft()</a></code> for this purpose, wrapping an <code>lapply</code> call which will return a single list object holding all of your patterns:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="va">iris_draft</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/import_draft.html">import_draft</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">iris_draft</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/import_draft.html">import_draft</a></span><span class="op">(</span>
   <span class="st">"setup_pattern"</span> <span class="op">=</span> <span class="st">"setup_pattern.Rmd"</span>,
   <span class="st">"species_pattern"</span> <span class="op">=</span> <span class="st">"species_pattern.Rmd"</span>
-<span class="op">)</span></pre></div>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="va">iris_draft</span>
+<span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">iris_draft</span>
 <span class="co">#&gt; $setup_pattern</span>
 <span class="co">#&gt; [1] "---\ntitle: \"My cool report!\"\nauthor: \"Captain heddlr\"\noutput: html_document\n---\n\n```{r setup}\nlibrary(dplyr)\nlibrary(ggplot2)\n```\n\n# Let's talk about irises!\n\n"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $species_pattern</span>
-<span class="co">#&gt; [1] "## Iris SPECIES_NAME\n\nThis species of flower is great! It has a mean sepal length of \n`r mean(iris[iris$Species == \"SPECIES_NAME\", \"Sepal.Length\"])`, and \nmean sepal width of `r mean(iris[iris$Species == \"SPECIES_NAME\", \"Sepal.Width\"])`. \nThat looks like this on a graph!\n\n```{r}\niris %&gt;%\n  filter(Species == \"SPECIES_NAME\") %&gt;%\n  ggplot(aes(Sepal.Length, Sepal.Width)) + \n  geom_point()\n```\n"</span></pre></div>
+<span class="co">#&gt; [1] "## Iris SPECIES_NAME\n\nThis species of flower is great! It has a mean sepal length of \n`r mean(iris[iris$Species == \"SPECIES_NAME\", \"Sepal.Length\"])`, and \nmean sepal width of `r mean(iris[iris$Species == \"SPECIES_NAME\", \"Sepal.Width\"])`. \nThat looks like this on a graph!\n\n```{r}\niris %&gt;%\n  filter(Species == \"SPECIES_NAME\") %&gt;%\n  ggplot(aes(Sepal.Length, Sepal.Width)) + \n  geom_point()\n```\n"</span></code></pre></div>
 <p>Now that we’ve got our patterns into R, it’s time to start working with them. To demonstrate how we do that with <code>heddlr</code>, we first need to load a few libraries:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'dplyr'</span>
 <span class="co">#&gt; The following objects are masked from 'package:stats':</span>
@@ -209,21 +209,21 @@ iris %&gt;%
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     intersect, setdiff, setequal, union</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org">purrr</a></span><span class="op">)</span></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org">purrr</a></span><span class="op">)</span></code></pre></div>
 <p>Our first function that we’ll use to work with patterns is <code><a href="../reference/heddle.html">heddlr::heddle()</a></code>. On the most basic level, this is the function that will replace the placeholders in our patterns with our data. If we have a vector containing the values we want to use for each pattern, we’re able to use this function as follows and get a vector in return:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="co"># heddle takes three arguments: data, pattern, placeholder to replace</span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># heddle takes three arguments: data, pattern, placeholder to replace</span>
 <span class="fu"><a href="../reference/heddle.html">heddle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">iris</span><span class="op">$</span><span class="va">Species</span><span class="op">)</span>, <span class="st">"This is a pattern - CODE "</span>, <span class="st">"CODE"</span><span class="op">)</span>
 <span class="co">#&gt; [1] "This is a pattern - setosa "     "This is a pattern - versicolor "</span>
-<span class="co">#&gt; [3] "This is a pattern - virginica "</span></pre></div>
+<span class="co">#&gt; [3] "This is a pattern - virginica "</span></code></pre></div>
 <p>In the context of our example document, this function call would look like this:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="fu"><a href="../reference/heddle.html">heddle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">iris</span><span class="op">$</span><span class="va">Species</span><span class="op">)</span>, <span class="va">iris_draft</span><span class="op">$</span><span class="va">species_pattern</span>, <span class="st">"SPECIES_NAME"</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>
-<span class="co">#&gt; [1] "## Iris setosa\n\nThis species of flower is great! It has a mean sepal length of \n`r mean(iris[iris$Species == \"setosa\", \"Sepal.Length\"])`, and \nmean sepal width of `r mean(iris[iris$Species == \"setosa\", \"Sepal.Width\"])`. \nThat looks like this on a graph!\n\n```{r}\niris %&gt;%\n  filter(Species == \"setosa\") %&gt;%\n  ggplot(aes(Sepal.Length, Sepal.Width)) + \n  geom_point()\n```\n"</span></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/heddle.html">heddle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">iris</span><span class="op">$</span><span class="va">Species</span><span class="op">)</span>, <span class="va">iris_draft</span><span class="op">$</span><span class="va">species_pattern</span>, <span class="st">"SPECIES_NAME"</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>
+<span class="co">#&gt; [1] "## Iris setosa\n\nThis species of flower is great! It has a mean sepal length of \n`r mean(iris[iris$Species == \"setosa\", \"Sepal.Length\"])`, and \nmean sepal width of `r mean(iris[iris$Species == \"setosa\", \"Sepal.Width\"])`. \nThat looks like this on a graph!\n\n```{r}\niris %&gt;%\n  filter(Species == \"setosa\") %&gt;%\n  ggplot(aes(Sepal.Length, Sepal.Width)) + \n  geom_point()\n```\n"</span></code></pre></div>
 <p>It isn’t super important, but I think of the outputs from <code><a href="../reference/heddle.html">heddle()</a></code> as being <em>components</em> of a larger <em>template</em>, and will be using similar terminology from here on out.</p>
 <p>If we wanted to instead use <code><a href="../reference/heddle.html">heddle()</a></code> as part of a magrittr pipeline, we can create new dataframe columns using <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">dplyr::mutate()</a></code>:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="va">iris</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">iris</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="co"># exact same pattern of arguments: data, pattern, placeholder to replace</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>component <span class="op">=</span> <span class="fu"><a href="../reference/heddle.html">heddle</a></span><span class="op">(</span><span class="va">Species</span>, <span class="va">iris_draft</span><span class="op">$</span><span class="va">species_pattern</span>, <span class="st">"SPECIES_NAME"</span><span class="op">)</span><span class="op">)</span>
@@ -234,28 +234,28 @@ iris %&gt;%
 <span class="co">#&gt;                                                                                                                                                                                                                                                                                                                                                                                                       component</span>
 <span class="co">#&gt; 1                 ## Iris setosa\n\nThis species of flower is great! It has a mean sepal length of \n`r mean(iris[iris$Species == "setosa", "Sepal.Length"])`, and \nmean sepal width of `r mean(iris[iris$Species == "setosa", "Sepal.Width"])`. \nThat looks like this on a graph!\n\n```{r}\niris %&gt;%\n  filter(Species == "setosa") %&gt;%\n  ggplot(aes(Sepal.Length, Sepal.Width)) + \n  geom_point()\n```\n</span>
 <span class="co">#&gt; 2 ## Iris versicolor\n\nThis species of flower is great! It has a mean sepal length of \n`r mean(iris[iris$Species == "versicolor", "Sepal.Length"])`, and \nmean sepal width of `r mean(iris[iris$Species == "versicolor", "Sepal.Width"])`. \nThat looks like this on a graph!\n\n```{r}\niris %&gt;%\n  filter(Species == "versicolor") %&gt;%\n  ggplot(aes(Sepal.Length, Sepal.Width)) + \n  geom_point()\n```\n</span>
-<span class="co">#&gt; 3     ## Iris virginica\n\nThis species of flower is great! It has a mean sepal length of \n`r mean(iris[iris$Species == "virginica", "Sepal.Length"])`, and \nmean sepal width of `r mean(iris[iris$Species == "virginica", "Sepal.Width"])`. \nThat looks like this on a graph!\n\n```{r}\niris %&gt;%\n  filter(Species == "virginica") %&gt;%\n  ggplot(aes(Sepal.Length, Sepal.Width)) + \n  geom_point()\n```\n</span></pre></div>
+<span class="co">#&gt; 3     ## Iris virginica\n\nThis species of flower is great! It has a mean sepal length of \n`r mean(iris[iris$Species == "virginica", "Sepal.Length"])`, and \nmean sepal width of `r mean(iris[iris$Species == "virginica", "Sepal.Width"])`. \nThat looks like this on a graph!\n\n```{r}\niris %&gt;%\n  filter(Species == "virginica") %&gt;%\n  ggplot(aes(Sepal.Length, Sepal.Width)) + \n  geom_point()\n```\n</span></code></pre></div>
 <p>We can also use <code><a href="../reference/heddle.html">heddle()</a></code> as its own step in a pipeline. When we pass <code><a href="../reference/heddle.html">heddle()</a></code> a dataframe like this, instead of a vector, we have to specify which column we want to replace the placeholder with:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="va">iris</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">iris</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="co"># the data argument is provided by %&gt;%</span>
   <span class="co"># so we just provide the pattern and placeholder</span>
   <span class="co"># (format "PLACEHOLDER" = Variable)</span>
   <span class="fu"><a href="../reference/heddle.html">heddle</a></span><span class="op">(</span><span class="st">"This is a pattern - CODE "</span>, <span class="st">"CODE"</span> <span class="op">=</span> <span class="va">Species</span><span class="op">)</span>
 <span class="co">#&gt; [1] "This is a pattern - setosa "     "This is a pattern - versicolor "</span>
-<span class="co">#&gt; [3] "This is a pattern - virginica "</span></pre></div>
+<span class="co">#&gt; [3] "This is a pattern - virginica "</span></code></pre></div>
 <p>An advantage of this method is we can now replace multiple placeholders with our data in a single function call:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit">
-<span class="va">iris</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">iris</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/heddle.html">heddle</a></span><span class="op">(</span><span class="st">"This is a pattern - CODE "</span>, <span class="st">"CODE"</span> <span class="op">=</span> <span class="va">Species</span>, <span class="st">"This"</span> <span class="op">=</span> <span class="va">Species</span><span class="op">)</span>
 <span class="co">#&gt; [1] "setosa is a pattern - setosa "        </span>
 <span class="co">#&gt; [2] "versicolor is a pattern - versicolor "</span>
-<span class="co">#&gt; [3] "virginica is a pattern - virginica "</span></pre></div>
+<span class="co">#&gt; [3] "virginica is a pattern - virginica "</span></code></pre></div>
 <p>One last way we can use <code><a href="../reference/heddle.html">heddle()</a></code> is to use <code><a href="https://purrr.tidyverse.org/reference/map.html">purrr::map()</a></code> to apply it to nested columns made via <code><a href="https://tidyr.tidyverse.org/reference/nest.html">tidyr::nest()</a></code>. To do so, we just provide arguments in the same way as above:</p>
-<div class="sourceCode" id="cb15"><pre class="downlit">
-<span class="va">iris</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">iris</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html">nest</a></span><span class="op">(</span>nested <span class="op">=</span> <span class="va">Species</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>component <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">nested</span>,
     <span class="va">heddle</span>,
@@ -267,20 +267,20 @@ iris %&gt;%
 <span class="co">#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width nested           component</span>
 <span class="co">#&gt;          &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;list&gt;           &lt;list&gt;   </span>
 <span class="co">#&gt; 1          5.1         3.5          1.4         0.2 &lt;tibble [1 × 1]&gt; &lt;chr [1]&gt;</span>
-<span class="co">#&gt; 2          4.9         3            1.4         0.2 &lt;tibble [1 × 1]&gt; &lt;chr [1]&gt;</span></pre></div>
+<span class="co">#&gt; 2          4.9         3            1.4         0.2 &lt;tibble [1 × 1]&gt; &lt;chr [1]&gt;</span></code></pre></div>
 <p>This is also the supported way to change multiple placeholder values while saving a component as a column in a dataframe via mutate – nest the columns you’re using to replace placeholders with and then use <code>purrr</code> to replace the placeholders in one step.</p>
 <p>You’ll notice that the output of this method is another list column, not the same string column we’re used to seeing as an output. Those familiar with <code>purrr:map()</code> might know that we can get a character output from many dataframes with <code><a href="https://purrr.tidyverse.org/reference/map.html">purrr::map_chr()</a></code> – however, this doesn’t work with dataframes where you’ll get more than one output from the <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> call:</p>
-<div class="sourceCode" id="cb16"><pre class="downlit">
-<span class="va">iris</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">iris</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html">nest</a></span><span class="op">(</span>nested <span class="op">=</span> <span class="va">Species</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>component <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_chr</a></span><span class="op">(</span><span class="va">nested</span>, <span class="va">heddle</span>,
     <span class="st">"This is a pattern - CODE "</span>,
     <span class="st">"CODE"</span> <span class="op">=</span> <span class="va">Species</span>
   <span class="op">)</span><span class="op">)</span>
-<span class="co"># &gt; Error: Result 102 must be a single string, not a character vector of length 2</span></pre></div>
+<span class="co"># &gt; Error: Result 102 must be a single string, not a character vector of length 2</span></code></pre></div>
 <p>Instead, we can turn to our next function, <code><a href="../reference/make_template.html">heddlr::make_template()</a></code>. There are a few different ways that we can use this function. For our current situation, for instance, we can use <code><a href="https://purrr.tidyverse.org/reference/map.html">purrr::map_chr()</a></code> to apply <code><a href="../reference/make_template.html">make_template()</a></code> to our new component list column, transforming it into the normal set of strings we’re used to:</p>
-<div class="sourceCode" id="cb17"><pre class="downlit">
-<span class="va">iris</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">iris</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html">nest</a></span><span class="op">(</span>nested <span class="op">=</span> <span class="va">Species</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
     component <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">nested</span>, <span class="va">heddle</span>, <span class="st">"This is a pattern - CODE "</span>, <span class="st">"CODE"</span> <span class="op">=</span> <span class="va">Species</span><span class="op">)</span>,
@@ -291,10 +291,10 @@ iris %&gt;%
 <span class="co">#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width nested     component        </span>
 <span class="co">#&gt;          &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;list&gt;     &lt;chr&gt;            </span>
 <span class="co">#&gt; 1          5.1         3.5          1.4         0.2 &lt;tibble [… "This is a patte…</span>
-<span class="co">#&gt; 2          4.9         3            1.4         0.2 &lt;tibble [… "This is a patte…</span></pre></div>
+<span class="co">#&gt; 2          4.9         3            1.4         0.2 &lt;tibble [… "This is a patte…</span></code></pre></div>
 <p>In addition to this, there are two other contexts we can use <code><a href="../reference/make_template.html">make_template()</a></code>. If we pass it a dataframe and a vector, it will collapse that vector into a single string:</p>
-<div class="sourceCode" id="cb18"><pre class="downlit">
-<span class="va">iris</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">iris</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html">nest</a></span><span class="op">(</span>nested <span class="op">=</span> <span class="va">Species</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
     component <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">nested</span>, <span class="va">heddle</span>,
@@ -305,14 +305,14 @@ iris %&gt;%
   <span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/make_template.html">make_template</a></span><span class="op">(</span><span class="va">component</span><span class="op">)</span>
-<span class="co">#&gt; [1] "This is a pattern - setosa This is a pattern - setosa "</span></pre></div>
+<span class="co">#&gt; [1] "This is a pattern - setosa This is a pattern - setosa "</span></code></pre></div>
 <p>If instead the first argument we pass it is a vector, it will combine all the vectors you provide it into a single string:</p>
-<div class="sourceCode" id="cb19"><pre class="downlit">
-<span class="fu"><a href="../reference/make_template.html">make_template</a></span><span class="op">(</span><span class="st">"Part one, "</span>, <span class="st">"part two"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "Part one, part two"</span></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/make_template.html">make_template</a></span><span class="op">(</span><span class="st">"Part one, "</span>, <span class="st">"part two"</span><span class="op">)</span>
+<span class="co">#&gt; [1] "Part one, part two"</span></code></pre></div>
 <p>In the context of our example report, these steps would look something like this:</p>
-<div class="sourceCode" id="cb20"><pre class="downlit">
-<span class="va">species_template</span> <span class="op">&lt;-</span> <span class="va">iris</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">species_template</span> <span class="op">&lt;-</span> <span class="va">iris</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>component <span class="op">=</span> <span class="fu"><a href="../reference/heddle.html">heddle</a></span><span class="op">(</span>
     <span class="va">Species</span>,
@@ -321,10 +321,10 @@ iris %&gt;%
   <span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/make_template.html">make_template</a></span><span class="op">(</span><span class="va">component</span><span class="op">)</span>
 
-<span class="va">report_template</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_template.html">make_template</a></span><span class="op">(</span><span class="va">iris_draft</span><span class="op">$</span><span class="va">setup_pattern</span>, <span class="va">species_template</span><span class="op">)</span></pre></div>
+<span class="va">report_template</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_template.html">make_template</a></span><span class="op">(</span><span class="va">iris_draft</span><span class="op">$</span><span class="va">setup_pattern</span>, <span class="va">species_template</span><span class="op">)</span></code></pre></div>
 <p>I refer to these output strings as <em>templates</em>, which are the second to last step in the <code>heddlr</code> pipeline. However, in order to actually create our reports, we need to export these templates to .Rmd files. In order to do that, <code>heddlr</code> provides a helpful function, aptly named <code><a href="../reference/export_template.html">heddlr::export_template()</a></code>. Normally, <code>export_template</code> takes two arguments – the template to write out, and the file to write it out to. Here, I’m going to tell it to print to <code><a href="https://rdrr.io/r/base/showConnections.html">stdout()</a></code> instead – that will just output here what our sample report would look like:</p>
-<div class="sourceCode" id="cb21"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/warning.html">suppressWarnings</a></span><span class="op">(</span><span class="fu"><a href="../reference/export_template.html">export_template</a></span><span class="op">(</span><span class="va">report_template</span>, <span class="fu"><a href="https://rdrr.io/r/base/showConnections.html">stdout</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/warning.html">suppressWarnings</a></span><span class="op">(</span><span class="fu"><a href="../reference/export_template.html">export_template</a></span><span class="op">(</span><span class="va">report_template</span>, <span class="fu"><a href="https://rdrr.io/r/base/showConnections.html">stdout</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; title: "My cool report!"</span>
 <span class="co">#&gt; author: "Captain heddlr"</span>
@@ -376,7 +376,7 @@ iris %&gt;%
 <span class="co">#&gt;   filter(Species == "virginica") %&gt;%</span>
 <span class="co">#&gt;   ggplot(aes(Sepal.Length, Sepal.Width)) + </span>
 <span class="co">#&gt;   geom_point()</span>
-<span class="co">#&gt; ```</span></pre></div>
+<span class="co">#&gt; ```</span></code></pre></div>
 <p>And there we have it! Repeating the above steps will always generate sections for each flower included in your dataset, whether or not Joe down the hall remembered to tell you about it.</p>
 <p>To recap, the essential steps to make our report can be summed up as follows:</p>
 <ul>
