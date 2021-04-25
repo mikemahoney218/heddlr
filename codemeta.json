@@ -18,10 +18,9 @@
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.6.2",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.6.2 (2019-12-12)",
+  "runtimePlatform": "R version 4.0.5 (2021-03-31)",
   "author": [
     {
       "@type": "Person",
@@ -184,7 +183,7 @@
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
-      "version": ">= 3.4.0"
+      "version": ">= 3.5.0"
     },
     {
       "@type": "SoftwareApplication",
@@ -225,12 +224,9 @@
     }
   ],
   "releaseNotes": "https://github.com/mikemahoney218/heddlr/blob/master/NEWS.md",
-  "readme": "https://github.com/mikemahoney218/heddlr/blob/master/README.md",
-  "contIntegration": [
-    "https://travis-ci.com/mikemahoney218/heddlr",
-    "https://codecov.io/gh/mikemahoney218/heddlr?branch=master"
-  ],
-  "developmentStatus": "https://www.tidyverse.org/lifecycle/",
+  "readme": "https://github.com/mikemahoney218/heddlr/blob/main/README.md",
+  "contIntegration": ["https://codecov.io/gh/mikemahoney218/heddlr?branch=master", "https://ci.appveyor.com/project/mikemahoney218/heddlr"],
+  "developmentStatus": ["https://www.tidyverse.org/lifecycle/", "https://www.repostatus.org/"],
   "keywords": [
     "r",
     "rmarkdown",
@@ -244,5 +240,6 @@
     "@type": "Organization",
     "name": "Comprehensive R Archive Network (CRAN)",
     "url": "https://cran.r-project.org"
-  }
+  },
+  "fileSize": "1108.175KB"
 }
