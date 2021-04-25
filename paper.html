@@ -67,9 +67,16 @@
 </script>
 
 
+
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-title-body">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -89,7 +96,27 @@
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        
+        <li>
+  <a href="reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="articles/modular-reporting-with-heddlr.html">Introduction - Modular Reporting with heddlr</a>
+    </li>
+    <li>
+      <a href="https://mikemahoney218.github.io/heddlr/flights-example/flexdashboards-with-heddlr.html">More Complex Examples - Simple Flexdashboard</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="news/index.html">News</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -142,22 +169,13 @@
     </div>
 
 
-<hr>
-<p>title: ‘heddlr: Functional Programming Concepts for R Markdown Document Generation’ tags:</p>
-<ul>
-<li>R</li>
-<li>R Markdown</li>
-<li>reproducibility authors:</li>
-<li>name: Michael J. Mahoney orcid: 0000-0003-2402-304X affiliation: 1 affiliations:</li>
-<li>name: State University of New York College of Environmental Science and Forestry index: 1 date: 24 May 2020 bibliography: paper.bib —</li>
-</ul>
 <div id="summary" class="section level1">
 
-<p>R Markdown is an extension of the Markdown markup language, allowing users to seamlessly integrate code (in any of the languages supported by the knitr engine) and Markdown to create highly reproducible reports [@rmarkdown; @knitr]. Users primarily create these reports using a procedural and literate programming syntax [@<a href="mailto:knuth84;@katz1963" class="email">knuth84;@katz1963</a>], alternately declaring sequential sections of code and Markdown to be processed linearly. In situations where the same set of Markdown and code is to be run multiple times, such as when performing the same set of analyses on distinct groups within a dataset, this linear processing can require whole sections of the document to be repeated multiple times. This repetition then requires the analyst to update multiple locations in the document in order to adjust for changes in the groups under examination or in the analysis to be completed, increasing the chances for human error to damage research integrity. The <code>heddlr</code> package helps reduce this repetition by providing ways to modularize R Markdown documents, converting repeated sections into standalone “patterns” which can then be combined into a document “template” to be passed to R Markdown for knitting.</p>
+<p>R Markdown is an extension of the Markdown markup language, allowing users to seamlessly integrate code (in any of the languages supported by the knitr engine) and Markdown to create highly reproducible reports [@rmarkdown; @knitr]. Users primarily create these reports using a procedural and literate programming syntax [@knuth84;@katz1963], alternately declaring sequential sections of code and Markdown to be processed linearly. In situations where the same set of Markdown and code is to be run multiple times, such as when performing the same set of analyses on distinct groups within a dataset, this linear processing can require whole sections of the document to be repeated multiple times. This repetition then requires the analyst to update multiple locations in the document in order to adjust for changes in the groups under examination or in the analysis to be completed, increasing the chances for human error to damage research integrity. The <code>heddlr</code> package helps reduce this repetition by providing ways to modularize R Markdown documents, converting repeated sections into standalone “patterns” which can then be combined into a document “template” to be passed to R Markdown for knitting.</p>
 </div>
 <div id="design" class="section level1">
 <h1 class="hasAnchor">
-<a href="#design" class="anchor"></a>Design</h1>
+<a href="#design" class="anchor" aria-hidden="true"></a>Design</h1>
 <p><code>heddlr</code> provides functions organized into three primary categories:</p>
 <ul>
 <li>Providing functions to import report patterns into either standalone vectors (<code><a href="reference/import_pattern.html">import_pattern()</a></code> and <code><a href="reference/extract_pattern.html">extract_pattern()</a></code>) or list objects containing multiple patterns (<code><a href="reference/import_draft.html">import_draft()</a></code> and <code><a href="reference/extract_draft.html">extract_draft()</a></code>).</li>
@@ -168,12 +186,12 @@
 </div>
 <div id="other-implementations" class="section level1">
 <h1 class="hasAnchor">
-<a href="#other-implementations" class="anchor"></a>Other Implementations</h1>
+<a href="#other-implementations" class="anchor" aria-hidden="true"></a>Other Implementations</h1>
 <p>This is not the first attempt to reduce repetition in R Markdown documents; in fact, there exists a “child document” feature in R Markdown itself which can be used to address this issue [@rmarkdown]. However, this is the first approach to attempt to treat R Markdown documents like generic R objects, allowing them to be manipulated using familiar syntax and string manipulation functions to more easily allow analysts fine-grained control over their resulting documents.</p>
 </div>
 <div id="references" class="section level1">
 <h1 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h1>
+<a href="#references" class="anchor" aria-hidden="true"></a>References</h1>
 </div>
 
 
@@ -191,11 +209,11 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Michael Mahoney.</p>
+  <p><p>Developed by Michael Mahoney.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -203,6 +221,8 @@
 
   
 
+
+  
 
   </body>
 </html>

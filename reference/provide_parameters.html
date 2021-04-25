@@ -46,7 +46,7 @@ only define them once to use them in both your document generator and
 the generated document. This function makes it slightly easier to do so,
 by automatically creating a named list from provided objects rather than
 requiring a named list. This function is a stripped-down variant of
-lst." />
+[tibble::lst]." />
 
 
 
@@ -74,9 +74,18 @@ lst." />
 </script>
 
 
+<!-- dependencies from examples -->
+
+
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -96,7 +105,27 @@ lst." />
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        
+        <li>
+  <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/modular-reporting-with-heddlr.html">Introduction - Modular Reporting with heddlr</a>
+    </li>
+    <li>
+      <a href="https://mikemahoney218.github.io/heddlr/flights-example/flexdashboards-with-heddlr.html">More Complex Examples - Simple Flexdashboard</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="../news/index.html">News</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -157,7 +186,7 @@ only define them once to use them in both your document generator and
 the generated document. This function makes it slightly easier to do so,
 by automatically creating a named list from provided objects rather than
 requiring a named list. This function is a stripped-down variant of
-<code><a href='https://tibble.tidyverse.org/reference/lst.html'>lst</a></code>.</p>
+[tibble::lst].</p>
     </div>
 
     <pre class="usage"><span class='fu'>provide_parameters</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></pre>
@@ -191,12 +220,12 @@ and exist in the current session environment.</p></td>
 <span class='fu'><a href='export_template.html'>export_template</a></span><span class='op'>(</span><span class='va'>template</span>, <span class='va'>pattern_file</span><span class='op'>)</span>
 
 <span class='va'>random_number</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>
-<span class='kw'>if</span> <span class='op'>(</span><span class='fu'>rmarkdown</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/rmarkdown/man/pandoc_available.html'>pandoc_available</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
-  <span class='fu'>rmarkdown</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/rmarkdown/man/render.html'>render</a></span><span class='op'>(</span><span class='va'>pattern_file</span>, params <span class='op'>=</span> <span class='fu'>provide_parameters</span><span class='op'>(</span><span class='va'>random_number</span><span class='op'>)</span><span class='op'>)</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='fu'>rmarkdown</span><span class='fu'>::</span><span class='fu'><a href='https://pkgs.rstudio.com/rmarkdown/reference/pandoc_available.html'>pandoc_available</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'>rmarkdown</span><span class='fu'>::</span><span class='fu'><a href='https://pkgs.rstudio.com/rmarkdown/reference/render.html'>render</a></span><span class='op'>(</span><span class='va'>pattern_file</span>, params <span class='op'>=</span> <span class='fu'>provide_parameters</span><span class='op'>(</span><span class='va'>random_number</span><span class='op'>)</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'></span>
-#&gt; <span class='message'>processing file: out94cd703b9923.Rmd</span></div><div class='output co'>#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |.......................                                               |  33%
+#&gt; <span class='message'>processing file: out90823a8a1f88.Rmd</span></div><div class='output co'>#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |.......................                                               |  33%
 #&gt;   ordinary text without R code
 #&gt; 
 #&gt;   |                                                                              |...............................................                       |  67%
@@ -204,8 +233,8 @@ and exist in the current session environment.</p></td>
 #&gt;   |                                                                              |......................................................................| 100%
 #&gt;    inline R code fragments
 #&gt; 
-#&gt; </div><div class='output co'>#&gt; <span class='message'>output file: out94cd703b9923.knit.md</span></div><div class='output co'>#&gt; /usr/bin/pandoc +RTS -K512m -RTS out94cd703b9923.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output out94cd703b9923.html --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/latex-div.lua --self-contained --standalone --section-divs --template /home/runner/work/_temp/Library/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable 'theme:bootstrap' --include-in-header /tmp/Rtmp63Us2D/rmarkdown-str94cd51e08a41.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' </div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Output created: out94cd703b9923.html</span></div></pre>
+#&gt; </div><div class='output co'>#&gt; <span class='message'>output file: out90823a8a1f88.knit.md</span></div><div class='output co'>#&gt; /usr/bin/pandoc +RTS -K512m -RTS out90823a8a1f88.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output out90823a8a1f88.html --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/latex-div.lua --self-contained --variable bs3=TRUE --standalone --section-divs --template /home/runner/work/_temp/Library/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable theme=bootstrap --include-in-header /tmp/RtmpwmUHcy/rmarkdown-str90825a5d488c.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' </div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Output created: out90823a8a1f88.html</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -217,11 +246,11 @@ and exist in the current session environment.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Michael Mahoney.</p>
+  <p><p>Developed by Michael Mahoney.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -229,6 +258,8 @@ and exist in the current session environment.</p></td>
 
   
 
+
+  
 
   </body>
 </html>
