@@ -17,7 +17,7 @@ only define them once to use them in both your document generator and
 the generated document. This function makes it slightly easier to do so,
 by automatically creating a named list from provided objects rather than
 requiring a named list. This function is a stripped-down variant of
-\code{\link[tibble]{lst}}.
+[tibble::lst].
 }
 \examples{
 

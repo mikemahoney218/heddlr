@@ -6,7 +6,7 @@
 #' the generated document. This function makes it slightly easier to do so,
 #' by automatically creating a named list from provided objects rather than
 #' requiring a named list. This function is a stripped-down variant of
-#' \code{\link[tibble]{lst}}.
+#' [tibble::lst].
 #'
 #' @param ... Objects to be included as parameters. Objects should be unquoted
 #' and exist in the current session environment.
