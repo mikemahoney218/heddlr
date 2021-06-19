@@ -1,6 +1,6 @@
 Package: heddlr
 Title: Dynamic R Markdown Document Generation
-Version: 0.6.0.9000
+Version: 0.6.1
 Authors@R: 
     person(given = "Michael",
            family = "Mahoney",
@@ -28,6 +28,7 @@ Suggests:
     roxygen2,
     testthat (>= 2.1.0),
     dplyr,
+    tibble,
     tidyr (>= 1.0.0),
     nycflights13,
     ggplot2,

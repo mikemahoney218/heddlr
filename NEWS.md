@@ -1,3 +1,8 @@
+# heddlr 0.6.1
+* Improvements and bug fixes:
+    * Removed `LazyData` and added `tibble` to `Suggests:` in `DESCRIPTION` to 
+      silence NOTEs.
+
 # heddlr 0.6.0
 
 * New functionality:
