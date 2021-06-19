@@ -67,7 +67,6 @@
 </script>
 
 
-
   
 
   
@@ -90,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">heddlr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.1</span>
       </span>
     </div>
 
@@ -169,149 +168,112 @@
       <small>Source: <a href='https://github.com/mikemahoney218/heddlr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="heddlr-061" class="section level1">
+<h1 class="page-header" data-toc-text="0.6.1">
+<a href="#heddlr-061" class="anchor" aria-hidden="true"></a>heddlr 0.6.1<small> Unreleased </small></h1>
+<ul><li>Improvements and bug fixes:
+<ul><li>Removed <code>LazyData</code> and added <code>tibble</code> to <code>Suggests:</code> in <code>DESCRIPTION</code> to silence NOTEs.</li>
+</ul></li>
+</ul></div>
     <div id="heddlr-060" class="section level1">
 <h1 class="page-header" data-toc-text="0.6.0">
-<a href="#heddlr-060" class="anchor" aria-hidden="true"></a>heddlr 0.6.0<small> 2020-03-24 </small>
-</h1>
-<ul>
-<li>New functionality:
-<ul>
-<li>
-<code>provide_parameters</code> replaces your old <code><a href="https://pkgs.rstudio.com/rmarkdown/reference/render.html" class="external-link">rmarkdown::render(..., params = list(x = x, y = y))</a></code> calls with a simpler <code><a href="https://pkgs.rstudio.com/rmarkdown/reference/render.html" class="external-link">rmarkdown::render(..., params = provide_parameters(x, y))</a></code>
+<a href="#heddlr-060" class="anchor" aria-hidden="true"></a>heddlr 0.6.0<small> 2020-03-24 </small></h1>
+<ul><li>New functionality:
+<ul><li>
+<code>provide_parameters</code> replaces your old <code>rmarkdown::render(..., params = list(x = x, y = y))</code> calls with a simpler <code>rmarkdown::render(..., params = provide_parameters(x, y))</code>
 </li>
 <li>
 <code>bulk_replace</code> will change a string across all of a list of provided files, making it easier to change variables as needed.</li>
-</ul>
-</li>
+</ul></li>
 <li>Functionality changes:
-<ul>
-<li>
+<ul><li>
 <code>heddle</code> now warns you when it doesn’t find your placeholder in the pattern, and lets you replicate patterns without replacement by providing <code>NA</code> as argument to <code>...</code>
 </li>
-</ul>
-</li>
+</ul></li>
 <li>Documentation changes:
-<ul>
-<li>
+<ul><li>
 <code>heddle</code>’s miniature essay on <code>...</code> has moved to a separate section</li>
 <li>
 <code>export_template</code> now strips carriage returns from documents by default, preventing your templates from turning into extremely sparse haikus. To keep your </li>
-</ul>
-</li>
+</ul></li>
 <li>Documentation changes:
-<ul>
-<li>
+<ul><li>
 <code>heddle</code>’s miniature essay on <code>...</code> has moved to a separate section</li>
-</ul>
-</li>
+</ul></li>
 <li>Internal changes:
-<ul>
-<li>Development now happens on feature branches, with <code>master</code> reflecting the (more) stable development branch and CRAN reflecting the release version.</li>
-</ul>
-</li>
-</ul>
-</div>
+<ul><li>Development now happens on feature branches, with <code>master</code> reflecting the (more) stable development branch and CRAN reflecting the release version.</li>
+</ul></li>
+</ul></div>
     <div id="heddlr-050" class="section level1">
 <h1 class="page-header" data-toc-text="0.5.0">
-<a href="#heddlr-050" class="anchor" aria-hidden="true"></a>heddlr 0.5.0<small> 2020-01-23 </small>
-</h1>
-<ul>
-<li>Deprecations:
-<ul>
-<li>
+<a href="#heddlr-050" class="anchor" aria-hidden="true"></a>heddlr 0.5.0<small> 2020-01-23 </small></h1>
+<ul><li>Deprecations:
+<ul><li>
 <code>assemble_draft</code> has been deprecated in favor of <code>import_draft</code>, and will be removed in a future release. <code>import_draft</code> works exactly the same as <code>assemble_draft</code> (in fact, <code>assemble_draft</code> is just an alias for <code>import_draft</code>) and more clearly communicates the relationship with <code>import_pattern</code> while also making the distinction from <code>extract_draft</code> more obvious.</li>
-</ul>
-</li>
+</ul></li>
 <li>New functionality:
-<ul>
-<li>
+<ul><li>
 <code>extract_pattern</code> now helps you extract individual patterns from a larger plaintext file, by indicating via signpost keywords what to import</li>
 <li>
 <code>extract_draft</code> makes it easy to extract multiple patterns from the same file in a single function call, returning a single draft object</li>
 <li>
 <code>use_parameters</code> lets you add parameter boilerplate to your templates easily, including objects in your YAML header and initializing them in an R chunk to let you use the same objects in your report that you used to make it</li>
-</ul>
-</li>
+</ul></li>
 <li>Functionality changes:
-<ul>
-<li>
+<ul><li>
 <code>heddle</code> now can handle patterns vectors with length &gt; 1 (in case you want to store your pattern as a column in a dataframe next to the data you’re replacing it with)</li>
-</ul>
-</li>
+</ul></li>
 <li>Documentation changes:
-<ul>
-<li>Examples now utilize <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code> to hopefully pass CRAN checks</li>
-</ul>
-</li>
+<ul><li>Examples now utilize <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code> to hopefully pass CRAN checks</li>
+</ul></li>
 <li>Internal changes:
-<ul>
-<li>Code now (mostly) passes <code>goodpractices::gp()</code>
+<ul><li>Code now (mostly) passes <code>goodpractices::gp()</code>
 </li>
 <li>Removed DATE from DESCRIPTION</li>
 <li>Travis builds now cache packages</li>
-</ul>
-</li>
-</ul>
-</div>
+</ul></li>
+</ul></div>
     <div id="heddlr-041" class="section level1">
 <h1 class="page-header" data-toc-text="0.4.1">
-<a href="#heddlr-041" class="anchor" aria-hidden="true"></a>heddlr 0.4.1<small> Unreleased </small>
-</h1>
-<ul>
-<li>This will be the first version submitted to CRAN</li>
+<a href="#heddlr-041" class="anchor" aria-hidden="true"></a>heddlr 0.4.1<small> Unreleased </small></h1>
+<ul><li>This will be the first version submitted to CRAN</li>
 <li>Functionality changes:
-<ul>
-<li>make_template now uses vectorized <code>vapply</code> functions instead of loops</li>
+<ul><li>make_template now uses vectorized <code>vapply</code> functions instead of loops</li>
 <li>
 <code>heddle</code> stops you a second earlier if your <code>strip.whitespace</code> argument is bad</li>
-</ul>
-</li>
+</ul></li>
 <li>Documentation changes:
-<ul>
-<li>Functions are now grouped into families for easier reference</li>
+<ul><li>Functions are now grouped into families for easier reference</li>
 <li>More involved example vignette edited, links to final product</li>
 <li>Examples added to function documentation</li>
 <li>Typo fixed in flexdashboard vignette</li>
 <li>Website overhauled</li>
 <li>
 <code>README</code> edits</li>
-</ul>
-</li>
+</ul></li>
 <li>Internal changes:
-<ul>
-<li>Added <code>codemeta</code>
+<ul><li>Added <code>codemeta</code>
 </li>
-</ul>
-</li>
-</ul>
-</div>
+</ul></li>
+</ul></div>
     <div id="heddlr-040" class="section level1">
 <h1 class="page-header" data-toc-text="0.4.0">
-<a href="#heddlr-040" class="anchor" aria-hidden="true"></a>heddlr 0.4.0<small> Unreleased </small>
-</h1>
-<ul>
-<li>Functionality changes:
-<ul>
-<li>
+<a href="#heddlr-040" class="anchor" aria-hidden="true"></a>heddlr 0.4.0<small> Unreleased </small></h1>
+<ul><li>Functionality changes:
+<ul><li>
 <code><a href="../reference/assemble_draft.html">assemble_draft()</a></code> now wraps an <code>lapply</code> call and is much more open to different naming conventions</li>
 <li>Remove <code>utils-tidy-eval</code>, as it doesn’t provide much utility and makes finding functions in <code>heddlr::</code> harder.</li>
 <li>Fixed a few latent bugs in heddle:
-<ul>
-<li>Export methods in order to, well, use the methods</li>
-</ul>
-</li>
+<ul><li>Export methods in order to, well, use the methods</li>
+</ul></li>
 <li>Fixed a few latent bugs in make_template:
-<ul>
-<li>Export methods in order to, well, use the methods</li>
+<ul><li>Export methods in order to, well, use the methods</li>
 <li>Fix vector handling so nested vectors are flattened properly</li>
-</ul>
-</li>
+</ul></li>
 <li>Export export_template and fix documentation</li>
-</ul>
-</li>
+</ul></li>
 <li>Documentation changes:
-<ul>
-<li>Add documentation page for <code><a href="../reference/heddlr-package.html">?heddlr</a></code>
+<ul><li>Add documentation page for <code><a href="../reference/heddlr-package.html">?heddlr</a></code>
 </li>
 <li>Add URLs to <code>DESCRIPTION</code>
 </li>
@@ -327,30 +289,23 @@
 </li>
 <li>Edit <code>DESCRIPTION</code> to pass <code>R CMD CHECK</code>
 </li>
-</ul>
-</li>
+</ul></li>
 <li>Internal changes:
-<ul>
-<li>Remove most <code>tidyverse</code> links from GitHub customizations</li>
+<ul><li>Remove most <code>tidyverse</code> links from GitHub customizations</li>
 <li>Add quick “do this before committing” shell script</li>
 <li>Style .R and .Rmd files</li>
 <li>Only test on r-oldrel, r-release, and r-devel (Linux and Windows only)</li>
-</ul>
-</li>
-</ul>
-</div>
+</ul></li>
+</ul></div>
     <div id="heddlr-030" class="section level1">
 <h1 class="page-header" data-toc-text="0.3.0">
-<a href="#heddlr-030" class="anchor" aria-hidden="true"></a>heddlr 0.3.0<small> Unreleased </small>
-</h1>
-<ul>
-<li>Implement <code>heddle</code> function, making it easy to swap out placeholder keywords in piped code</li>
+<a href="#heddlr-030" class="anchor" aria-hidden="true"></a>heddlr 0.3.0<small> Unreleased </small></h1>
+<ul><li>Implement <code>heddle</code> function, making it easy to swap out placeholder keywords in piped code</li>
 <li>Implement <code>make_template</code> function, letting you combine <code>heddle</code> elements into single exportable templates</li>
 <li>Code styled and documentation properly linked (I think!)</li>
 <li>Github project pieces added (Contributing guidelines, code of conduct, issue templates)</li>
 <li>Builds now test against every version of R on Linux and Mac with support in Travis and rlang</li>
-</ul>
-</div>
+</ul></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

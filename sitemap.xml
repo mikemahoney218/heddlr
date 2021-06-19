@@ -1,7 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://mikemahoney218.github.io/heddlr/404.html</loc>
+  </url>
+  <url>
+    <loc>https://mikemahoney218.github.io/heddlr/CODE_OF_CONDUCT.html</loc>
+  </url>
+  <url>
+    <loc>https://mikemahoney218.github.io/heddlr/CONTRIBUTING.html</loc>
+  </url>
+  <url>
+    <loc>https://mikemahoney218.github.io/heddlr/ISSUE_TEMPLATE.html</loc>
+  </url>
+  <url>
+    <loc>https://mikemahoney218.github.io/heddlr/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>https://mikemahoney218.github.io/heddlr/SUPPORT.html</loc>
+  </url>
+  <url>
+    <loc>https://mikemahoney218.github.io/heddlr/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://mikemahoney218.github.io/heddlr/articles/modular-reporting-with-heddlr.html</loc>
+  </url>
+  <url>
+    <loc>https://mikemahoney218.github.io/heddlr/authors.html</loc>
+  </url>
+  <url>
     <loc>https://mikemahoney218.github.io/heddlr/index.html</loc>
+  </url>
+  <url>
+    <loc>https://mikemahoney218.github.io/heddlr/issue_template.html</loc>
+  </url>
+  <url>
+    <loc>https://mikemahoney218.github.io/heddlr/news/index.html</loc>
+  </url>
+  <url>
+    <loc>https://mikemahoney218.github.io/heddlr/paper.html</loc>
+  </url>
+  <url>
+    <loc>https://mikemahoney218.github.io/heddlr/pull_request_template.html</loc>
   </url>
   <url>
     <loc>https://mikemahoney218.github.io/heddlr/reference/assemble_draft.html</loc>
@@ -34,6 +73,9 @@
     <loc>https://mikemahoney218.github.io/heddlr/reference/import_pattern.html</loc>
   </url>
   <url>
+    <loc>https://mikemahoney218.github.io/heddlr/reference/index.html</loc>
+  </url>
+  <url>
     <loc>https://mikemahoney218.github.io/heddlr/reference/make_template.html</loc>
   </url>
   <url>
@@ -41,8 +83,5 @@
   </url>
   <url>
     <loc>https://mikemahoney218.github.io/heddlr/reference/use_parameters.html</loc>
-  </url>
-  <url>
-    <loc>https://mikemahoney218.github.io/heddlr/articles/modular-reporting-with-heddlr.html</loc>
   </url>
 </urlset>

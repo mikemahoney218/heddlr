@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">heddlr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.1</span>
       </span>
     </div>
 
@@ -118,7 +118,7 @@
 </h1>
                         <h4 data-toc-skip class="author">Mike Mahoney</h4>
             
-            <h4 data-toc-skip class="date">2021-04-25</h4>
+            <h4 data-toc-skip class="date">2021-06-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/mikemahoney218/heddlr/blob/master/vignettes/modular-reporting-with-heddlr.Rmd" class="external-link"><code>vignettes/modular-reporting-with-heddlr.Rmd</code></a></small>
       <div class="hidden name"><code>modular-reporting-with-heddlr.Rmd</code></div>
@@ -247,8 +247,8 @@ iris %&gt;%
 <p>It isn’t super important, but I think of the outputs from <code><a href="../reference/heddle.html">heddle()</a></code> as being <em>components</em> of a larger <em>template</em>, and will be using similar terminology from here on out.</p>
 <p>If we wanted to instead use <code><a href="../reference/heddle.html">heddle()</a></code> as part of a magrittr pipeline, we can create new dataframe columns using <code><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">dplyr::mutate()</a></code>:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">iris</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="co"># exact same pattern of arguments: data, pattern, placeholder to replace</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>component <span class="op">=</span> <span class="fu"><a href="../reference/heddle.html">heddle</a></span><span class="op">(</span><span class="va">Species</span>, <span class="va">iris_draft</span><span class="op">$</span><span class="va">species_pattern</span>, <span class="st">"SPECIES_NAME"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;      Species</span>
@@ -261,8 +261,8 @@ iris %&gt;%
 <span class="co">#&gt; 3     ## Iris virginica\n\nThis species of flower is great! It has a mean sepal length of \n`r mean(iris[iris$Species == "virginica", "Sepal.Length"])`, and \nmean sepal width of `r mean(iris[iris$Species == "virginica", "Sepal.Width"])`. \nThat looks like this on a graph!\n\n```{r}\niris %&gt;%\n  filter(Species == "virginica") %&gt;%\n  ggplot(aes(Sepal.Length, Sepal.Width)) + \n  geom_point()\n```\n</span></code></pre></div>
 <p>We can also use <code><a href="../reference/heddle.html">heddle()</a></code> as its own step in a pipeline. When we pass <code><a href="../reference/heddle.html">heddle()</a></code> a dataframe like this, instead of a vector, we have to specify which column we want to replace the placeholder with:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">iris</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="co"># the data argument is provided by %&gt;%</span>
   <span class="co"># so we just provide the pattern and placeholder</span>
   <span class="co"># (format "PLACEHOLDER" = Variable)</span>
@@ -271,32 +271,32 @@ iris %&gt;%
 <span class="co">#&gt; [3] "This is a pattern - virginica "</span></code></pre></div>
 <p>An advantage of this method is we can now replace multiple placeholders with our data in a single function call:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">iris</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="../reference/heddle.html">heddle</a></span><span class="op">(</span><span class="st">"This is a pattern - CODE "</span>, <span class="st">"CODE"</span> <span class="op">=</span> <span class="va">Species</span>, <span class="st">"This"</span> <span class="op">=</span> <span class="va">Species</span><span class="op">)</span>
 <span class="co">#&gt; [1] "setosa is a pattern - setosa "        </span>
 <span class="co">#&gt; [2] "versicolor is a pattern - versicolor "</span>
 <span class="co">#&gt; [3] "virginica is a pattern - virginica "</span></code></pre></div>
 <p>One last way we can use <code><a href="../reference/heddle.html">heddle()</a></code> is to use <code><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">purrr::map()</a></code> to apply it to nested columns made via <code><a href="https://tidyr.tidyverse.org/reference/nest.html" class="external-link">tidyr::nest()</a></code>. To do so, we just provide arguments in the same way as above:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">iris</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html" class="external-link">nest</a></span><span class="op">(</span>nested <span class="op">=</span> <span class="va">Species</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html" class="external-link">nest</a></span><span class="op">(</span>nested <span class="op">=</span> <span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>component <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="va">nested</span>,
     <span class="va">heddle</span>,
     <span class="st">"This is a pattern - CODE "</span>,
     <span class="st">"CODE"</span> <span class="op">=</span> <span class="va">Species</span>
-  <span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 2 x 6</span>
-<span class="co">#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width nested             component</span>
-<span class="co">#&gt;          &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;list&gt;             &lt;list&gt;   </span>
-<span class="co">#&gt; 1          5.1         3.5          1.4         0.2 &lt;tibble[,1] [1 × … &lt;chr [1]&gt;</span>
-<span class="co">#&gt; 2          4.9         3            1.4         0.2 &lt;tibble[,1] [1 × … &lt;chr [1]&gt;</span></code></pre></div>
+<span class="co">#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width nested           component</span>
+<span class="co">#&gt;          &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;list&gt;           &lt;list&gt;   </span>
+<span class="co">#&gt; 1          5.1         3.5          1.4         0.2 &lt;tibble [1 × 1]&gt; &lt;chr [1]&gt;</span>
+<span class="co">#&gt; 2          4.9         3            1.4         0.2 &lt;tibble [1 × 1]&gt; &lt;chr [1]&gt;</span></code></pre></div>
 <p>This is also the supported way to change multiple placeholder values while saving a component as a column in a dataframe via mutate – nest the columns you’re using to replace placeholders with and then use <code>purrr</code> to replace the placeholders in one step.</p>
 <p>You’ll notice that the output of this method is another list column, not the same string column we’re used to seeing as an output. Those familiar with <code>purrr:map()</code> might know that we can get a character output from many dataframes with <code><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">purrr::map_chr()</a></code> – however, this doesn’t work with dataframes where you’ll get more than one output from the <code><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map()</a></code> call:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">iris</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html" class="external-link">nest</a></span><span class="op">(</span>nested <span class="op">=</span> <span class="va">Species</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html" class="external-link">nest</a></span><span class="op">(</span>nested <span class="op">=</span> <span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>component <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_chr</a></span><span class="op">(</span><span class="va">nested</span>, <span class="va">heddle</span>,
     <span class="st">"This is a pattern - CODE "</span>,
     <span class="st">"CODE"</span> <span class="op">=</span> <span class="va">Species</span>
@@ -304,30 +304,30 @@ iris %&gt;%
 <span class="co"># &gt; Error: Result 102 must be a single string, not a character vector of length 2</span></code></pre></div>
 <p>Instead, we can turn to our next function, <code><a href="../reference/make_template.html">heddlr::make_template()</a></code>. There are a few different ways that we can use this function. For our current situation, for instance, we can use <code><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">purrr::map_chr()</a></code> to apply <code><a href="../reference/make_template.html">make_template()</a></code> to our new component list column, transforming it into the normal set of strings we’re used to:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">iris</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html" class="external-link">nest</a></span><span class="op">(</span>nested <span class="op">=</span> <span class="va">Species</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html" class="external-link">nest</a></span><span class="op">(</span>nested <span class="op">=</span> <span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>
     component <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="va">nested</span>, <span class="va">heddle</span>, <span class="st">"This is a pattern - CODE "</span>, <span class="st">"CODE"</span> <span class="op">=</span> <span class="va">Species</span><span class="op">)</span>,
     component <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_chr</a></span><span class="op">(</span><span class="va">component</span>, <span class="va">make_template</span><span class="op">)</span>
-  <span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 2 x 6</span>
-<span class="co">#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width nested      component       </span>
-<span class="co">#&gt;          &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;list&gt;      &lt;chr&gt;           </span>
-<span class="co">#&gt; 1          5.1         3.5          1.4         0.2 &lt;tibble[,1… "This is a patt…</span>
-<span class="co">#&gt; 2          4.9         3            1.4         0.2 &lt;tibble[,1… "This is a patt…</span></code></pre></div>
+<span class="co">#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width nested     component        </span>
+<span class="co">#&gt;          &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;list&gt;     &lt;chr&gt;            </span>
+<span class="co">#&gt; 1          5.1         3.5          1.4         0.2 &lt;tibble [… "This is a patte…</span>
+<span class="co">#&gt; 2          4.9         3            1.4         0.2 &lt;tibble [… "This is a patte…</span></code></pre></div>
 <p>In addition to this, there are two other contexts we can use <code><a href="../reference/make_template.html">make_template()</a></code>. If we pass it a dataframe and a vector, it will collapse that vector into a single string:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">iris</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html" class="external-link">nest</a></span><span class="op">(</span>nested <span class="op">=</span> <span class="va">Species</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html" class="external-link">nest</a></span><span class="op">(</span>nested <span class="op">=</span> <span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>
     component <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="va">nested</span>, <span class="va">heddle</span>,
       <span class="st">"This is a pattern - CODE "</span>,
       <span class="st">"CODE"</span> <span class="op">=</span> <span class="va">Species</span>
     <span class="op">)</span>,
     component <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_chr</a></span><span class="op">(</span><span class="va">component</span>, <span class="va">make_template</span><span class="op">)</span>
-  <span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="../reference/make_template.html">make_template</a></span><span class="op">(</span><span class="va">component</span><span class="op">)</span>
 <span class="co">#&gt; [1] "This is a pattern - setosa This is a pattern - setosa "</span></code></pre></div>
 <p>If instead the first argument we pass it is a vector, it will combine all the vectors you provide it into a single string:</p>
@@ -336,13 +336,13 @@ iris %&gt;%
 <span class="co">#&gt; [1] "Part one, part two"</span></code></pre></div>
 <p>In the context of our example report, these steps would look something like this:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">species_template</span> <span class="op">&lt;-</span> <span class="va">iris</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="va">species_template</span> <span class="op">&lt;-</span> <span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>component <span class="op">=</span> <span class="fu"><a href="../reference/heddle.html">heddle</a></span><span class="op">(</span>
     <span class="va">Species</span>,
     <span class="va">iris_draft</span><span class="op">$</span><span class="va">species_pattern</span>,
     <span class="st">"SPECIES_NAME"</span>
-  <span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="../reference/make_template.html">make_template</a></span><span class="op">(</span><span class="va">component</span><span class="op">)</span>
 
 <span class="va">report_template</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_template.html">make_template</a></span><span class="op">(</span><span class="va">iris_draft</span><span class="op">$</span><span class="va">setup_pattern</span>, <span class="va">species_template</span><span class="op">)</span></code></pre></div>

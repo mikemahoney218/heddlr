@@ -1,9 +1,9 @@
 pandoc: 2.7.3
 pkgdown: 1.6.1.9001
-pkgdown_sha: efdd68c73260e37ee89978a6eb2c1650ceb5ab77
+pkgdown_sha: 51268b0d9cb0588d7a6404a2b8ef4ee19c435e89
 articles:
   modular-reporting-with-heddlr: modular-reporting-with-heddlr.html
-last_built: 2021-04-25T23:15Z
+last_built: 2021-06-19T14:00Z
 urls:
   reference: https://mikemahoney218.github.io/heddlr/reference
   article: https://mikemahoney218.github.io/heddlr/articles
